@@ -1,0 +1,26 @@
+{
+  "name": "service-gateway",
+  "version": "1.0.0",
+  "description": "graphql microservice gateway",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "nodemon -r esm ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christoph Benjamin Weber",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-link-http": "^1.5.9",
+    "apollo-server": "^2.4.8",
+    "esm": "^3.0.84",
+    "graphql": "^14.1.1",
+    "graphql-tools": "^4.0.4",
+    "lodash": "^4.17.11",
+    "node-fetch": "^2.3.0"
+  },
+  "devDependencies": {
+    "dotenv": "^6.2.0",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.15.3"
+  }
+}
