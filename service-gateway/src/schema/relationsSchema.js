@@ -1,9 +1,9 @@
 const relationsSchema = `
   extend type User {
-    posts: [Post]
+    blogs: [Blog]
   }
 
-  extend type Post {
+  extend type Blog {
     author: User
   }
 `;

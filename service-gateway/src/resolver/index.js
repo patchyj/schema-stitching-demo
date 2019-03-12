@@ -1,12 +1,12 @@
-import makePostResolver from './post';
-import makeUserResolver from './user';
+import makeBlogResolver from './blogResolver';
+import makeUserResolver from './userResolver';
 
-const makeResolvers = ({ postSchema, userSchema }) => {
-  const Post = makePostResolver(userSchema);
-  const User = makeUserResolver(postSchema);
+const makeResolvers = ({ blogSchema, userSchema }) => {
+  const Blog = makeBlogResolver(userSchema);
+  const User = makeUserResolver(blogSchema);
 
   return {
-    Post,
+    Blog,
     User
   };
 };
