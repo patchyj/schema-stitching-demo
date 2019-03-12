@@ -8,6 +8,6 @@ const PORT = process.env.PORT || 4002;
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
-server.listen(PORT).then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
+server.listen(PORT).then((app) => {
+  console.log(`🚀 Server ready at ${app.url}graphql`);
 });

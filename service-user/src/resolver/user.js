@@ -15,8 +15,6 @@ const resolvers = {
       return users.reverse();
     },
     user: async (parent, { id }) => {
-      console.log(id);
-      
       const user = await User.findById(id);
       return user;
     },

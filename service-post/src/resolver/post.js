@@ -14,11 +14,15 @@ const resolvers = {
       return blogs;
     },
     post: async (parent, { id }) => {
-      console.log(id);
       
       const blog = await Blog.findById(id);
       return blog;
-    }
+    },
+    postsByAuthorId: async (parent, { authorId }) => {
+      const blogs = await Blog.find({user: authorId});
+
+      return blogs;
+    } 
   }
 };
 
