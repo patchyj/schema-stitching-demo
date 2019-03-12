@@ -7,8 +7,6 @@ const rootResolvers = {};
 
 // Merge all of the resolver objects together, just to show how
 const resolvers = merge(rootResolvers, userResolver);
-console.log(resolvers);
-
 
 // export all resolvers
 export default resolvers;

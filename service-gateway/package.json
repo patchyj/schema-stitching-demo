@@ -4,7 +4,7 @@
   "description": "graphql microservice gateway",
   "main": "./src/index.js",
   "scripts": {
-    "start": "nodemon -r esm ./src/index.js",
+    "start": "nodemon --inspect=4010 -r esm ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Christoph Benjamin Weber",

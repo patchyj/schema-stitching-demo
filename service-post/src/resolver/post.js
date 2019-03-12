@@ -22,7 +22,7 @@ const resolvers = {
       const blogs = await Blog.find({user: authorId});
 
       return blogs;
-    } 
+    }
   }
 };
 

@@ -7,12 +7,7 @@ const post = gql`
     title: String
     tagline: String
     body: String
-    user: String
-  }
-
-  type Identifier {
-    # a unique hash to identify the running node process
-    hash: String
+    user: ID
   }
 
   # Queries from post service
@@ -23,8 +18,6 @@ const post = gql`
     post(id: ID!): Post
     # A single post
     postsByAuthorId(authorId: ID!): [Post]
-    # infos identifying running process
-    identifier: Identifier
   }
 `;
 
