@@ -1,4 +1,4 @@
-export default schema => ({
+export default async schema => ({
   blogs: {
     fragment: `fragment UserFragment on User { id }`, // default param
     resolve(user, args, context, info) {
@@ -18,15 +18,13 @@ export default schema => ({
   },
   profile: {
     fragment: `fragment UserFragment on User { id }`, // default param
-    resolve(user, args, context, info) {
-      console.log(args);
-
+    resolve(user, args, context, info) {      
       return info.mergeInfo.delegateToSchema({
         schema,
         operation: 'query', // service-post/src/schema/post.js type Query {}
-        fieldName: 'userProfile', // service-post/src/schema/post.js Query { userProfile }
+        fieldName: 'profileByUserID', // service-post/src/schema/post.js Query { userProfile }
         args: {
-          user: user.id // args to be posted to postsByAuthorId
+          userID: user.id // args to be posted to postsByAuthorId
         },
         context,
         info

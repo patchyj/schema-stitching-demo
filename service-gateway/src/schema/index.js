@@ -1,22 +1,17 @@
 import { mergeSchemas } from 'graphql-tools';
-
 import makeResolvers from '../resolver';
-
-import makeBlogSchema from '../remoteSchema/remoteBlogSchema';
-import makeUserSchema from '../remoteSchema/remoteUserSchema';
-import makeProfileSchema from '../remoteSchema/remoteProfileSchema';
+import createRemoteExecutableSchemas from '../remoteSchema';
 import relationsSchema from './relationsSchema';
-
-// use schema stitching technique to merge schems together
+  
 export default async () => {
-  const blogSchema = await makeBlogSchema();
-  const userSchema = await makeUserSchema();
-  const profileSchema = await makeProfileSchema();
-
-  const resolvers = makeResolvers({ blogSchema, userSchema, profileSchema });
+  // Get all remote schemas
+  const schemas = await createRemoteExecutableSchemas()
+  // 
+  const resolvers = await makeResolvers(schemas);
 
   return mergeSchemas({
-    schemas: [blogSchema, userSchema, profileSchema, relationsSchema],
+    schemas: [...schemas, relationsSchema],
     resolvers
   });
 };
+// ======= IMPORTED IN SRC?INDEX.JS ======

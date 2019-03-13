@@ -1,4 +1,5 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 const Schema = mongoose.Schema;
 
 // Create Schema

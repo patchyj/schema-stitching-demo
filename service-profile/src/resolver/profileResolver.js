@@ -16,12 +16,11 @@ const resolvers = {
       const profile = await Profile.findById(id);
       return profile;
     },
-    userProfile: async (parent, { user }) => {
-      console.log(parent);
-
-      const profiles = await Profile.find({ user: user });
-
-      return profiles;
+    profileByUserID: async (parent, { userID }) => {
+      const profile = await Profile.find({ user: userID });
+      console.log(profile);
+      
+      return profile;
     }
   }
 };

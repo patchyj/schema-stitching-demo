@@ -37,7 +37,7 @@ const profile = gql`
   type Query {
     allProfiles: [Profile!]
     profile(id: ID!): Profile
-    userProfile(user: ID!): [Profile]
+    profileByUserID(userID: ID!): Profile
   }
 `;
 

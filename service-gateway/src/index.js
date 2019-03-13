@@ -8,11 +8,11 @@ const PORT = process.env.PORT || 3000;
 const startGateway = async () => {
   const schema = await makeSchema();
 
-  const server = new ApolloServer({ schema: schema });
-
-  server.listen(PORT).then(({ url }) => {
-    console.log(`🚀 Server ready at ${url}graphql`);
-  });
+  const server = new ApolloServer({ schema: schema });  
+  // console.log(schema);
+  
+  server.listen(PORT)
+    .then(({ url }) => console.log(`🚀 Server ready at ${url}graphql`));
 };
 
-startGateway();
+startGateway().catch(err => console.log(err));

@@ -10,6 +10,4 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 server.listen(PORT).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}graphql`);
-});
-
-// PROFILE_DB=mongodb://portfolio_profile:portfolio_profile1234!!@ds163835.mlab.com:63835/portfolio_profile
+}).catch(err => err)
