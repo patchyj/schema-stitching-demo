@@ -5,7 +5,7 @@ export default schema => ({
     fragment: `fragment BlogFragment on Blog { user }`, // ...default argument of author...
     resolve(blog, args, context, info) {
       // ...implement the resolver...
-      console.log(blog); // ...the PARENT will hold the fields that's you're querying. In order to make a query to User, we need  blog.user (an ID) which will be sent to the USER
+      // console.log(blog); // ...the PARENT will hold the fields that's you're querying. In order to make a query to User, we need  blog.user (an ID) which will be sent to the USER
       return info.mergeInfo.delegateToSchema({
         schema, // The schema we're delegating to (User)
         operation: 'query', // it'ss a query

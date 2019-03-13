@@ -1,0 +1,38 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.0.0"
+  },
+  "description": "'template'",
+  "main": "app.js",
+  "scripts": {
+    "seed": "node seeds/userSeed.js && node seeds/blogSeed.js && node seeds/projectSeed.js && node seeds/profileSeed.js",
+    "seedUser": "node seeds/userSeed.js",
+    "seedBlog": "node seeds/blogSeed.js",
+    "seedProject": "node seeds/projectSeed.js",
+    "seedProfile": "node seeds/profileSeed.js"
+  },
+  "author": "Jack McGregor",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bcrypt": "^3.0.0",
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.3",
+    "express-fileupload": "^1.0.0",
+    "express-graphql": "^0.7.1",
+    "faker": "^4.1.0",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.3.15",
+    "morgan": "~1.9.0",
+    "nodemailer": "^4.7.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  }
+}
