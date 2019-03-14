@@ -1,10 +1,15 @@
 const relationsSchema = `
   extend type User {
     blogs: [Blog]
+    projects: [Project]
     profile: Profile
   }
 
   extend type Blog {
+    author: User
+  }
+
+  extend type Project {
     author: User
   }
 
