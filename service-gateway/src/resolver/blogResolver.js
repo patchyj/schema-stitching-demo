@@ -1,4 +1,4 @@
-export default async schema => ({
+export default async userSchema => ({
   // This will go on Blog...
   author: {
     // ...Blog.author...
@@ -7,7 +7,7 @@ export default async schema => ({
       // ...implement the resolver...
       // console.log(blog); // ...the PARENT will hold the fields that's you're querying. In order to make a query to User, we need  blog.user (an ID) which will be sent to the USER
       return info.mergeInfo.delegateToSchema({
-        schema, // The schema we're delegating to (User)
+        userSchema, // The schema we're delegating to (User)
         operation: 'query', // it'ss a query
         fieldName: 'user', // ... query { user } in User
         args: {
