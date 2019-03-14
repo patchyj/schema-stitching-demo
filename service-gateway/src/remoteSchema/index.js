@@ -19,14 +19,13 @@ export default async () => {
       uri: api.uri,
       fetch
     });
-
     const remoteSchema = await introspectSchema(link);
     const remoteExecutableSchema = makeRemoteExecutableSchema({
       schema: remoteSchema,
       link
     });
-
     schemas.push(remoteExecutableSchema);
   }
+
   return schemas;
 };

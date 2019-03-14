@@ -1,5 +1,6 @@
 import makeBlogResolver from './blogResolver'; // Fragments (extra resolvers)
 import makeUserResolver from './userResolver'; // Fragments (extra resolvers)
+import makeProfileResolver from './profileResolver'; // Fragments (extra resolvers)
 
 const makeResolvers = async schemas => {
   const userSchema = schemas[0];
@@ -8,10 +9,9 @@ const makeResolvers = async schemas => {
 
   const Blog = await makeBlogResolver(userSchema);
   const User = await makeUserResolver(blogSchema, profileSchema);
+  const Profile = await makeProfileResolver(userSchema);
 
-  // console.log(profileSchema);
-
-  return { Blog, User };
+  return { Blog, User, Profile };
 };
 
 export default makeResolvers;

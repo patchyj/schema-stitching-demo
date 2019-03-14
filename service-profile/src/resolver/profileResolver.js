@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 dotenv.config();
 mongoose.Promise = require('bluebird');
 mongoose.connect(process.env.PROFILE_DB, { useNewUrlParser: true });
-import Profile from '../models/Profile';
+import { Profile } from '../models/Profile';
 
 // add some small resolvers
 const resolvers = {
@@ -13,13 +13,13 @@ const resolvers = {
       return profiles;
     },
     profile: async (parent, { id }) => {
-      const profile = await Profile.findById(id);
+      const profile = await Profile.findById(id);      
       return profile;
     },
-    profileByUserID: async (parent, { userID }) => {
-      const profile = await Profile.find({ user: userID });
-      console.log(profile);
+    profileByUserID: async (parent, { user }) => {
       
+      const profile = await Profile.findOne({ user: user });      
+      console.log(profile);
       return profile;
     }
   }
