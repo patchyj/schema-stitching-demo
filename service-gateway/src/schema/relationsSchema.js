@@ -7,6 +7,10 @@ const relationsSchema = `
   extend type Blog {
     author: User
   }
+
+  extend type Profile {
+    author: User
+  }
 `;
 
 export default relationsSchema;

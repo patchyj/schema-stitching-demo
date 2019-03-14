@@ -63,11 +63,8 @@ const ProfileSchema = new Schema({
     }
   ],
   user: {
-    type: String,
-    required: true
+    type: String
   }
 });
 
-const Profile = mongoose.model('profiles', ProfileSchema);
-
-module.exports = Profile;
+export const Profile = mongoose.model('profiles', ProfileSchema);

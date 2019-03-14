@@ -48,7 +48,7 @@ type Query {
   blogsByAuthorId(authorId: ID!): [Blog]
   allProfiles: [Profile!]
   profile(id: ID!): Profile
-  profileUser(userID: ID!): Profile
+  profileByUserID(userID: ID!): Profile
 }
 
 type Skill {
