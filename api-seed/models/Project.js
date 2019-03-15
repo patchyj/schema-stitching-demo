@@ -29,7 +29,7 @@ const ProjectSchema = new Schema({
     type: String
   },
   images: [String],
-  userID: {
+  user: {
     type: String
   }
 });

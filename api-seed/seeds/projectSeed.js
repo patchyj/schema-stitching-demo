@@ -1,5 +1,6 @@
 const faker = require('faker');
 const dotenv = require('dotenv');
+const axios = require('axios');
 dotenv.config();
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -13,8 +14,8 @@ const Project = require('../models/Project');
 const getUsers = async () => {
   const data = {
     query: `
-      query getUsers {
-        getUsers {
+      query allUsers {
+        allUsers {
           id
           email
           }
@@ -24,7 +25,7 @@ const getUsers = async () => {
 
   const users = await axios.post(`${process.env.USER_DEV_API}`, data);
 
-  return users.data.data.getUsers;
+  return users.data.data.allUsers;
 };
 
 Project.collection.drop();
