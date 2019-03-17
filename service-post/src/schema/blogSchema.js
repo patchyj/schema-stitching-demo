@@ -19,6 +19,11 @@ const blog = gql`
     # A single blog
     blogsByAuthorId(authorId: ID!): [Blog]
   }
+
+  type Mutation {
+    addBlog(title: String, tagline: String, body: String, user: ID): Blog
+    updateBlog(title: String, tagline: String, body: String, user: ID): Blog
+  }
 `;
 
 export default blog;

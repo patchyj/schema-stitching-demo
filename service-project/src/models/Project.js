@@ -13,8 +13,7 @@ const ProjectSchema = new Schema({
     required: true
   },
   about: {
-    type: String,
-    required: true
+    type: String
   },
   twitterURL: {
     type: String

@@ -21,6 +21,27 @@ const resolvers = {
 
       return projects;
     }
+  },
+  Mutation: {
+    // ========= CREATE =========
+    addProject: async (parent, project) => {
+      // ...add validation here...
+      const newProject = new Project({
+        title: project.title,
+        tagline: project.tagline,
+        about: project.about,
+        twitterURL: project.twitterURL,
+        websiteURL: project.websiteURL,
+        facebookURL: project.facebookURL,
+        linkedInURL: project.linkedInURL,
+        images: project.images,
+        user: project.user
+      });
+
+      newProject.save();
+
+      return newProject;
+    }
   }
 };
 

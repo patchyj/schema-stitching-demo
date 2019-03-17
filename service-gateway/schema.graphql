@@ -32,12 +32,31 @@ type Experience {
   description: String!
 }
 
+type Mutation {
+  addUser(firstName: String, lastName: String, email: String, password: String, password2: String): User
+}
+
 type Profile {
   id: ID!
   experience: [Experience]!
   education: [Education]!
   skills: [Skill]!
   user: ID
+  author: User
+}
+
+type Project {
+  id: ID!
+  title: String!
+  tagline: String!
+  about: String!
+  twitterURL: String!
+  websiteURL: String!
+  facebookURL: String!
+  linkedInURL: String!
+  images: [String]!
+  user: ID!
+  author: User
 }
 
 type Query {
@@ -46,9 +65,12 @@ type Query {
   allBlogs: [Blog]
   blog(id: ID!): Blog
   blogsByAuthorId(authorId: ID!): [Blog]
+  allProjects: [Project]
+  project(id: ID!): Project
+  projectsByAuthorId(authorId: ID!): [Project]
   allProfiles: [Profile!]
   profile(id: ID!): Profile
-  profileByUserID(userID: ID!): Profile
+  profileByUserID(user: ID): Profile
 }
 
 type Skill {
@@ -66,6 +88,7 @@ type User {
   email: String
   password: String
   blogs: [Blog]
+  projects: [Project]
   profile: Profile
 }
 

@@ -24,6 +24,22 @@ const resolvers = {
 
       return blogs;
     }
+  },
+  Mutation: {
+    // ========= CREATE =========
+    addBlog: async (parent, blog) => {
+      // ...add validation here...
+      const newBlog = new Blog({
+        title: blog.title,
+        tagline: blog.tagline,
+        body: blog.body,
+        user: blog.user
+      });
+
+      newBlog.save();
+
+      return newBlog;
+    }
   }
 };
 

@@ -17,6 +17,16 @@ const user = gql`
     # A single user
     user(id: ID!): User
   }
+
+  type Mutation {
+    addUser(
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+      password2: String
+    ): User
+  }
 `;
 
 export default user;

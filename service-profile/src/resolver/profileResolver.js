@@ -13,12 +13,28 @@ const resolvers = {
       return profiles;
     },
     profile: async (parent, { id }) => {
-      const profile = await Profile.findById(id);      
+      const profile = await Profile.findById(id);
       return profile;
     },
-    profileByUserID: async (parent, { user }) => {      
-      const profile = await Profile.findOne({ user: user });      
+    profileByUserID: async (parent, { user }) => {
+      const profile = await Profile.findOne({ user: user });
       return profile;
+    }
+  },
+  Mutation: {
+    // ========= CREATE =========
+    addProfile: async (parent, profile) => {
+      // ...add validation here...
+      const newProfile = new Profile({
+        experience: profile.Experience,
+        education: profile.Education,
+        skills: profile.Skills,
+        user: profile.user
+      });
+
+      newProfile.save();
+
+      return newProfile;
     }
   }
 };

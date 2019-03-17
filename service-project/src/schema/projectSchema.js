@@ -23,6 +23,20 @@ const project = gql`
     # A single project
     projectsByAuthorId(authorId: ID!): [Project]
   }
+
+  type Mutation {
+    addProject(
+      title: String!
+      tagline: String!
+      about: String
+      twitterURL: String
+      websiteURL: String
+      facebookURL: String
+      linkedInURL: String
+      images: [String]
+      user: ID!
+    ): Project
+  }
 `;
 
 export default project;
