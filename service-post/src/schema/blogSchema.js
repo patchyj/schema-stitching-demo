@@ -22,7 +22,13 @@ const blog = gql`
 
   type Mutation {
     addBlog(title: String, tagline: String, body: String, user: ID): Blog
-    updateBlog(title: String, tagline: String, body: String, user: ID): Blog
+    updateBlog(
+      id: ID!
+      title: String
+      tagline: String
+      body: String
+      user: ID
+    ): Blog
   }
 `;
 

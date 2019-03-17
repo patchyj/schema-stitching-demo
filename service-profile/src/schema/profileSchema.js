@@ -2,6 +2,7 @@ import { gql } from 'apollo-server';
 
 const profile = gql`
   type Experience {
+    id: ID
     title: String
     company: String
     location: String
@@ -12,6 +13,7 @@ const profile = gql`
   }
 
   input ExperienceInput {
+    id: ID
     title: String
     company: String
     location: String
@@ -22,6 +24,7 @@ const profile = gql`
   }
 
   type Education {
+    id: ID
     school: String
     degree: String
     fieldofstudy: String
@@ -32,6 +35,7 @@ const profile = gql`
   }
 
   input EducationInput {
+    id: ID
     school: String
     degree: String
     fieldofstudy: String
@@ -42,11 +46,13 @@ const profile = gql`
   }
 
   type Skill {
+    id: ID
     name: String
     level: Int
   }
 
   input SkillInput {
+    id: ID
     name: String
     level: Int
   }
@@ -67,9 +73,16 @@ const profile = gql`
 
   type Mutation {
     addProfile(
-      Experience: [ExperienceInput]
-      Education: [EducationInput]
-      Skill: [SkillInput]
+      experience: [ExperienceInput]
+      education: [EducationInput]
+      skills: [SkillInput]
+      user: ID
+    ): Profile
+    updateProfile(
+      id: ID!
+      experience: [ExperienceInput]
+      education: [EducationInput]
+      skills: [SkillInput]
       user: ID
     ): Profile
   }

@@ -36,6 +36,18 @@ const project = gql`
       images: [String]
       user: ID!
     ): Project
+    updateProject(
+      id: ID!
+      title: String
+      tagline: String
+      about: String
+      twitterURL: String
+      websiteURL: String
+      facebookURL: String
+      linkedInURL: String
+      images: [String]
+      user: ID!
+    ): Project
   }
 `;
 

@@ -41,6 +41,17 @@ const resolvers = {
       newProject.save();
 
       return newProject;
+    },
+    updateProject: async (parent, project) => {
+      const updatedProject = await Project.findOneAndUpdate(
+        project.id,
+        project,
+        {
+          new: true
+        }
+      );
+
+      return updatedProject;
     }
   }
 };

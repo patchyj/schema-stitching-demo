@@ -39,6 +39,13 @@ const resolvers = {
       newBlog.save();
 
       return newBlog;
+    },
+    updateBlog: async (parent, blog) => {
+      const updatedBlog = await Blog.findOneAndUpdate(blog.id, blog, {
+        new: true
+      });
+
+      return updatedBlog;
     }
   }
 };

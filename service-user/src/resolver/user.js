@@ -47,6 +47,13 @@ const resolvers = {
       });
 
       return newUser;
+    },
+    updateUser: async (parent, user) => {
+      const updatedUser = await User.findOneAndUpdate(user.id, user, {
+        new: true
+      });
+
+      return updatedUser;
     }
   }
 };

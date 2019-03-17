@@ -26,6 +26,13 @@ const user = gql`
       password: String
       password2: String
     ): User
+    updateUser(
+      id: ID!
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+    ): User
   }
 `;
 

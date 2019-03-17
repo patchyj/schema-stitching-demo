@@ -28,13 +28,25 @@ const resolvers = {
       const newProfile = new Profile({
         experience: profile.Experience,
         education: profile.Education,
-        skills: profile.Skills,
+        skills: profile.Skill,
         user: profile.user
       });
 
       newProfile.save();
 
       return newProfile;
+    },
+    updateProfile: async (parent, profile) => {
+      const updatedProfile = await Profile.findOneAndUpdate(
+        profile.id,
+        profile,
+        {
+          new: true
+        }
+      );
+      console.log(updatedProfile);
+
+      return updatedProfile;
     }
   }
 };
