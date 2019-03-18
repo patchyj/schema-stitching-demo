@@ -1,23 +1,37 @@
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
 dotenv.config();
-mongoose.Promise = require('bluebird');
-mongoose.connect(process.env.PROJECT_DB, { useNewUrlParser: true });
-import { Project } from '../models/Project';
+import Sequelize from 'sequelize';
+const sequelize = new Sequelize(process.env.PROJECT_PG_DB, {
+  dialect: 'postgres'
+});
+
+// Create Schema
+const Project = sequelize.define('project', {
+  title: Sequelize.STRING,
+  tagline: Sequelize.STRING,
+  about: Sequelize.TEXT,
+  twitterURL: Sequelize.STRING,
+  websiteURL: Sequelize.STRING,
+  facebookURL: Sequelize.STRING,
+  linkedInURL: Sequelize.STRING,
+  images: Sequelize.ARRAY(Sequelize.STRING),
+  user: Sequelize.STRING
+});
 
 // add some small resolvers
 const resolvers = {
   Query: {
     allProjects: async () => {
-      const projects = await Project.find();
+      const projects = await Project.findAll();
       return projects;
     },
     project: async (parent, { id }) => {
-      const project = await Project.findById(id);
-      return project;
+      const project = await Project.findAll({ where: { id: id } });
+      
+      return project[0];
     },
     projectsByAuthorId: async (parent, { authorId }) => {
-      const projects = await Project.find({ user: authorId });
+      const projects = await Project.findAll({ where: { user: authorId } });
 
       return projects;
     }
@@ -26,7 +40,8 @@ const resolvers = {
     // ========= CREATE =========
     addProject: async (parent, project) => {
       // ...add validation here...
-      const newProject = new Project({
+      await sequelize.sync();
+      const newProject = await Project.create({
         title: project.title,
         tagline: project.tagline,
         about: project.about,
@@ -36,22 +51,20 @@ const resolvers = {
         linkedInURL: project.linkedInURL,
         images: project.images,
         user: project.user
-      });
-
-      newProject.save();
+      }, { returning: true });
 
       return newProject;
     },
     updateProject: async (parent, project) => {
-      const updatedProject = await Project.findOneAndUpdate(
-        project.id,
-        project,
-        {
-          new: true
-        }
-      );
+      // ...add validation here...
+      await sequelize.sync();
+      await Project.update(project, {
+        where: { id: project.id } 
+      }, { returning: true });
 
-      return updatedProject;
+      const updatedProject = await Project.findAll({ where: { id: project.id } });
+
+      return updatedProject[0];
     }
   }
 };

@@ -1,39 +1,22 @@
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-const Schema = mongoose.Schema;
-
-// Create Schema
-const ProjectSchema = new Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  tagline: {
-    type: String,
-    required: true
-  },
-  about: {
-    type: String,
-    required: true
-  },
-  twitterURL: {
-    type: String
-  },
-  websiteURL: {
-    type: String
-  },
-  facebookURL: {
-    type: String
-  },
-  linkedInURL: {
-    type: String
-  },
-  images: [String],
-  user: {
-    type: String
-  }
+const env = require('../config/keys');
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(env.project_pg_db, {
+  dialect: 'postgres'
 });
 
-const Project = mongoose.model('projects', ProjectSchema);
+// Create Schema
+const Project = sequelize.define('project', {
+  title: Sequelize.STRING,
+  tagline: Sequelize.STRING,
+  about: Sequelize.TEXT,
+  twitterURL: Sequelize.STRING,
+  websiteURL: Sequelize.STRING,
+  facebookURL: Sequelize.STRING,
+  linkedInURL: Sequelize.STRING,
+  images: Sequelize.ARRAY(Sequelize.STRING),
+  user: Sequelize.STRING
+});
 
-module.exports = Project;
+Project.drop();
+
+module.exports = {sequelize, Project};

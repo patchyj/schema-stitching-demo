@@ -15,7 +15,10 @@
     "esm": "^3.0.84",
     "graphql": "^14.0.2",
     "lodash": "^4.17.11",
-    "mongoose": "^5.4.18"
+    "mongoose": "^5.4.18",
+    "pg": "^7.9.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^5.1.0"
   },
   "devDependencies": {
     "dotenv": "^6.2.0",

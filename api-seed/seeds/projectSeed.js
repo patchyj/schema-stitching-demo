@@ -1,13 +1,23 @@
-const faker = require('faker');
-const dotenv = require('dotenv');
-const axios = require('axios');
-dotenv.config();
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
+require('dotenv').config();
 const env = require('../config/keys');
-mongoose.connect(env.project_db, { useNewUrlParser: true });
+const faker = require('faker');
+const axios = require('axios');
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(env.project_pg_db, {
+  dialect: 'postgres'
+});
 
-const Project = require('../models/Project');
+const Project = sequelize.define('project', {
+  title: Sequelize.STRING,
+  tagline: Sequelize.STRING,
+  about: Sequelize.TEXT,
+  twitterURL: Sequelize.STRING,
+  websiteURL: Sequelize.STRING,
+  facebookURL: Sequelize.STRING,
+  linkedInURL: Sequelize.STRING,
+  images: Sequelize.ARRAY(Sequelize.STRING),
+  user: Sequelize.STRING
+});
 
 // ============ GET USERS ============
 
@@ -23,17 +33,15 @@ const getUsers = async () => {
       `
   };
 
-  const users = await axios.post(`${process.env.USER_DEV_API}`, data);
+  const users = await axios.post(env.USER_DEV_API, data);
 
   return users.data.data.allUsers;
 };
 
-Project.collection.drop();
-
-const projects = [];
+Project.drop();
 
 async function createProjects() {
-  const users = await getUsers();
+  const users = await getUsers();  
 
   for (let i = 0; i < users.length; i++) {
     const num = Math.floor(Math.random() * 5) + 2;
@@ -42,25 +50,22 @@ async function createProjects() {
       images.push(faker.image.avatar());
     }
     const title = faker.lorem.sentence();
-    const newProject = {
-      title: title,
-      tagline: faker.lorem.sentence(),
-      about: faker.lorem.paragraphs(),
-      linkedInURL: `http://www.linkedin.com/user${i}`,
-      twitterURL: `http://www.twitter.com/user${i}`,
-      facebookURL: `http://www.facebook.com/user${i}`,
-      websiteURL: `http://www.${title}.com`,
-      images: images,
-      user: users[i].id
-    };
-
-    projects.push(newProject);
+    await sequelize.sync().then(() => {
+      Project.create({
+        title: title,
+        tagline: faker.lorem.sentence(),
+        about: faker.lorem.paragraphs(),
+        linkedInURL: `http://www.linkedin.com/user${i}`,
+        twitterURL: `http://www.twitter.com/user${i}`,
+        facebookURL: `http://www.facebook.com/user${i}`,
+        websiteURL: `http://www.${title}.com`,
+        images: images,
+        user: users[i].id
+      })
+    })
+    .then(project => console.log(project))
+    .catch(err => console.log(err));
   }
-
-  await Project.create(projects)
-    .then(projects => console.log(`${projects.length} projects created!`))
-    .catch(err => console.log(err))
-    .finally(() => mongoose.connection.close());
 }
 
 createProjects();
