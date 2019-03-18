@@ -26,9 +26,9 @@ const resolvers = {
     addProfile: async (parent, profile) => {
       // ...add validation here...
       const newProfile = new Profile({
-        experience: profile.Experience,
-        education: profile.Education,
-        skills: profile.Skill,
+        experience: profile.experience,
+        education: profile.education,
+        skills: profile.skills,
         user: profile.user
       });
 
@@ -44,8 +44,6 @@ const resolvers = {
           new: true
         }
       );
-      console.log(updatedProfile);
-
       return updatedProfile;
     }
   }

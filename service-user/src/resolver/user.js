@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import { UserInputError } from 'apollo-server';
 dotenv.config();
 mongoose.Promise = require('bluebird');
 mongoose.connect(
@@ -27,8 +28,8 @@ const resolvers = {
     addUser: async (parent, user) => {
       const existingUser = await User.findOne({ email: user.email });
 
-      if (existingUser) {
-        throw new Error('This email is already being used');
+      if (existingUser !== null) {
+        return new UserInputError('This email is already being used');
       }
 
       const newUser = new User({
@@ -38,7 +39,7 @@ const resolvers = {
         password: user.password
       });
 
-      bcrypt.genSalt(10, async (err, salt) => {
+      await bcrypt.genSalt(10, async (err, salt) => {
         await bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
@@ -54,6 +55,19 @@ const resolvers = {
       });
 
       return updatedUser;
+    },
+    deleteUser: async (parent, user) => {
+      await User.findOneAndDelete({ _id: user.id });
+
+      const userDeleted = await User.findById(user.id);
+
+      let message;
+      message =
+        userDeleted === null
+          ? "That user doesn't exist"
+          : 'User successfully deleted';
+
+      return message;
     }
   }
 };
