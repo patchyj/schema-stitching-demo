@@ -43,16 +43,20 @@ const resolvers = {
       return newProfile;
     },
     updateProfile: async (parent, profile) => {
-      const updatedProfile = await Profile.findOneAndUpdate(
-        profile.id,
-        profile,
-        {
-          new: true
-        }
-      );
-      updatedProfile.save();
+      const userProfile = await Profile.findOne({ user: profile.user });
 
-      return updatedProfile;
+      userProfile.experience = (profile.experience && profile.experience.length > 0) ? profile.experience : userProfile.experience;
+      userProfile.education = (profile.education && profile.education.length > 0) ? profile.education : userProfile.education;
+      userProfile.skills = (profile.skills && profile.skills.length > 0) ? profile.skills : userProfile.skills;
+
+      userProfile.save()
+
+      return userProfile;
+    },
+    deleteProfile: async (parent, profile) => {
+      await Profile.findByIdAndDelete(profile.id);
+
+      return null;
     }
   }
 };
