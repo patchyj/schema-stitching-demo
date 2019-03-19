@@ -22,9 +22,11 @@ const getUsers = async () => {
       `
   };
 
-  const users = await axios.post(`${process.env.USER_DEV_API}`, data);
+  const users = await axios
+    .post(env.USER_DEV_API, data)
+    .catch(err => console.log(err));
 
-  return users.data.data.getUsers;
+  return users.data.data.allUsers;
 };
 
 // ============ CREATE PROFILE ============

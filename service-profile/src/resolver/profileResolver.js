@@ -4,6 +4,7 @@ dotenv.config();
 mongoose.Promise = require('bluebird');
 mongoose.connect(process.env.PROFILE_DB, { useNewUrlParser: true });
 import { Profile } from '../models/Profile';
+import { UserInputError } from 'apollo-server';
 
 // add some small resolvers
 const resolvers = {
@@ -24,15 +25,20 @@ const resolvers = {
   Mutation: {
     // ========= CREATE =========
     addProfile: async (parent, profile) => {
+      const existingProfile = await Profile.findOne({ user: profile.user });
+
+      if (existingProfile !== null) {
+        return null;
+      }
       // ...add validation here...
-      const newProfile = new Profile({
+      const newProfile = await new Profile({
         experience: profile.experience,
         education: profile.education,
         skills: profile.skills,
         user: profile.user
       });
 
-      newProfile.save();
+      await newProfile.save();
 
       return newProfile;
     },
@@ -44,6 +50,8 @@ const resolvers = {
           new: true
         }
       );
+      updatedProfile.save();
+
       return updatedProfile;
     }
   }

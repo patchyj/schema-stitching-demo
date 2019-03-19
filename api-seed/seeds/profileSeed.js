@@ -21,9 +21,8 @@ const getUsers = async () => {
         }
         `
   };
-  console.log(process.env.USER_DEV_API);
 
-  const users = await axios.post(`${process.env.USER_DEV_API}`, data);
+  const users = await axios.post(env.USER_DEV_API, data);
 
   return users.data.data.allUsers;
 };
