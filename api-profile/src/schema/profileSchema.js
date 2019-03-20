@@ -85,7 +85,7 @@ const profile = gql`
       skills: [SkillInput]
       user: ID
     ): Profile
-    deleteProfile(id: ID!): String
+    deleteProfile(id: ID!): String!
   }
 `;
 
