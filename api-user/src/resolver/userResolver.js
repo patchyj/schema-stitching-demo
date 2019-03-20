@@ -58,16 +58,9 @@ const resolvers = {
     },
     deleteUser: async (parent, user) => {
       await User.findOneAndDelete({ _id: user.id });
-
-      const userDeleted = await User.findById(user.id);
-
-      let message;
-      message =
-        userDeleted === null
-          ? "That user doesn't exist"
-          : 'User successfully deleted';
-
-      return message;
+      const ifUser = await User.findOne({id: user.id}) ? "Something went wrong" : 'User successfully deleted';
+      
+      return ifUser;
     }
   }
 };

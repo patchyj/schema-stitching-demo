@@ -4,7 +4,6 @@ dotenv.config();
 mongoose.Promise = require('bluebird');
 mongoose.connect(process.env.PROFILE_DB, { useNewUrlParser: true });
 import { Profile } from '../models/Profile';
-import { UserInputError } from 'apollo-server';
 
 // add some small resolvers
 const resolvers = {
@@ -53,12 +52,19 @@ const resolvers = {
 
       return userProfile;
     },
-    deleteProfile: async (parent, profile) => {
-      await Profile.findByIdAndDelete(profile.id);
+    deleteProfile: async (parent, { id }) => {
+      await Profile.deleteOne({ _id: id });
 
-      const isProfileDelete = Profile.findById(profile.id) ? 'Unable to delete' : 'Profile deleted';
+      const isProfileDeleted = Profile.findById(id) ? 'Unable to delete' : 'Profile deleted';
 
-      return null;
+      return isProfileDeleted;
+    },
+    deleteProfileByUserId: async (parent, { user }) => {
+      await Profile.deleteOne({ user: user });
+
+      const isProfileDeleted = await Profile.findOne({ user: user }) ? 'Unable to delete' : 'Profile deleted';
+      
+      return isProfileDeleted;
     }
   }
 };

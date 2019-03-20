@@ -65,6 +65,20 @@ const resolvers = {
       const updatedProject = await Project.findAll({ where: { id: project.id } });
 
       return updatedProject[0];
+    },
+    deleteProject: async (parent, project) => {
+      await sequelize.sync();
+      const deletedProject = await Project.destroy({ where: { id: project.id }}) ? true : false;
+
+      return deletedProject
+      
+    },
+    deleteProjectsByAuthorId: async (parent, project) => {
+      await sequelize.sync();
+      const deletedProjects = await Project.destroy({ where: { user: project.user }});      
+
+      return deletedProjects;
+      
     }
   }
 };

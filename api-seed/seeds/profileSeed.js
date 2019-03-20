@@ -87,8 +87,9 @@ async function createProfiles() {
 
   await Profile.create(profiles)
     .then(profiles => console.log(`${profiles.length} profiles created!`))
-    .catch(err => console.log(err))
-    .finally(() => mongoose.connection.close());
+    .catch(err => console.log(err));
+
+  mongoose.connection.close()
 }
 
 // getUsers();

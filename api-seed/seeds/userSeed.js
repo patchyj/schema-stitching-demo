@@ -38,8 +38,8 @@ async function createUsers() {
 
   await User.create(users)
     .then(users => console.log(`${users.length} users created!`))
-    .catch(err => console.log(err))
-    .finally(() => mongoose.connection.close());
+    .catch(err => console.log(err));
+  mongoose.connection.close()
 }
 
-createUsers();
+createUsers()

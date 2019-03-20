@@ -7,7 +7,7 @@
   "description": "'template'",
   "main": "app.js",
   "scripts": {
-    "seed": "node seeds/userSeed.js && node seeds/blogSeed.js && node seeds/projectSeed.js && node seeds/profileSeed.js",
+    "seed": "node seeds/userSeed.js && node seeds/blogSeed.js && node seeds/profileSeed.js && node seeds/projectSeed.js",
     "seedUser": "node seeds/userSeed.js",
     "seedBlog": "node seeds/blogSeed.js",
     "seedProject": "node seeds/projectSeed.js",

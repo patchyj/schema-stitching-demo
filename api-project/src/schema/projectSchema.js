@@ -48,6 +48,8 @@ const project = gql`
       images: [String]
       user: ID!
     ): Project
+    deleteProject(id: ID!): Boolean
+    deleteProjectsByAuthorId(user: ID!): Boolean # delete all projects when the user is deleted
   }
 `;
 

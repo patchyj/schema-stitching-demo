@@ -39,22 +39,27 @@ async function createBlogs() {
   const users = await getUsers();
 
   for (let i = 0; i < users.length; i++) {
-    const num = Math.floor(Math.random() * 10) + 5;
-    const images = [];
-    for (let i = 0; i < num; i++) {
-      images.push(faker.image.avatar());
+    const numOfBlogs = Math.floor(Math.random() * 10) + 5;
+    
+    for (let j = 0; j < numOfBlogs; j++) {
+      const num = Math.floor(Math.random() * 10) + 5;
+      const images = [];
+      
+      for (let k = 0; k < num; k++) {
+        images.push(faker.image.avatar());
+      }
+
+      const newBlog = {
+        title: faker.lorem.sentence(),
+        tagline: faker.lorem.sentence(),
+        body: faker.lorem.paragraphs(),
+        bannerPic: faker.image.avatar(),
+        images: images,
+        user: users[i].id
+      };
+
+      blogs.push(newBlog);
     }
-
-    const newBlog = {
-      title: faker.lorem.sentence(),
-      tagline: faker.lorem.sentence(),
-      body: faker.lorem.paragraphs(),
-      bannerPic: faker.image.avatar(),
-      images: images,
-      user: users[i].id
-    };
-
-    blogs.push(newBlog);
   }
 
   await Blog.create(blogs)

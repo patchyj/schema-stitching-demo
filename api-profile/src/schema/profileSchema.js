@@ -86,6 +86,7 @@ const profile = gql`
       user: ID
     ): Profile
     deleteProfile(id: ID!): String!
+    deleteProfileByUserId(user: ID!): String!
   }
 `;
 

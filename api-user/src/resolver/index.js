@@ -1,6 +1,6 @@
 import { merge } from 'lodash';
 // import our resolvers
-import userResolver from './user';
+import userResolver from './userResolver';
 
 // fake another resolver
 const rootResolvers = {};

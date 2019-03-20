@@ -48,13 +48,18 @@ const resolvers = {
       return updatedBlog;
     },
     deleteBlog: async (event, blog) => {
-      await Blog.findByIdAndDelete(blog.id);
-      const ifBlog = await Blog.findById(blog.id);
+      const deletedBlog = await Blog.findByIdAndDelete(blog.id);
+      
+      const ifBlog = await Blog.findById(blog.id) ? `Blog "${deletedBlog.title}" not deleted` : `Blog "${deletedBlog.title}" deleted`;
+      
+      return ifBlog;
+    },
+    deleteBlogsByUserId: async (parent, { user }) => {
+      await Blog.deleteMany({ user: user });
 
-      const message = ifBlog
-        ? `Blog ${blog.id} not deleted`
-        : `Blog ${blog.id} deleted`;
-      return message;
+      const isBlogDeleted = await Blog.findOne({ user: user }) ? 'Unable to delete' : 'Blog deleted';
+      
+      return isBlogDeleted;
     }
   }
 };

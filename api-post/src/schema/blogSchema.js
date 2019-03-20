@@ -30,6 +30,7 @@ const blog = gql`
       user: ID
     ): Blog
     deleteBlog(id: ID!): String!
+    deleteBlogsByUserId(user: ID!): String!
   }
 `;
 
