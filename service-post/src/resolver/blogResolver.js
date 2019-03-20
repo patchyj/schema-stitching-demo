@@ -46,6 +46,15 @@ const resolvers = {
       });
 
       return updatedBlog;
+    },
+    deleteBlog: async (event, blog) => {
+      await Blog.findByIdAndDelete(blog.id);
+      const ifBlog = await Blog.findById(blog.id);
+
+      const message = ifBlog
+        ? `Blog ${blog.id} not deleted`
+        : `Blog ${blog.id} deleted`;
+      return message;
     }
   }
 };

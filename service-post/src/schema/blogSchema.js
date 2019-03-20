@@ -29,6 +29,7 @@ const blog = gql`
       body: String
       user: ID
     ): Blog
+    deleteBlog(id: ID!): String!
   }
 `;
 

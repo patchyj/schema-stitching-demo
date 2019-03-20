@@ -45,18 +45,31 @@ const resolvers = {
     updateProfile: async (parent, profile) => {
       const userProfile = await Profile.findOne({ user: profile.user });
 
-      userProfile.experience = (profile.experience && profile.experience.length > 0) ? profile.experience : userProfile.experience;
-      userProfile.education = (profile.education && profile.education.length > 0) ? profile.education : userProfile.education;
-      userProfile.skills = (profile.skills && profile.skills.length > 0) ? profile.skills : userProfile.skills;
+      userProfile.experience =
+        profile.experience && profile.experience.length > 0
+          ? profile.experience
+          : userProfile.experience;
+      userProfile.education =
+        profile.education && profile.education.length > 0
+          ? profile.education
+          : userProfile.education;
+      userProfile.skills =
+        profile.skills && profile.skills.length > 0
+          ? profile.skills
+          : userProfile.skills;
 
-      userProfile.save()
+      userProfile.save();
 
       return userProfile;
     },
     deleteProfile: async (parent, profile) => {
       await Profile.findByIdAndDelete(profile.id);
+      const ifProfile = await Profile.findById(profile.id);
 
-      return null;
+      const message = ifProfile
+        ? `Profile ${profile.id} not deleted`
+        : `Profile ${profile.id} deleted`;
+      return message;
     }
   }
 };
