@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server": "^2.3.1",
+    "apollo-server-express": "^2.4.8",
     "bluebird": "^3.5.3",
     "esm": "^3.0.84",
     "graphql": "^14.0.2",

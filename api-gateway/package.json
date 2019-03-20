@@ -12,6 +12,7 @@
   "dependencies": {
     "apollo-link-http": "^1.5.9",
     "apollo-server": "^2.4.8",
+    "apollo-server-express": "^2.4.8",
     "esm": "^3.0.84",
     "graphql": "^14.1.1",
     "graphql-tools": "^4.0.4",

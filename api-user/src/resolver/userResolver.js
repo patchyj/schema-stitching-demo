@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { UserInputError } from 'apollo-server';
+import { UserInputError } from 'apollo-server-express';
 dotenv.config();
 mongoose.Promise = require('bluebird');
 mongoose.connect(

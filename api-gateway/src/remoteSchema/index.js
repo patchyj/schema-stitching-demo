@@ -21,7 +21,7 @@ export default async () => {
       fetch
     });
     const remoteSchema = await introspectSchema(link);
-    const remoteExecutableSchema = makeRemoteExecutableSchema({
+    const remoteExecutableSchema = await makeRemoteExecutableSchema({
       schema: remoteSchema,
       link
     });

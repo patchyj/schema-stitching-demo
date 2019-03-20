@@ -1,4 +1,5 @@
-import { ApolloServer } from 'apollo-server';
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
 import dotenv from 'dotenv';
 dotenv.config();
 import makeSchema from './schema';
@@ -10,8 +11,12 @@ const startGateway = async () => {
 
   const server = new ApolloServer({ schema });  
   
-  server.listen(PORT)
-    .then(({ url }) => console.log(`🚀 Server ready at ${url}graphql`));
+  const app = express();
+  server.applyMiddleware({ app });
+  
+  app.listen({ port: PORT }, () =>
+    console.log(`💀  Server ready at http://localhost:${PORT}${server.graphqlPath}`)
+  );
 };
 
 startGateway().catch(err => console.log(err));
