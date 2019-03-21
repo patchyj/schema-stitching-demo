@@ -1,0 +1,48 @@
+{
+  "extends": "airbnb-base",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6
+  },
+  "plugins": ["babel"],
+  "env": {
+    "browser": false,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "browser": false,
+    "sessionStorage": true
+  },
+  "rules": {
+    "indent": ["error", "tab"],
+    "no-tabs": ["error", { "allowIndentationTabs": true }],
+    // use strict is unnecassary inside of ES6 modules as babel inserts `"use strict";` for us but allowing.
+    "strict": "off",
+    // IE does not have a console until you open dev tools
+    // so will throw and exception.
+    "no-console": 1,
+    // ES6 allows for comma on last property but makes code confusing
+    // whether is end of object or not. So turning off so optional.
+    "comma-dangle": "off",
+    // Allow for underscore in variable names, for private etc.
+    "no-underscore-dangle": "off",
+    // require can be called inside an if statement important for universal apps
+    "global-require": "off",
+    "linebreak-style": [0, "windows"],
+    "max-len": ["error", { "code": 180 }],
+    "import/no-cycle": "off", //TODO: should be enabled. to do as a second step
+    // is deprecated in recent version, and cause problems in our code. So removed that
+    // some files are not published to the website, so the dependencies are listed as dev only
+    "import/no-extraneous-dependencies": [
+      "off",
+      {
+        "devDependencies": ["**/*.spec.js"],
+        "packageDir": ["./tools"]
+      }
+    ]
+  }
+}

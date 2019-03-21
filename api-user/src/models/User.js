@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 
 // Create Schema
 const UserSchema = new Schema({
@@ -43,4 +43,4 @@ const UserSchema = new Schema({
 	}
 });
 
-export default mongoose.model('users', UserSchema);
+export default model('users', UserSchema);
