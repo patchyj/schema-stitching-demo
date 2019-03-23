@@ -4,14 +4,14 @@ import createRemoteExecutableSchemas from '../remoteSchema';
 import relationsSchema from './relationsSchema';
 
 export default async () => {
-  // Get all remote schemas
-  const schemas = await createRemoteExecutableSchemas();
-  //
-  const resolvers = await makeResolvers(schemas);
+	// Get all remote schemas
+	const schemas = await createRemoteExecutableSchemas();
 
-  return mergeSchemas({
-    schemas: [...schemas, relationsSchema],
-    resolvers
-  });
+	const resolvers = await makeResolvers(schemas);
+
+	return mergeSchemas({
+		schemas: [...schemas, relationsSchema],
+		resolvers
+	});
 };
-// ======= IMPORTED IN SRC?INDEX.JS ======
+// ======= IMPORTED IN SRC/INDEX.JS ======

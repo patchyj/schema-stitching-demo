@@ -1,7 +1,7 @@
 {
-  "name": "api-gateway",
+  "name": "api-blog",
   "version": "1.0.0",
-  "description": "graphql microservice Gateway",
+  "description": "graphql microservice exposing Blog resource",
   "main": "./src/index.js",
   "scripts": {
     "start": "run-p lint:watch start:watch",
@@ -68,7 +68,7 @@
     "jest-util": "^24.0.0",
     "nodemon": "1.18.9",
     "prettier": "^1.15.3",
-    "regenerator-runtime": "^0.12.1",
+    "regenerator-runtime": "0.12.1",
     "rimraf": "^2.6.2",
     "unroll": "^1.5.0"
   },

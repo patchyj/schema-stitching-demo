@@ -1,0 +1,20 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": true,
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    // import .graphql extension
+    "graphql-tag",
+    "import-graphql",
+    // import inline package.json file
+    ["inline-json", {"matchPattern": "package"}]
+  ],
+  "retainLines": true
+}
