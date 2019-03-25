@@ -1,14 +1,18 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { UserInputError } from 'apollo-server-express';
 import User from '../models/User';
+import config from '../../config/config';
+import validateRegistration from '../../validation/registration';
+import validateLogin from '../../validation/login';
 
 dotenv.config();
 mongoose.Promise = require('bluebird');
 
 mongoose.connect(
-  process.env.USER_DB,
+  config.USER_DB,
   { useNewUrlParser: true }
 );
 
@@ -20,26 +24,33 @@ const resolvers = {
 
       return users.reverse();
     },
-    user: async (parent, { id }) => {
+    user: async (parent, { id }, context) => {
       const user = await User.findById(id);
+
+      console.log(context);
+      
       return user;
     }
   },
   Mutation: {
     // ========= CREATE =========
     addUser: async (parent, user) => {
+      const { errors } = validateRegistration(user);
+
+      if (Object.keys(errors).length > 0) {
+        throw new UserInputError(
+          'Failed to get events due to validation errors',
+          { errors }
+        );
+      }
+
       const existingUser = await User.findOne({ email: user.email });
 
       if (existingUser !== null) {
-        return new UserInputError('This email is already being used');
+        throw new UserInputError('This email is already being used');
       }
 
-      const newUser = new User({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        password: user.password
-      });
+      const newUser = new User(user);
 
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(newUser.password, salt).catch((err) => {
@@ -51,6 +62,39 @@ const resolvers = {
 
       return newUser;
     },
+    loginUser: async (parent, user) => {
+      const { errors } = await validateLogin(user);
+      const ifUser = await User.findOne({ email: user.email });
+
+      if (!ifUser) errors.email = 'An account with this email doesn\'t exist';
+
+      if (Object.keys(errors).length > 0) {
+        throw new UserInputError(
+          'Failed to get events due to validation errors',
+          { errors }
+        );
+      }
+
+      const valid = await bcrypt.compare(user.password, ifUser.password);
+
+      if (!valid) {
+        errors.password = 'Password incorrect';
+        throw new UserInputError(
+          'Failed to get events due to validation errors',
+          { errors }
+        );
+      }
+
+      // return json web token
+      // do { user } to return whole user encoded within token
+      const token = await jwt.sign(
+        { id: user.id, email: user.email },
+        config.SECRET,
+        { expiresIn: 3600 }
+      );
+
+      return `${token}`;
+    },
     updateUser: async (parent, user) => {
       const updatedUser = await User.findOneAndUpdate(user.id, user, {
         new: true
@@ -58,11 +102,16 @@ const resolvers = {
 
       return updatedUser;
     },
-    deleteUser: async (parent, user) => {
-      await User.findOneAndDelete({ _id: user.id });
-      const ifUser = await User.findOne({ id: user.id }) ? 'Something went wrong' : 'User successfully deleted';
+    deleteUser: async (parent, { id }) => {
+      await User.findOneAndDelete({ _id: id });
+      const ifUser = await User.findOne({ _id: id }) ? 'Something went wrong' : 'User successfully deleted';
 
       return ifUser;
+    },
+    updatePassword: async (parent, { id }) => {
+      const ifUser = await User.findById(id);
+      /* eslint-disable no-console */
+      console.log(ifUser);
     }
   }
 };

@@ -26,6 +26,7 @@ const user = gql`
       password: String
       password2: String
     ): User
+    loginUser(email: String!, password: String!): String
     updateUser(
       id: ID!
       firstName: String
@@ -34,6 +35,7 @@ const user = gql`
       password: String
     ): User
     deleteUser(id: ID!): String
+    updatePassword(id: ID!, password: String!, password2: String!): String
   }
 `;
 
