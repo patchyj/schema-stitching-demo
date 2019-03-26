@@ -14,13 +14,15 @@ const startGateway = async () => {
 
 	const app = express();
 
-	passport.initialize();
+	app.use(passport.initialize());
 
 	app.use('/graphql', (req, res, next) => {
 		// eslint-disable-next-line no-unused-vars
 		passport.authenticate('jwt', { session: false }, (err, user, info) => {
 			if (user) req.user = user;
-
+			// https://gist.github.com/lfades/633e503f26f3f8ade2f4fa557db3a931
+			// https://github.com/antoniojps/graphql-authentication
+			// eslint-disable-next-line no-console
 			next();
 		})(req, res, next);
 	});
