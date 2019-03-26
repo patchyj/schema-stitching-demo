@@ -1,15 +1,14 @@
 import passportJWT from 'passport-jwt';
+import config from './config';
 
-const { SECRET, USER_DB } = process.env;
 const { Strategy, ExtractJwt } = passportJWT;
 
-export const params = {
-	secretOrKey: SECRET,
-	jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+export default (passport) => {
+	const opts = {
+		secretOrKey: config.SECRET,
+		jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+	};
+	passport.use(new Strategy(opts, ((jwt_payload, done) => {
+		done(null, { message: 'auth' });
+	})));
 };
-
-export const strategy = new Strategy(params, (payload, done) => {
-	const user = users.find(user => user.id === payload.id) || null;
-
-	return done(null, user);
-});

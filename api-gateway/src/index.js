@@ -1,18 +1,19 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import dotenv from 'dotenv';
 import passport from 'passport';
 import makeSchema from './schema';
+import config from '../config/config';
+import passportConfig from '../config/passport';
 
-dotenv.config();
+passportConfig(passport);
 
-const PORT = process.env.PORT || 3000;
+const { PORT } = config || 3000;
 
 const startGateway = async () => {
 	const schema = await makeSchema();
 
 	const app = express();
-	
+
 	passport.initialize();
 
 	app.use('/graphql', (req, res, next) => {
@@ -36,4 +37,4 @@ const startGateway = async () => {
 	app.listen({ port: PORT }, () => console.log(`💀  Server ready at http://localhost:${PORT}${server.graphqlPath}`));
 };
 
-startGateway();
+startGateway().catch(err => console.log(err));

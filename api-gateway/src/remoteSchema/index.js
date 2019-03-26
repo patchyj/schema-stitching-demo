@@ -1,16 +1,14 @@
 import { makeRemoteExecutableSchema, introspectSchema } from 'graphql-tools';
 import { HttpLink } from 'apollo-link-http';
 import fetch from 'node-fetch';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import config from '../../config/config';
 
 // graphql API metadata
 const graphqlApis = [
-	{ uri: process.env.USER_DEV_API },
-	{ uri: process.env.BLOG_DEV_API },
-	{ uri: process.env.PROJECT_DEV_API },
-	{ uri: process.env.PROFILE_DEV_API }
+	{ uri: config.USER_DEV_API },
+	{ uri: config.BLOG_DEV_API },
+	{ uri: config.PROJECT_DEV_API },
+	{ uri: config.PROFILE_DEV_API }
 ];
 
 // create executable schemas from remote GraphQL APIs

@@ -9,14 +9,14 @@ const makeResolvers = async (schemas) => {
 	const projectSchema = schemas[2];
 	const profileSchema = schemas[3];
 
-	const Blog = await makeBlogResolver(userSchema);
 	const User = await makeUserResolver(blogSchema, projectSchema, profileSchema);
+	const Blog = await makeBlogResolver(userSchema);
 	const Project = await makeProjectResolver(userSchema);
 	const Profile = await makeProfileResolver(userSchema);
 
 	return {
-		Blog,
 		User,
+		Blog,
 		Project,
 		Profile
 	};
