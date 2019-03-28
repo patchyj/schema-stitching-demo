@@ -25,6 +25,7 @@ const resolvers = {
       return users.reverse();
     },
     user: async (parent, { id }, context) => {
+      // eslint-disable-next-line no-console
       console.log(context);
       const user = await User.findById(id);
 
@@ -87,7 +88,11 @@ const resolvers = {
       // return json web token
       // do { user } to return whole user encoded within token
       const token = await jwt.sign(
-        { id: user.id, email: user.email },
+        {
+          id: ifUser._id,
+          email: ifUser.email,
+          role: ifUser.role || 'user'
+        },
         config.SECRET,
         { expiresIn: 3600 }
       );

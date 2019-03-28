@@ -30,5 +30,5 @@ export const strategy = new Strategy(params, (payload, done) => {
       console.log(err);
     });
 
-  return done(null, user);
+  // return done(null, user);
 });
