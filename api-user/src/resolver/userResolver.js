@@ -24,7 +24,8 @@ const resolvers = {
 
       return users.reverse();
     },
-    user: async (parent, { id }) => {
+    user: async (parent, { id }, context) => {
+      console.log(context);
       const user = await User.findById(id);
 
       return user;

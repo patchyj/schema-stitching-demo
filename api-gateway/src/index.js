@@ -20,8 +20,6 @@ const startGateway = async () => {
 		// eslint-disable-next-line no-unused-vars
 		passport.authenticate('jwt', { session: false }, (err, user, info) => {
 			if (user) req.user = user;
-			// https://gist.github.com/lfades/633e503f26f3f8ade2f4fa557db3a931
-			// https://github.com/antoniojps/graphql-authentication
 			// eslint-disable-next-line no-console
 			next();
 		})(req, res, next);
@@ -30,13 +28,13 @@ const startGateway = async () => {
 	const server = new ApolloServer({
 		schema,
 		context: ({ req }) => ({
-			user: req.user
+			authScope: req.headers.authorization
 		})
 	});
 
 	server.applyMiddleware({ app });
 	/* eslint-disable no-console */
-	app.listen({ port: PORT }, () => console.log(`💀  Server ready at http://localhost:${PORT}${server.graphqlPath}`));
+	app.listen({ port: PORT }, () => console.log(`💀  Server ready at http://localhost:${PORT}${server.graphqlPath} \n`));
 };
 
 startGateway().catch(err => console.log(err));

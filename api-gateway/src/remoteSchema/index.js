@@ -1,5 +1,7 @@
 import { makeRemoteExecutableSchema, introspectSchema } from 'graphql-tools';
+import { ApolloLink } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
 import fetch from 'node-fetch';
 import config from '../../config/config';
 
@@ -17,15 +19,27 @@ export default async () => {
 
 	/*eslint-disable*/
 	for (const api of graphqlApis) {
-		const link = new HttpLink({
+
+		const ContextLink = setContext((request, previousContext) => {
+			const { authScope } = previousContext.graphqlContext
+			return {
+				headers: {
+					authorization: authScope
+				}
+			};
+		});
+
+		const AuthLink = new HttpLink({
 			uri: api.uri,
 			fetch
 		});
-		const remoteSchema = await introspectSchema(link);
+
+		const remoteSchema = await introspectSchema(AuthLink);
 		const remoteExecutableSchema = makeRemoteExecutableSchema({
 			schema: remoteSchema,
-			link
+			link: ApolloLink.from([ContextLink, AuthLink])
 		});
+		
 		schemas.push(remoteExecutableSchema);
 		/*eslint-disable*/
 	}

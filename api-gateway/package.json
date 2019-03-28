@@ -24,6 +24,7 @@
     "amqp-connection-manager": "^2.3.0",
     "amqplib": "^0.5.3",
     "apollo-link": "^1.2.6",
+    "apollo-link-context": "^1.0.17",
     "apollo-link-error": "^1.1.5",
     "apollo-link-http": "^1.5.9",
     "apollo-server-express": "^2.3.1",
