@@ -11,13 +11,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async ({ req }) => {
-    const { query } = req.body;
-    console.log(query);
-
-    if (query.includes('login')) return { user: 'guest' };
-    if (query.includes('addUser')) return { user: 'guest' };
-
-    if (req.headers.authorization) {
+    if (req.headers.authorization && req.headers.authorization.includes('Bearer')) {
       const token = req.headers.authorization.split(' ').reverse()[0];
       const decoded = await jwt.verify(token, config.SECRET);
 
@@ -25,6 +19,7 @@ const server = new ApolloServer({
         user: decoded
       };
     }
+    return null;
   }
 });
 

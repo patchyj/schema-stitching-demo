@@ -6,7 +6,7 @@
   "scripts": {
     "start": "run-p lint:watch start:watch",
     "start:watch": "babel-node ./src/index.js",
-    "start:dev": "npm run start:watch -- --inspect=9320",
+    "start:dev": "npm run start:watch -- --inspect=4001",
     "lint": "esw src tools --color",
     "lint:watch": "npm run lint -- --watch",
     "test": "jest",
@@ -34,7 +34,7 @@
     "graphql": "^14.0.2",
     "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.10.0",
-    "graphql-tools": "4.0.3",
+    "graphql-tools": "4.0.4",
     "graphql-type-json": "^0.2.1",
     "graphql-voyager": "^1.0.0-rc.26",
     "http": "0.0.0",

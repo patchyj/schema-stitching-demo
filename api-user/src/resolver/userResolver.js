@@ -1,14 +1,13 @@
+/* eslint-disable no-console */
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { UserInputError } from 'apollo-server-express';
+import { UserInputError, AuthenticationError } from 'apollo-server-express';
 import User from '../models/User';
 import config from '../../config/config';
 import validateRegistration from '../../validation/registration';
 import validateLogin from '../../validation/login';
 
-dotenv.config();
 mongoose.Promise = require('bluebird');
 
 mongoose.connect(
@@ -24,9 +23,7 @@ const resolvers = {
 
       return users.reverse();
     },
-    user: async (parent, { id }, context) => {
-      // eslint-disable-next-line no-console
-      console.log(context);
+    user: async (parent, { id }) => {
       const user = await User.findById(id);
 
       return user;
@@ -99,14 +96,21 @@ const resolvers = {
 
       return `${token}`;
     },
-    updateUser: async (parent, user) => {
-      const updatedUser = await User.findOneAndUpdate(user.id, user, {
+    updateUser: async (parent, user, context) => {
+      if (user.id !== context.user.id) {
+        throw new AuthenticationError('You must be the author to view this page');
+      }
+
+      const updatedUser = await User.findOneAndUpdate({ _id: user.id }, user, {
         new: true
       });
 
       return updatedUser;
     },
-    deleteUser: async (parent, { id }) => {
+    deleteUser: async (parent, { id }, { user }) => {
+      if (id !== user.id) {
+        throw new AuthenticationError('You must be the author to view this page');
+      }
       await User.findOneAndDelete({ _id: id });
       const ifUser = await User.findOne({ _id: id }) ? 'Something went wrong' : 'User successfully deleted';
 
@@ -114,7 +118,7 @@ const resolvers = {
     },
     updatePassword: async (parent, { id }) => {
       const ifUser = await User.findById(id);
-      /* eslint-disable no-console */
+
       console.log(ifUser);
     }
   }
