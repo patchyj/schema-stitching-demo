@@ -1,10 +1,5 @@
 export default function unwrapErrors(err) {
-  if (err.originalError) {
-    return unwrapErrors(err.originalError);
-  }
-
   if (err.extensions) {
-      console.log(err);
     return unwrapErrors(err.extensions);
   }
 
@@ -16,7 +11,6 @@ export default function unwrapErrors(err) {
     return unwrapErrors(err.errors);
   }
 
-  
 
   return err;
 }
