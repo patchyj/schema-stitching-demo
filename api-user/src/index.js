@@ -25,7 +25,7 @@ const server = new ApolloServer({
     return null;
   },
   formatError: (err) => {
-    const formattedErrors = errorHandler(true)(err);
+    const formattedErrors = errorHandler(false)(err);
     console.log(formattedErrors);
     return formattedErrors;
   }

@@ -2,9 +2,7 @@
 export default async (blogSchema, projectSchema, profileSchema) => ({
 	blogs: {
 		fragment: 'fragment BlogFragment on User { id }', // default param
-		resolve(user, args, context, info) {
-			console.log(blogSchema);
-			
+		resolve(user, args, context, info) {			
 			return info.mergeInfo.delegateToSchema({
 				schema: blogSchema,
 				operation: 'query', // service-post/src/schema/post.js type Query {}

@@ -4,7 +4,7 @@ import passport from 'passport';
 import makeSchema from './schema';
 import config from '../config/config';
 import passportConfig from '../config/passport';
-import searchOriginalError from '../tools/searchOriginalError';
+import errorHandler from '../error-handling/errorHandler';
 
 passportConfig(passport);
 
@@ -30,11 +30,11 @@ const startGateway = async () => {
 	const server = new ApolloServer({
 		schema,
 		context: ({ req }) => ({ authScope: req.headers.authorization }),
-		// formatError: (error) => {
-		// 	const originalError = searchOriginalError(error);
-
-		// 	return originalError;
-		// }
+		formatError: (err) => {
+			const formattedErrors = errorHandler(true)(err);
+			// console.log(formattedErrors);
+			return formattedErrors;
+		}
 	});
 
 	server.applyMiddleware({ app });

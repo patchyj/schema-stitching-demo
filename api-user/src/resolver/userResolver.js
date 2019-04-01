@@ -91,7 +91,7 @@ const resolvers = {
           role: ifUser.role || 'user'
         },
         config.SECRET,
-        { expiresIn: 3600 }
+        { expiresIn: 60 * 60 * 24 }
       );
 
       return `${token}`;
