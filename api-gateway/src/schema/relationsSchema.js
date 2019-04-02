@@ -1,4 +1,6 @@
-const relationsSchema = `
+import { gql } from 'apollo-server-express';
+
+const relationsSchema = gql`
   extend type User {
     blogs: [Blog]
     projects: [Project]

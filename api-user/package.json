@@ -6,7 +6,7 @@
   "scripts": {
     "start": "run-p lint:watch start:watch",
     "start:watch": "babel-node ./src/index.js",
-    "start:dev": "npm run start:watch -- --inspect=9320",
+    "start:dev": "npm run start:watch -- --inspect=4001",
     "lint": "esw src tools --color",
     "lint:watch": "npm run lint -- --watch",
     "test": "jest",

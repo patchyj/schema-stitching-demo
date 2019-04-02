@@ -21,10 +21,10 @@ export default async () => {
 	for (const api of graphqlApis) {
 
 		const ContextLink = setContext((request, previousContext) => {
-			const { authScope } = previousContext.graphqlContext
+			const { authScope } = previousContext.graphqlContext;
 			return {
 				headers: {
-					authorization: authScope
+					authorization: authScope // authScope is what's returned from src/index.js CONTEXT  
 				}
 			};
 		});
@@ -42,7 +42,7 @@ export default async () => {
 		
 		schemas.push(remoteExecutableSchema);
 		/*eslint-disable*/
-	}
+	}	
 
 	return schemas;
 };

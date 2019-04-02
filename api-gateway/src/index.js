@@ -4,6 +4,7 @@ import passport from 'passport';
 import makeSchema from './schema';
 import config from '../config/config';
 import passportConfig from '../config/passport';
+import errorHandler from '../error-handling/errorHandler';
 
 passportConfig(passport);
 
@@ -11,8 +12,9 @@ const { PORT } = config || 3000;
 
 const startGateway = async () => {
 	const schema = await makeSchema();
-
 	const app = express();
+
+	// console.log(schema)
 
 	app.use(passport.initialize());
 
@@ -27,14 +29,17 @@ const startGateway = async () => {
 
 	const server = new ApolloServer({
 		schema,
-		context: ({ req }) => ({
-			authScope: req.headers.authorization
-		})
+		context: ({ req }) => ({ authScope: req.headers.authorization }),
+		formatError: (err) => {
+			const formattedErrors = errorHandler(true)(err);
+			// console.log(formattedErrors);
+			return formattedErrors;
+		}
 	});
 
 	server.applyMiddleware({ app });
 	/* eslint-disable no-console */
-	app.listen({ port: PORT }, () => console.log(`💀  Server ready at http://localhost:${PORT}${server.graphqlPath} \n`));
+	app.listen({ port: PORT }, () => console.log(`\n 💀  Server ready at http://localhost:${PORT}${server.graphqlPath} \n`));
 };
 
 startGateway().catch(err => console.log(err));

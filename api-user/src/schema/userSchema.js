@@ -16,6 +16,7 @@ const user = gql`
     allUsers: [User]
     # A single user
     user(id: ID!): User
+    privateTest(id: ID!): User
   }
 
   type Mutation {
