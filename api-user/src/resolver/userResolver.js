@@ -24,9 +24,8 @@ const resolvers = {
 
       return users.reverse();
     },
-    user: async (parent, { id }, context) => {
+    user: async (parent, { id }) => {
       // eslint-disable-next-line no-console
-      console.log(context);
       const user = await User.findById(id);
 
       return user;
@@ -64,6 +63,7 @@ const resolvers = {
     },
     loginUser: async (parent, user) => {
       const { errors } = await validateLogin(user);
+
       const ifUser = await User.findOne({ email: user.email });
 
       if (!ifUser) errors.email = 'An account with this email doesn\'t exist';
