@@ -32,7 +32,7 @@ const startGateway = async () => {
 		context: ({ req }) => ({ authScope: req.headers.authorization }),
 		formatError: (err) => {
 			const formattedErrors = errorHandler(true)(err);
-			// console.log(formattedErrors);
+
 			return formattedErrors;
 		}
 	});

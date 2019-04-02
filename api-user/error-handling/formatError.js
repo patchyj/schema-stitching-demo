@@ -19,6 +19,7 @@ export default shouldIncludeStack => (error) => {
   }
 
   const newError = new GraphQlValidationError(formattedError);
-  console.log(newError);
+  console.log(newError.state);
+  
   return newError;
 };

@@ -2,8 +2,6 @@ import errorTypes from './errorTypes';
 import unwrapErrors from './unwrapErrors';
 
 export default shouldIncludeStack => (error) => {
-	console.log(error.extensions.exception.errors);
-	console.log('==============================================');
 	const unwrappedError = unwrapErrors(error);
 
 	const formattedError = {
@@ -18,8 +16,6 @@ export default shouldIncludeStack => (error) => {
 	if (shouldIncludeStack) {
 		formattedError.stack = unwrappedError.stack || error.extensions.exception.stacktrace;
 	}
-
-	// console.log(formattedError);
 
 	return formattedError;
 };
