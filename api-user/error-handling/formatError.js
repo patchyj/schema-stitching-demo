@@ -1,16 +1,15 @@
 import errorTypes from './errorTypes';
 import unwrapErrors from './unwrapErrors';
+import { GraphQlValidationError } from './errors';
 
 export default shouldIncludeStack => (error) => {
-  // console.log(error.extensions.exception);
-  // console.log('==============================================');
   const unwrappedError = unwrapErrors(error);
 
   const formattedError = {
     message: unwrappedError.message || error.message,
     type: unwrappedError.type || error.type || errorTypes.ERROR,
     state: unwrappedError.state,
-    detail: error.extensions.exception.errors,
+    detail: unwrappedError.detail,
     path: unwrappedError.path || error.path,
     errors: unwrappedError.errors || error.extensions.exception.errors
   };
@@ -19,7 +18,7 @@ export default shouldIncludeStack => (error) => {
     formattedError.stack = unwrappedError.stack || error.extensions.exception.stacktrace;
   }
 
-  // console.log(formattedError);
-
-  return formattedError;
+  const newError = new GraphQlValidationError(formattedError);
+  console.log(newError);
+  return newError;
 };
