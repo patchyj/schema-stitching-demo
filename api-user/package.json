@@ -34,7 +34,6 @@
     "graphql": "^14.0.2",
     "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.10.0",
-    "graphql-tools": "4.0.4",
     "graphql-type-json": "^0.2.1",
     "graphql-voyager": "^1.0.0-rc.26",
     "http": "0.0.0",

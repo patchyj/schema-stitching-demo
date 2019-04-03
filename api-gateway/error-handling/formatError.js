@@ -7,15 +7,14 @@ export default shouldIncludeStack => (error) => {
 	const formattedError = {
 		message: unwrappedError.message || error.message,
 		type: unwrappedError.type || error.type || errorTypes.ERROR,
-		state: unwrappedError.state,
-		detail: unwrappedError.detail,
-		path: unwrappedError.path || error.path,
-		errors: unwrappedError.errors || error.extensions.exception.errors
+		state: unwrappedError.state || error.state,
+		detail: unwrappedError.detail || error.detail,
+		path: unwrappedError.path || error.path
 	};
 
 	if (shouldIncludeStack) {
 		formattedError.stack = unwrappedError.stack || error.extensions.exception.stacktrace;
 	}
 
-	return formattedError;
+	return error;
 };

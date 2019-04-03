@@ -39,10 +39,10 @@ export default async () => {
 			schema: remoteSchema,
 			link: ApolloLink.from([ContextLink, AuthLink])
 		});
-		
+
 		schemas.push(remoteExecutableSchema);
 		/*eslint-disable*/
-	}	
+	}
 
 	return schemas;
 };

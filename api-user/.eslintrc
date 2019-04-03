@@ -18,7 +18,7 @@
     "sessionStorage": true
   },
   "rules": {
-    "indent": ["error", 2],
+    "indent": ["error", "tab"],
     "no-tabs": ["error", { "allowIndentationTabs": true }],
     // use strict is unnecassary inside of ES6 modules as babel inserts `"use strict";` for us but allowing.
     "strict": "off",

@@ -10,21 +10,25 @@ import errorHandler from '../error-handling/errorHandler';
 const PORT = config.PORT || 4001;
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: async ({ req }) => {
-    if (req.headers.authorization && req.headers.authorization.includes('Bearer')) {
-      const token = req.headers.authorization.split(' ').reverse()[0];
-      const decoded = await jwt.verify(token, config.SECRET);
+	typeDefs,
+	resolvers,
+	context: async ({ req }) => {
+		if (req.headers.authorization && req.headers.authorization.includes('Bearer')) {
+			const token = req.headers.authorization.split(' ').reverse()[0];
+			const decoded = await jwt.verify(token, config.SECRET);
 
-      return {
-        user: decoded
-      };
-    }
+			return {
+				user: decoded
+			};
+		}
 
-    return null;
-  },
-  formatError: err => errorHandler(true)(err)
+		return null;
+	},
+	formatError: (err) => {
+		const handledError = errorHandler(true)(err);
+    
+		return handledError;
+	}
 });
 
 const app = express();

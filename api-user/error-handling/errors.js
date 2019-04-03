@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 'use strict';
 
 import { GraphQLError } from 'graphql';
@@ -7,19 +6,14 @@ import errorTypes from './errorTypes';
 export class GraphQlValidationError extends GraphQLError {
   constructor(errors) {
     super('The request is invalid.');
-    const arr = Object.entries(errors);
-
-    // console.log(errors);
-    // console.log("=========================");
-    // console.log(arr);
-    // console.log("=========================");
-    this.state = arr.reduce((result, error) => {
-      if (error[0] === 'errors') {
-        result.errors = [error[1]];
+    this.state = errors.reduce((result, error) => {
+      if (Object.prototype.hasOwnProperty.call(result, error.key)) {
+        result[error.key].push(error.message);
       } else {
-        result.message = [errors.message]
+        /* eslint-disable no-param-reassign */
+        result[error.key] = [error.message];
+        /* eslint-enable no-param-reassign */
       }
-      
       return result;
     }, {});
     this.type = errorTypes.VALIDATION_ERROR;

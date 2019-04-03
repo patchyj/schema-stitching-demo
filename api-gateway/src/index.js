@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import passport from 'passport';
@@ -14,8 +15,6 @@ const startGateway = async () => {
 	const schema = await makeSchema();
 	const app = express();
 
-	// console.log(schema)
-
 	app.use(passport.initialize());
 
 	app.use('/graphql', (req, res, next) => {
@@ -31,9 +30,8 @@ const startGateway = async () => {
 		schema,
 		context: ({ req }) => ({ authScope: req.headers.authorization }),
 		formatError: (err) => {
-			const formattedErrors = errorHandler(true)(err);
-
-			return formattedErrors;
+			console.log(err.extensions.exception.errors[0]);
+			return errorHandler(true)(err);
 		}
 	});
 
