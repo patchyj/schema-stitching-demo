@@ -21,14 +21,12 @@ const server = new ApolloServer({
 				user: decoded
 			};
 		}
-
-		return null;
 	},
-	formatError: (err) => {
-		const handledError = errorHandler(true)(err);
-    
-		return handledError;
-	}
+	// formatError: (err) => {
+	// 	const handledError = errorHandler(true)(err);
+	// 	console.log('=====USER=====', handledError);
+	// 	return handledError;
+	// }
 });
 
 const app = express();

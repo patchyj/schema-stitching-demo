@@ -28,9 +28,14 @@ const startGateway = async () => {
 
 	const server = new ApolloServer({
 		schema,
-		context: ({ req }) => ({ authScope: req.headers.authorization }),
+		context: ({ req }) => {
+			// console.log(req.headers);
+			return {
+				authScope: req.headers.authorization
+			};
+		},
 		formatError: (err) => {
-			console.log(err.extensions.exception.errors[0]);
+			// console.log('=====GATEWAY=====', err);
 			return errorHandler(true)(err);
 		}
 	});
