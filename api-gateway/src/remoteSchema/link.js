@@ -13,8 +13,9 @@ const customFetch = (uri, options) => {
 
 export const introspectionLink = async (endpoint) => {
 	// const token = 'ey123456.abc.def';
-	const headers = { Authorization: `` };
-	return createHttpLink(endpoint, fetch, headers);
+	const headers = { 'Content-Type': 'application/json' };
+	const link = await createHttpLink(endpoint, fetch, headers);
+	return link;
 };
 
 export const stitchingLink = endpoint => createHttpLink(endpoint, customFetch);

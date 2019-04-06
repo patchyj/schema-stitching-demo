@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import { UserInputError, AuthenticationError } from 'apollo-server-express';
-import { validationError, GraphQlValidationError } from '../../error-handling/errors';
+import { validationError, GraphQlValidationError } from '../error-handling/errors';
 import User from '../models/User';
 import config from '../../config/config';
 import validateRegistration from '../../validation/registration';

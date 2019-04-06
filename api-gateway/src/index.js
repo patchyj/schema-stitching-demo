@@ -1,6 +1,9 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable no-console */
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import { onError } from 'apollo-link-error';
+import { GraphQLError } from 'graphql';
 import passport from 'passport';
 import makeSchema from './schema';
 import config from '../config/config';
@@ -35,8 +38,9 @@ const startGateway = async () => {
 			};
 		},
 		formatError: (err) => {
-			// console.log('=====GATEWAY=====', err);
-			return errorHandler(true)(err);
+			// const handledError = errorHandler(true)(err);
+			console.log('=====GATEWAY=====\n', err, '\n=====GATEWAY=====');
+			return err;
 		}
 	});
 

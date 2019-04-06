@@ -15,22 +15,24 @@ function createHttpLink(uri, customFetch = null, headers = null) {
 		if (graphQLErrors) {
 			graphQLErrors.forEach((error, index) => {
 				const {
-					type, message, state, stack, detail
+					type, message, detail, state, stack
 				} = error;
 
 				// we'll create a new GraphQL error because what graphQLErrors have are not throwable Errors
-				const err = new GraphQLError(message);
+				const err = new GraphQLError('message'); // change message to state and it becomes the title in the Error
 				err.type = type;
 				err.state = state;
 				err.stack = stack;
 				err.detail = detail || `Remote service returned error: ${message}
-                                        remote service: ${uri}
-                                        with query: ${JSON.stringify(print(operation.query))}
-                                        with variables: ${JSON.stringify(operation.variables)}
-                                        with state:${JSON.stringify(state)}`;
+				remote service: ${uri}
+																with query: ${JSON.stringify(print(operation.query))}
+																with variables: ${JSON.stringify(operation.variables)}
+																with state:${JSON.stringify(state)}`;
 
 				// we mutate graphQLErrors collection because we want to throw them later
+
 				graphQLErrors[index] = err; // eslint-disable-line no-param-reassign
+				// console.log('=====CREATEHTTPLINK=====\n', graphQLErrors[index], '\n=====CREATEHTTPLINK=====');
 			});
 		}
 
@@ -38,9 +40,9 @@ function createHttpLink(uri, customFetch = null, headers = null) {
 			/* eslint-disable no-param-reassign */
 			networkError.type = errorTypes.ERROR;
 			networkError.detail = `Network Error: ${networkError.message}
-                                    remote service: ${uri}
-                                    with query: ${JSON.stringify(print(operation.query))}
-                                    with variables: ${JSON.stringify(operation.variables)}`;
+														remote service: ${uri}
+														with query: ${JSON.stringify(print(operation.query))}
+														with variables: ${JSON.stringify(operation.variables)}`;
 		}
 		/* eslint-enable no-param-reassign */
 	});
