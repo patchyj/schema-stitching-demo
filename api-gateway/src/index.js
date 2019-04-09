@@ -5,7 +5,6 @@ import passport from 'passport';
 import makeSchema from './schema';
 import config from '../config/config';
 import passportConfig from '../config/passport';
-import errorHandler from '../error-handling/errorHandler';
 
 passportConfig(passport);
 
@@ -28,16 +27,7 @@ const startGateway = async () => {
 
 	const server = new ApolloServer({
 		schema,
-		context: ({ req }) => {
-			// console.log(req.headers);
-			return {
-				authScope: req.headers.authorization
-			};
-		},
-		formatError: (err) => {
-			// console.log('=====GATEWAY=====', err);
-			return errorHandler(true)(err);
-		}
+		context: ({ req }) => ({ authScope: req.headers.authorization })
 	});
 
 	server.applyMiddleware({ app });

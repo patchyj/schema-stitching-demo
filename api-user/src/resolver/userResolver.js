@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import { UserInputError, AuthenticationError } from 'apollo-server-express';
-import { validationError, GraphQlValidationError } from '../../error-handling/errors';
 import User from '../models/User';
 import config from '../../config/config';
 import validateRegistration from '../../validation/registration';
@@ -63,7 +62,6 @@ const resolvers = {
 		},
 		loginUser: async (parent, user) => {
 			const { errors } = await validateLogin(user);
-			const errorArray = [];
 
 			const ifUser = await User.findOne({ email: user.email });
 
@@ -79,12 +77,14 @@ const resolvers = {
 			const valid = await bcrypt.compare(user.password, ifUser.password);
 
 			if (!valid) {
-				errorArray.push(validationError('password', 'password incorrect'));
-				throw new GraphQlValidationError(errorArray);
+				errors.password = 'Passwords must match';
+				throw new UserInputError(
+					'Failed to get events due to validation errors',
+					{ errors }
+				);
 			}
 
 			// return json web token
-			// do { user } to return whole user encoded within token
 			const token = await jwt.sign(
 				{
 					id: ifUser._id,
@@ -118,9 +118,10 @@ const resolvers = {
 			return ifUser;
 		},
 		updatePassword: async (parent, { id }) => {
-			const ifUser = await User.findById(id);
+			const user = await User.findById(id);
+			console.log(user);
 
-			console.log(ifUser);
+			// to do
 		}
 	}
 };
