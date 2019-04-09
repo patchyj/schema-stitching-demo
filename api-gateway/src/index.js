@@ -1,6 +1,9 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable no-console */
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import { onError } from 'apollo-link-error';
+import { GraphQLError } from 'graphql';
 import passport from 'passport';
 import makeSchema from './schema';
 import config from '../config/config';
@@ -28,10 +31,16 @@ const startGateway = async () => {
 
 	const server = new ApolloServer({
 		schema,
-		context: ({ req }) => ({ authScope: req.headers.authorization }),
+		context: ({ req }) => {
+			// console.log(req.headers);
+			return {
+				authScope: req.headers.authorization
+			};
+		},
 		formatError: (err) => {
-			console.log(err.extensions.exception.errors[0]);
-			return errorHandler(true)(err);
+			// const handledError = errorHandler(true)(err);
+			console.log('=====GATEWAY=====\n', err, '\n=====GATEWAY=====');
+			return err;
 		}
 	});
 

@@ -5,7 +5,7 @@ import { ApolloServer } from 'apollo-server-express';
 import config from '../config/config';
 import typeDefs from './schema/userSchema';
 import resolvers from './resolver/userResolver';
-import errorHandler from '../error-handling/errorHandler';
+import errorHandler from './error-handling/errorHandler';
 
 const PORT = config.PORT || 4001;
 
@@ -21,12 +21,10 @@ const server = new ApolloServer({
 				user: decoded
 			};
 		}
-
-		return null;
 	},
 	formatError: (err) => {
 		const handledError = errorHandler(true)(err);
-    
+		console.log('=====USER=====', handledError);
 		return handledError;
 	}
 });
