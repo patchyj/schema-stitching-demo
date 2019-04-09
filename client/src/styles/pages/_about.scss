@@ -1,0 +1,17 @@
+.about {
+	.imgContainer {
+		width: 100%;
+
+		img {
+			object-fit: cover;
+			height: 400px;
+			width: 100%;
+			filter: grayscale(80%);
+			transition: 0.2s;
+
+			&:hover {
+				filter: none;
+			}
+		}
+	}
+}

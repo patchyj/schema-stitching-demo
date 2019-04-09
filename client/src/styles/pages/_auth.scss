@@ -1,0 +1,58 @@
+.auth {
+  h1 {
+    color: $mainBlue;
+    span:not(.slash) {
+      cursor: pointer;
+    }
+  }
+
+  .form-control {
+    background: none;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    color: white;
+    letter-spacing: 2px;
+
+    &:focus {
+      box-shadow: none;
+      border-color: $mainBlue;
+    }
+  }
+
+  .authSubmit {
+    margin-top: 2rem;
+    color: $mainBlue;
+    background: $mainGrey;
+    border: 1px solid $mainBlue;
+    padding: 1rem;
+    text-transform: uppercase;
+    transition: 0.2s;
+    width: 100%;
+
+    &:hover {
+      background: $mainBlue;
+      color: $mainGrey;
+      border-color: $mainBlue;
+    }
+    &:active {
+      background: darken($mainBlue, 20%);
+      border-color: darken($mainBlue, 20%);
+      color: $mainGrey;
+    }
+    &:focus {
+      box-shadow: none;
+      border-color: $mainBlue;
+    }
+  }
+
+  .authSubLinks {
+    padding: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+      color: $mainBlue;
+    }
+  }
+}

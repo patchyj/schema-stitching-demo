@@ -1,0 +1,109 @@
+.navbar {
+  border-bottom: 1px solid $mainBlue;
+  padding: 2rem 0;
+
+  i {
+    background: $mainBlue;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  .authLinks {
+    position: absolute;
+    right: 0;
+  }
+
+  a {
+    color: $mainBlue;
+    font-family: "Kreon", serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding: 1rem;
+    margin: 0 1.2rem;
+
+    span {
+      padding: 0 10px;
+
+      &::before {
+        width: 5px;
+        height: 5px;
+        background: transparent;
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-top: 2px solid white;
+        border-left: 2px solid white;
+        transition: 0.3s;
+        opacity: 0;
+      }
+      &::after {
+        width: 5px;
+        height: 5px;
+        background: transparent;
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        transition: 0.3s;
+        opacity: 0;
+      }
+    }
+    &::before {
+      width: 5px;
+      height: 5px;
+      background: transparent;
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      border-right: 2px solid white;
+      border-top: 2px solid white;
+      transition: 0.3s;
+      opacity: 0;
+    }
+    &::after {
+      width: 5px;
+      height: 5px;
+      background: transparent;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      border-left: 2px solid white;
+      border-bottom: 2px solid white;
+      transition: 0.3s;
+      opacity: 0;
+    }
+    &:hover {
+      color: white;
+      &::before {
+        opacity: 1;
+        right: 5px;
+        top: 5px;
+      }
+      &::after {
+        opacity: 1;
+        left: 5px;
+        bottom: 5px;
+      }
+      span {
+        &::before {
+          opacity: 1;
+          left: 5px;
+          top: 5px;
+        }
+        &::after {
+          opacity: 1;
+          right: 5px;
+          bottom: 5px;
+        }
+      }
+    }
+  }
+}
