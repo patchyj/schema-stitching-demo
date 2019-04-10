@@ -44,7 +44,6 @@ const resolvers = {
 			return newBlog;
 		},
 		updateBlog: async (parent, blog, context) => {
-			console.log(context);
 			if (!context.user) {
 				throw new AuthenticationError('You must be authorised to make changes');
 			}

@@ -10,10 +10,7 @@ import validateLogin from '../../validation/login';
 
 mongoose.Promise = require('bluebird');
 
-mongoose.connect(
-	config.USER_DB,
-	{ useNewUrlParser: true }
-);
+mongoose.connect(config.USER_DB, { useNewUrlParser: true });
 
 // add some small resolvers
 const resolvers = {
@@ -23,15 +20,13 @@ const resolvers = {
 
 			return users.reverse();
 		},
-		user: async (parent, { id }) => {
+		user: async (parent, { id }, context) => {
 			// eslint-disable-next-line no-console
 			const user = await User.findById(id);
-			if (!user) {
-				throw new UserInputError(
-					'Failed to get User due to invalid ID',
-					{ errors: { no_user: 'A user with that ID doesn\'t exist. Please chack the ID and try again' } }
-				);
-			}
+			// Tricky one: this resolver gets called by other resources (Blog, Profile, Projects)
+			// If user has been deleted but resource hasn't and still has userID
+			// It will break when trying to request it, so must return null, not Error
+			if (!user) return null;
 
 			return user;
 		}
@@ -71,7 +66,7 @@ const resolvers = {
 
 			const ifUser = await User.findOne({ email: user.email });
 
-			if (!ifUser) errors.email = 'An account with this email doesn\'t exist';
+			if (!ifUser) errors.email = "An account with this email doesn't exist";
 
 			if (Object.keys(errors).length > 0) {
 				throw new UserInputError(
@@ -105,23 +100,31 @@ const resolvers = {
 		},
 		updateUser: async (parent, user, context) => {
 			if (!context.user) {
-				throw new AuthenticationError('You must be authenticated to perform this action');
+				throw new AuthenticationError(
+					'You must be authenticated to perform this action'
+				);
 			}
 			if (user.id !== context.user.id) {
 				throw new AuthenticationError('Only a user can edit their own details');
 			}
 
-			const updatedUser = await User.findOneAndUpdate({ _id: user.id }, user, { new: true });
+			const updatedUser = await User.findOneAndUpdate({ _id: user.id }, user, {
+				new: true
+			});
 
 			return updatedUser;
 		},
 		deleteUser: async (parent, { id }, { user }) => {
 			if (id !== user.id) {
-				throw new AuthenticationError('You must be the author to view this page');
+				throw new AuthenticationError(
+					'You must be the author to view this page'
+				);
 			}
 			await User.findOneAndDelete({ _id: id });
 			const ifUserDeleted = await User.findOne({ _id: id });
-			const message = ifUserDeleted ? 'Something went wrong' : 'User successfully deleted';
+			const message = ifUserDeleted
+				? 'Something went wrong'
+				: 'User successfully deleted';
 
 			return message;
 		},
