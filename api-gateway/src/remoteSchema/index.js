@@ -35,7 +35,7 @@ export default async () => {
 	
 			return {
 				headers: {
-					'Authorization': previous.graphqlContext.authorization,
+					'authorization': previous.graphqlContext.authorization,
 				}
 			}
 		});

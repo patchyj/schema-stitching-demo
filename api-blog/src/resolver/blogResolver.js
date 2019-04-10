@@ -20,8 +20,6 @@ const resolvers = {
 			return blog;
 		},
 		blogsByAuthorId: async (parent, { authorId }, context) => {
-			console.log(context);
-
 			const blogs = await Blog.find({ user: authorId });
 
 			return blogs;
@@ -46,6 +44,10 @@ const resolvers = {
 			return newBlog;
 		},
 		updateBlog: async (parent, blog, context) => {
+			if (!context.user) {
+				throw new AuthenticationError('You must be authorised to make changes');
+			}
+
 			if (blog.user !== context.user.id) {
 				throw new AuthenticationError('You must be the author to make changes');
 			}
