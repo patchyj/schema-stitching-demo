@@ -27,7 +27,7 @@ const startGateway = async () => {
 
 	const server = new ApolloServer({
 		schema,
-		context: ({ req }) => ({ authScope: req.headers.authorization })
+		context: ({ req }) => ({ authorization: req.headers.authorization })
 	});
 
 	server.applyMiddleware({ app });

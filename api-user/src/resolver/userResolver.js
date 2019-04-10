@@ -26,6 +26,12 @@ const resolvers = {
 		user: async (parent, { id }) => {
 			// eslint-disable-next-line no-console
 			const user = await User.findById(id);
+			if (!user) {
+				throw new UserInputError(
+					'Failed to get User due to invalid ID',
+					{ errors: { no_user: 'A user with that ID doesn\'t exist. Please chack the ID and try again' } }
+				);
+			}
 
 			return user;
 		}
@@ -77,7 +83,7 @@ const resolvers = {
 			const valid = await bcrypt.compare(user.password, ifUser.password);
 
 			if (!valid) {
-				errors.password = 'Passwords must match';
+				errors.password = 'Wrong password';
 				throw new UserInputError(
 					'Failed to get events due to validation errors',
 					{ errors }
@@ -98,13 +104,14 @@ const resolvers = {
 			return `${token}`;
 		},
 		updateUser: async (parent, user, context) => {
+			if (!context.user) {
+				throw new AuthenticationError('You must be authenticated to perform this action');
+			}
 			if (user.id !== context.user.id) {
-				throw new AuthenticationError('You must be the author to view this page');
+				throw new AuthenticationError('Only a user can edit their own details');
 			}
 
-			const updatedUser = await User.findOneAndUpdate({ _id: user.id }, user, {
-				new: true
-			});
+			const updatedUser = await User.findOneAndUpdate({ _id: user.id }, user, { new: true });
 
 			return updatedUser;
 		},
@@ -113,9 +120,10 @@ const resolvers = {
 				throw new AuthenticationError('You must be the author to view this page');
 			}
 			await User.findOneAndDelete({ _id: id });
-			const ifUser = await User.findOne({ _id: id }) ? 'Something went wrong' : 'User successfully deleted';
+			const ifUserDeleted = await User.findOne({ _id: id });
+			const message = ifUserDeleted ? 'Something went wrong' : 'User successfully deleted';
 
-			return ifUser;
+			return message;
 		},
 		updatePassword: async (parent, { id }) => {
 			const user = await User.findById(id);
