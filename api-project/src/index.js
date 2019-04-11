@@ -13,4 +13,4 @@ const server = new ApolloServer({ typeDefs, resolvers });
 const app = express();
 server.applyMiddleware({ app });
 /* eslint-disable no-console */
-app.listen({ port: PORT }, () => console.log(`💀  Server ready at http://localhost:${PORT}${server.graphqlPath}`));
+app.listen({ port: PORT }, () => console.log(`💀  Project server ready at http://localhost:${PORT}${server.graphqlPath}`));

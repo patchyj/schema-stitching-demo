@@ -33,7 +33,7 @@ const startGateway = async () => {
 
 	server.applyMiddleware({ app });
 	/* eslint-disable no-console */
-	app.listen({ port: PORT }, () => console.log(`\n 💀  Server ready at http://localhost:${PORT}${server.graphqlPath} \n`));
+	app.listen({ port: PORT }, () => console.log(`\n 💀  Gateway server ready at http://localhost:${PORT}${server.graphqlPath} \n`));
 };
 
 startGateway().catch(err => console.log(err));
