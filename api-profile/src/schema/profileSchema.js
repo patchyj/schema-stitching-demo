@@ -74,7 +74,7 @@ const profile = gql`
 	type Mutation {
 		addProfile(experience: [ExperienceInput], education: [EducationInput], skills: [SkillInput], user: ID): Profile
 		updateProfile(id: ID!, experience: [ExperienceInput], education: [EducationInput], skills: [SkillInput], user: ID): Profile
-		deleteProfile(id: ID!): String!
+		deleteProfile(id: ID!, user: ID!): String!
 		deleteProfileByUserId(user: ID!): String!
 	}
 `;
