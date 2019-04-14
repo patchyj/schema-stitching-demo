@@ -1,12 +1,24 @@
-import { UserInputError, AuthenticationError } from 'apollo-server-express';
+/* eslint-disable no-console */
 import mongoose from 'mongoose';
 import Profile from '../models/Profile';
 import config from '../../config/config';
+import throwError from '../../tools/throwErrors';
+import checkConnection from '../../tools/checkConnection';
 
 mongoose.Promise = require('bluebird');
 
-mongoose.connect(config.PROFILE_DB, { useNewUrlParser: true });
-
+// CHECK INTERNET CONNECTION
+checkConnection((isConnected) => {
+	if (isConnected) {
+		// connected to the internet
+		console.log('Connected to mLab');
+		mongoose.connect(config.PROFILE_DB, { useNewUrlParser: true });
+	} else {
+		// not connected to the internet
+		console.log('Connected to localhost');
+		mongoose.connect(config.PROFILE_DB_LOCAL, { useNewUrlParser: true });
+	}
+});
 // add some small resolvers
 const resolvers = {
 	Query: {
@@ -14,7 +26,7 @@ const resolvers = {
 			const profiles = await Profile.find();
 			return profiles;
 		},
-		profile: async (parent, { id }, context) => {
+		profile: async (parent, { id }) => {
 			const profile = await Profile.findById(id);
 			return profile;
 		},
@@ -26,19 +38,14 @@ const resolvers = {
 	Mutation: {
 		// ========= CREATE =========
 		addProfile: async (parent, profile, context) => {
-			if (!context.user) {
-				throw new AuthenticationError('You must be a member to add a post');
-			}
+			if (!context.user) throwError('AUTH', 'You must be a member to add a post');
 
-			if (profile.user !== context.user.id) {
-				throw new AuthenticationError('A profile can only be created by the user');
-			}
+			if (profile.user !== context.user.id) throwError('AUTH', 'A profile can only be created by the user');
 
 			const existingProfile = await Profile.findOne({ user: profile.user });
 
-			if (existingProfile !== null) {
-				throw new UserInputError('A profile already exists for this user');
-			}
+			if (existingProfile !== null) throwError('USER', 'A profile already exists for this user');
+
 			// ...add validation here...
 			const newProfile = await new Profile({
 				experience: profile.experience,
@@ -52,26 +59,17 @@ const resolvers = {
 			return newProfile;
 		},
 		updateProfile: async (parent, profile, context) => {
-			if (!context.user) {
-				throw new AuthenticationError('You must be a member to update this profile');
-			}
+			if (!context.user) throwError('AUTH', 'You must be a member to update this profile');
 
-			if (!profile.id) {
-				throw new AuthenticationError('No Profile ID provided');
-			}
+			if (!profile.id) throwError('AUTH', 'No Profile ID provided');
 
-			if (!profile.user) {
-				throw new AuthenticationError('No User ID provided');
-			}
+			if (!profile.user) throwError('AUTH', 'No User ID provided');
 
-			if (profile.user !== context.user.id) {
-				throw new AuthenticationError('Only the user can update this profile');
-			}
+			if (profile.user !== context.user.id) throwError('AUTH', 'Only the user can update this profile');
+
 			const userProfile = await Profile.findOne({ user: profile.user });
 
-			if (userProfile === null) {
-				throw new UserInputError('A profile doesn\'t exist for this User');
-			}
+			if (profile.user !== context.user.id) throwError('USER', 'A profile doesn\'t exist for this User');
 
 			userProfile.experience = profile.experience && profile.experience.length > 0 ? profile.experience : userProfile.experience;
 			userProfile.education = profile.education && profile.education.length > 0 ? profile.education : userProfile.education;
@@ -82,19 +80,13 @@ const resolvers = {
 			return userProfile;
 		},
 		deleteProfile: async (parent, { id, user }, context) => {
-			if (!context.user) {
-				throw new AuthenticationError('You must be a member to delete this profile');
-			}
+			if (!context.user) throwError('AUTH', 'You must be a member to delete this profile');
 
 			const profile = await Profile.findById(id);
 
-			if (!profile) {
-				throw new AuthenticationError('A profile with this ID doesn\'t exist')
-			}
+			if (!profile) throwError('AUTH', 'A profile with this ID doesn\'t exist');
 
-			if (user !== context.user.id) {
-				throw new AuthenticationError('Only the user can delete this profile');
-			}
+			if (user !== context.user.id) throwError('AUTH', 'Only the user can delete this profile');
 
 			await profile.remove();
 
@@ -105,19 +97,13 @@ const resolvers = {
 			return message;
 		},
 		deleteProfileByUserId: async (parent, { user }, context) => {
-			if (!context.user) {
-				throw new AuthenticationError('You must be a member to delete this profile');
-			}
+			if (!context.user) throwError('AUTH', 'You must be a member to delete this profile');
 
 			const profile = await Profile.findOne({ user });
 
-			if (!profile) {
-				throw new AuthenticationError('A profile with this ID doesn\'t exist')
-			}
+			if (!profile) throwError('AUTH', 'A profile with this ID doesn\'t exist');
 
-			if (user !== context.user.id) {
-				throw new AuthenticationError('Only the user can delete this profile');
-			}
+			if (user !== context.user.id) throwError('AUTH', 'Only the user can delete this profile');
 
 			await profile.remove();
 

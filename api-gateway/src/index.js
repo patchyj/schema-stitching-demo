@@ -36,4 +36,4 @@ const startGateway = async () => {
 	app.listen({ port: PORT }, () => console.log(`\n 💀  Gateway server ready at http://localhost:${PORT}${server.graphqlPath} \n`));
 };
 
-startGateway().catch(err => console.log(err));
+startGateway().catch(console.error);

@@ -1,13 +1,23 @@
 const bcrypt = require('bcryptjs');
 const faker = require('faker');
-const dotenv = require('dotenv');
-dotenv.config();
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-const env = require('../config/keys');
-mongoose.connect(env.user_db, { useNewUrlParser: true });
-
+const config = require('../config');
 const User = require('../models/User');
+const checkConnection = require('../tools/checkConnection');
+
+// CHECK INTERNET CONNECTION
+checkConnection((isConnected) => {
+  if (isConnected) {
+    // connected to the internet
+    console.log(`Connected to mLab`);
+    mongoose.connect(config.USER_DB, { useNewUrlParser: true });
+  } else {
+    // not connected to the internet
+    console.log(`Connected to localhost`);
+    mongoose.connect(config.USER_DB_LOCAL, { useNewUrlParser: true });
+  }
+});
 
 User.collection.drop();
 
@@ -39,7 +49,7 @@ async function createUsers() {
   await User.create(users)
     .then(users => console.log(`${users.length} users created!`))
     .catch(err => console.log(err));
-  mongoose.connection.close()
+  mongoose.connection.close();
 }
 
 createUsers()

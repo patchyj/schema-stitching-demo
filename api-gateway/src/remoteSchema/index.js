@@ -25,6 +25,7 @@ export default async () => {
 		let remoteLink = new HttpLink({ uri : api.uri, fetch });
 		let remoteContext = setContext((req, previous) => {
 			// if the authorization token doesn't exist, or is malformed, do not pass it upstream
+			// The 'authorization' is set in the ApolloServer creation in index.js
 			if (
 				!previous.graphqlContext.authorization
 				||
@@ -43,11 +44,15 @@ export default async () => {
 		let remoteError = onError(({ networkError, graphQLErrors }) => {
 			if (graphQLErrors) {
 				graphQLErrors.forEach((val) => {
-					Object.setPrototypeOf(val, Error.prototype); // This is the magic line tat bubbles up the error
+					// This is the magic line that bubbles up the error
+					// It takes every incoming error and assigns the Error prototype to it so the gateway can throw the error as if it were its own
+					Object.setPrototypeOf(val, Error.prototype);
 				});
 			}
 		});
+
 		let remoteSchema  = await introspectSchema(remoteLink);
+
 		let remoteExecutableSchema = makeRemoteExecutableSchema({
 			schema : remoteSchema,
 			link : ApolloLink.from([

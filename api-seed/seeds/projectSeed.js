@@ -1,46 +1,40 @@
-require('dotenv').config();
-const env = require('../config/keys');
+const config = require('../config');
 const faker = require('faker');
 const axios = require('axios');
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize(env.project_pg_db, {
-  dialect: 'postgres'
-});
-
-const Project = sequelize.define('project', {
-  title: Sequelize.STRING,
-  tagline: Sequelize.STRING,
-  about: Sequelize.TEXT,
-  twitterURL: Sequelize.STRING,
-  websiteURL: Sequelize.STRING,
-  facebookURL: Sequelize.STRING,
-  linkedInURL: Sequelize.STRING,
-  images: Sequelize.ARRAY(Sequelize.STRING),
-  user: Sequelize.STRING
-});
 
 // ============ GET USERS ============
-
 const getUsers = async () => {
   const data = {
-    query: `
-      query allUsers {
-        allUsers {
-          id
-          email
-          }
-        }
-      `
+    query: `query allUsers { allUsers { id, email } }`
   };
 
-  const users = await axios.post(env.USER_DEV_API, data);
-
+  const users = await axios.post(config.USER_DEV_API, data);
+  
   return users.data.data.allUsers;
 };
 
-Project.drop();
+// ============ CREATE PROJECTS ============
+const createProjects = async (isOnline) => {
+  const sequelize = new Sequelize(`${isOnline ? config.PROJECT_PG_DB : config.PROJECT_PG_DB_LOCAL}`, {
+    dialect: 'postgres',
+    logging: false
+  });
+  
+  const Project = sequelize.define('project', {
+    title: Sequelize.STRING,
+    tagline: Sequelize.STRING,
+    about: Sequelize.TEXT,
+    twitterURL: Sequelize.STRING,
+    websiteURL: Sequelize.STRING,
+    facebookURL: Sequelize.STRING,
+    linkedInURL: Sequelize.STRING,
+    images: Sequelize.ARRAY(Sequelize.STRING),
+    user: Sequelize.STRING
+  });
 
-async function createProjects() {
+  Project.drop();
+
   const users = await getUsers();
 
   for (let i = 0; i < users.length; i++) {
@@ -69,11 +63,19 @@ async function createProjects() {
             images: images,
             user: users[i].id
           });
-        })
-        .then(() => console.log('project created'))
-        .catch(err => console.log(err));
+        });
     }
   }
+
+  const projects = await Project.findAll();
+  console.log(`${projects.length} projects created`)
 }
 
-createProjects();
+
+async function init(){
+  const isOnline = true; // TRUE ? ONLINE : OFFLINE
+  console.log(`Connected to ${isOnline ? 'ElephantSQL' : 'localhost'}`);
+  createProjects(isOnline);
+}
+
+init();

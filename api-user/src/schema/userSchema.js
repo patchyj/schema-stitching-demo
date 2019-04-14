@@ -8,6 +8,15 @@ const user = gql`
     lastName: String
     email: String
     password: String
+    password2: String
+    bio1: String
+    bio2: String
+    bio3: String
+    tagline: String
+    avatar: String
+    linkedInURL: String
+    twitterURL: String
+    facebookURL: String
   }
 
   # Queries from user service
@@ -26,6 +35,14 @@ const user = gql`
       email: String
       password: String
       password2: String
+      bio1: String
+      bio2: String
+      bio3: String
+      tagline: String
+      avatar: String
+      linkedInURL: String
+      twitterURL: String
+      facebookURL: String
     ): User
     loginUser(email: String!, password: String!): String
     updateUser(
@@ -34,6 +51,15 @@ const user = gql`
       lastName: String
       email: String
       password: String
+      password2: String
+      bio1: String
+      bio2: String
+      bio3: String
+      tagline: String
+      avatar: String
+      linkedInURL: String
+      twitterURL: String
+      facebookURL: String
     ): User
     deleteUser(id: ID!): String
     updatePassword(id: ID!, password: String!, password2: String!): String

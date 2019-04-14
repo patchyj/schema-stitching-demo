@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // DB Config
-const config = require('./config/keys');
+const { PORT } = require('./config');
 
 // Initialise App
 const app = express();
@@ -15,8 +15,4 @@ const app = express();
 // Enable Morgan
 app.use(logger('dev'));
 
-app.listen(config.port, () =>
-  console.log(
-    `API is running on http://localhost:${config.port}/api/blogs/graphql`
-  )
-);
+app.listen(PORT, () => console.log(`Seed app is running on http://localhost:${PORT}/api/blogs/graphql`));

@@ -1,14 +1,24 @@
 const faker = require('faker');
-const dotenv = require('dotenv');
 const axios = require('axios');
-dotenv.config();
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-const env = require('../config/keys');
+const config = require('../config');
 const Blog = require('../models/Blog');
-mongoose.connect(env.blog_db, { useNewUrlParser: true });
+const checkConnection = require('../tools/checkConnection');
 
-// ============ CREATE USERS ============
+checkConnection((isConnected) => {
+  if (isConnected) {
+    // connected to the internet
+    console.log(`Connected to mLab`);
+    mongoose.connect(config.BLOG_DB, { useNewUrlParser: true });
+  } else {
+    // not connected to the internet
+    console.log(`Connected to localhost`);
+    mongoose.connect(config.BLOG_DB_LOCAL, { useNewUrlParser: true });
+  }
+});
+
+// ============ GET USERS ============
 
 const getUsers = async () => {
   const data = {
@@ -23,7 +33,7 @@ const getUsers = async () => {
   };
 
   const users = await axios
-    .post(env.USER_DEV_API, data)
+    .post(config.USER_DEV_API, data)
     .catch(err => console.log(err));
 
   return users.data.data.allUsers;
