@@ -1,7 +1,7 @@
 import { mergeSchemas } from 'graphql-tools';
 import makeResolvers from '../resolver';
 import createRemoteExecutableSchemas from '../remoteSchema';
-import relationsSchema from './relationsSchema.graphql';
+import relationsSchema from './relationsSchema';
 
 export default async () => {
 	// Get all remote schemas

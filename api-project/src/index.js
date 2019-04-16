@@ -2,7 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import { ApolloServer } from 'apollo-server-express';
 import config from '../config/config';
-import typeDefs from './schema/projectSchema.graphql';
+import typeDefs from './schema/projectSchema';
 import resolvers from './resolver/projectResolver';
 
 const { PORT } = config || 4001;
