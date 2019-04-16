@@ -1,11 +1,17 @@
 /* eslint-disable no-console */
 import mongoose from 'mongoose';
 import Blog from '../models/Blog';
-import config from '../../config/config';
+import config from '../../config';
 import throwError from '../../tools/throwErrors';
 import checkConnection from '../../tools/checkConnection';
 
 mongoose.Promise = require('bluebird');
+
+// VERIFICATION STEPS
+// 1. DOES THE USER NEED AN ACCOUNT?
+// 2. DOES THE RESOURCE EXIST?
+// (2.5 DOES THE USER EXIST?)
+// 3. DOES THE USER HAVE TO BE THE AUTHOR / CREATOR / ADMIN?
 
 // CHECK INTERNET CONNECTION
 checkConnection((isConnected) => {
@@ -71,7 +77,9 @@ const resolvers = {
 
 			const ifBlog = await Blog.findById(blog.id);
 
-			if (blog.user !== context.user.id) throwError('USER', 'No post found. Please provide an ID');
+			if (ifBlog === null) throwError('USER', 'No blog found');
+
+			if (blog.user !== context.user.id) throwError('USER', 'You must have permission to delete this post');
 
 			if (ifBlog.user && ifBlog.user !== context.user.id) throwError('AUTH', 'You don\'t have permission to delete this blog');
 

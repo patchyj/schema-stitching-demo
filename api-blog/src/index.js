@@ -1,11 +1,11 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { ApolloServer } from 'apollo-server-express';
-import config from '../config/config';
-import typeDefs from './schema/blogSchema';
+import config from '../config';
+import typeDefs from './schema/blogSchema.graphql';
 import resolvers from './resolver/blogResolver';
 
-const PORT = config.PORT || 4001;
+const { PORT } = config || 4001;
 
 const server = new ApolloServer({
 	typeDefs,

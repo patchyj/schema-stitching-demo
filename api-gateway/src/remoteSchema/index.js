@@ -4,8 +4,7 @@ import { HttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { onError } from 'apollo-link-error';
 import fetch from 'node-fetch';
-import config from '../../config/config';
-
+import config from '../../config';
 
 // graphql API metadata
 const graphqlApis = [

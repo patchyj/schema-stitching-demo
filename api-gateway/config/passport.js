@@ -1,5 +1,5 @@
 import passportJWT from 'passport-jwt';
-import config from './config';
+import config from './index';
 
 const { Strategy, ExtractJwt } = passportJWT;
 

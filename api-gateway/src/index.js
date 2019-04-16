@@ -4,7 +4,7 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import passport from 'passport';
 import makeSchema from './schema';
-import config from '../config/config';
+import config from '../config';
 import passportConfig from '../config/passport';
 
 passportConfig(passport);
