@@ -7,7 +7,7 @@ import config from '../config/config';
 import typeDefs from './schema/userSchema';
 import resolvers from './resolver/userResolver';
 
-const PORT = config.PORT || 4001;
+const { PORT, SECRET } = config || 4001;
 
 const server = new ApolloServer({
 	typeDefs,
@@ -18,7 +18,7 @@ const server = new ApolloServer({
       && req.headers.authorization.includes('Bearer')
 		) {
 			const token = req.headers.authorization.split(' ').reverse()[0];
-			const decoded = await jwt.verify(token, config.SECRET);
+			const decoded = await jwt.verify(token, SECRET);
 
 			return {
 				user: decoded

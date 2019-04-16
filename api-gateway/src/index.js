@@ -17,13 +17,18 @@ const startGateway = async () => {
 
 	app.use(passport.initialize());
 
-	app.use('/graphql', (req, res, next) => {
+	// STANDARD EXPRESS MIDDLEWARE
+	app.post('/graphql', (req, res, next) => {
 		// eslint-disable-next-line no-unused-vars
-		passport.authenticate('jwt', { session: false }, (err, user, info) => {
-			if (user) req.user = user;
-			// eslint-disable-next-line no-console
-			next();
-		})(req, res, next);
+		passport.authenticate(
+			'jwt', // STRATEGY
+			{ session: false }, // WE AREN'T USING SESSION STORAGE
+			(err, user, info) => { // IF THIS FUNCTION CALLED THEN AUTHENTICATION SUCCESSFUL
+				console.log(user); // WILL RETURN THE JWT_PAYLOAD from ../config/passport.js
+				if (user) req.user = user;
+				// eslint-disable-next-line no-console
+				next();
+			})(req, res, next);
 	});
 
 	const server = new ApolloServer({

@@ -9,6 +9,6 @@ export default (passport) => {
 		jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
 	};
 	passport.use(new Strategy(opts, ((jwt_payload, done) => {
-		done(null, { message: 'auth' });
+		done(null, jwt_payload);
 	})));
 };
