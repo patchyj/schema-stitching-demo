@@ -3,11 +3,12 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import User from '../models/User';
-import config from '../../config/config';
+import config from '../../config';
 import validateRegistration from '../../validation/registration';
 import validateLogin from '../../validation/login';
 import throwError from '../../tools/throwErrors';
 import checkConnection from '../../tools/checkConnection';
+import emailer from '../../tools/emailer'
 
 mongoose.Promise = require('bluebird');
 
@@ -38,6 +39,14 @@ const resolvers = {
 			// If user has been deleted but resource hasn't and still has userID
 			// It will break when trying to request it, so must return null, not Error
 			if (!user) return null;
+
+			const messageBody = {
+				subject: 'Well hello there',
+				text: 'Jar Jar Binks was an abomination',
+				html: '<h1>Jar Jar Binks was an abomination</h1>'
+			};
+
+			await emailer('jackjwmcgregor@gmail.com', messageBody);
 
 			return user;
 		}

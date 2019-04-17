@@ -3,7 +3,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { ApolloServer } from 'apollo-server-express';
-import config from '../config/config';
+import config from '../config';
 import typeDefs from './schema/userSchema';
 import resolvers from './resolver/userResolver';
 
