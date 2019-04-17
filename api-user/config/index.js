@@ -7,11 +7,7 @@ export default {
 	USER_DB_LOCAL: process.env.USER_DB_LOCAL,
 	SECRET: process.env.SECRET,
 	PORT: process.env.PORT,
-	HOST: process.env.HOST,
+	SERVICE: process.env.SERVICE,
 	USER_EMAIL: process.env.USER_EMAIL,
 	USER_PASSWORD: process.env.USER_PASSWORD,
 };
-
-// HOST=smtp.ethereal.email
-// USER_EMAIL=mcttester6@gmail.com
-// USER_PASSWORD=superSecurePassword1234?!

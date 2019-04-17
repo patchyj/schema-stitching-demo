@@ -29,6 +29,9 @@ checkConnection((isConnected) => {
 const resolvers = {
 	Query: {
 		allUsers: async () => {
+			const email = JSON.stringify('../lib/emails/test.html');
+			console.log(email);
+
 			const users = await User.find();
 			return users.reverse();
 		},
@@ -46,7 +49,7 @@ const resolvers = {
 				html: '<h1>Jar Jar Binks was an abomination</h1>'
 			};
 
-			await emailer('jackjwmcgregor@gmail.com', messageBody);
+			await emailer('jackjwmcgregor@gmail.com', messageBody, null);
 
 			return user;
 		}
