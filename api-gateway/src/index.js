@@ -24,7 +24,7 @@ const startGateway = async () => {
 			'jwt', // STRATEGY
 			{ session: false }, // WE AREN'T USING SESSION STORAGE
 			(err, user, info) => { // IF THIS FUNCTION CALLED THEN AUTHENTICATION SUCCESSFUL
-				console.log(user); // WILL RETURN THE JWT_PAYLOAD from ../config/passport.js
+				// console.log(user); // WILL RETURN THE JWT_PAYLOAD from ../config/passport.js
 				if (user) req.user = user;
 				// eslint-disable-next-line no-console
 				next();
