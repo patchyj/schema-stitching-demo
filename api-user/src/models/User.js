@@ -7,16 +7,20 @@ const { Schema, model } = mongoose;
 // Create Schema
 const UserSchema = new Schema({
 	firstName: {
-		type: String
+		type: String,
+		required: true
 	},
 	lastName: {
-		type: String
+		type: String,
+		required: true
 	},
 	email: {
-		type: String
+		type: String,
+		required: true
 	},
 	password: {
-		type: String
+		type: String,
+		required: true
 	},
 	bio1: {
 		type: String
@@ -41,6 +45,16 @@ const UserSchema = new Schema({
 	},
 	facebookURL: {
 		type: String
+	},
+	verified: {
+		type: Boolean,
+		default: false
+	},
+	verificationToken: {
+		type: String
+	},
+	verificationTokenExpires: {
+		type: Date
 	}
 });
 

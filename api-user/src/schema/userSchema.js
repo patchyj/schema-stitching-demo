@@ -17,6 +17,8 @@ const user = gql`
     linkedInURL: String
     twitterURL: String
     facebookURL: String
+    verificationToken: String
+    verified: Boolean
   }
 
   # Queries from user service
@@ -29,7 +31,7 @@ const user = gql`
   }
 
   type Mutation {
-    addUser(
+    registerUser(
       firstName: String
       lastName: String
       email: String
@@ -44,6 +46,7 @@ const user = gql`
       twitterURL: String
       facebookURL: String
     ): User
+    verifyUser(token: String!): User
     loginUser(email: String!, password: String!): String
     updateUser(
       id: ID!
@@ -61,8 +64,10 @@ const user = gql`
       twitterURL: String
       facebookURL: String
     ): User
-    deleteUser(id: ID!): String
-    updatePassword(id: ID!, password: String!, password2: String!): String
+    deleteUserRequest: String!
+    deleteUser(id: ID!, verificationToken: String!): String
+    updatePasswordRequest(email: String!): String
+    updatePassword(verificationToken: String!, password: String!, password2: String!): User
   }
 `;
 

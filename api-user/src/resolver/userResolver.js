@@ -1,14 +1,20 @@
 /* eslint-disable no-console */
 import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import User from '../models/User';
 import config from '../../config';
 import validateRegistration from '../../validation/registration';
 import validateLogin from '../../validation/login';
+import validatePasswords from '../../validation/passwordValidation';
 import throwError from '../../tools/throwErrors';
 import checkConnection from '../../tools/checkConnection';
-import emailer from '../../tools/emailer'
+import emailer from '../../tools/emailer';
+import emailContent from '../lib/emails';
+import {
+	CONFIRM_ACCOUNT_1, CONFIRM_ACCOUNT_2, PASSWORD_RESET_1, PASSWORD_RESET_2, DELETE_ACCOUNT_1, DELETE_ACCOUNT_2
+} from '../lib/emails/emailTypes';
 
 mongoose.Promise = require('bluebird');
 
@@ -29,9 +35,6 @@ checkConnection((isConnected) => {
 const resolvers = {
 	Query: {
 		allUsers: async () => {
-			const email = JSON.stringify('../lib/emails/test.html');
-			console.log(email);
-
 			const users = await User.find();
 			return users.reverse();
 		},
@@ -43,37 +46,73 @@ const resolvers = {
 			// It will break when trying to request it, so must return null, not Error
 			if (!user) return null;
 
-			const messageBody = {
-				subject: 'Well hello there',
-				text: 'Jar Jar Binks was an abomination',
-				html: '<h1>Jar Jar Binks was an abomination</h1>'
-			};
-
-			await emailer('jackjwmcgregor@gmail.com', messageBody, null);
-
 			return user;
 		}
 	},
 	Mutation: {
 		// ========= CREATE =========
-		addUser: async (parent, user) => {
+		registerUser: async (parent, user) => {
+			// PASS USER PARAMS THROUGH VALIDATOR
 			const { errors } = validateRegistration(user);
 
+			// THROW ERRORS IF ANY INITIAL VALIDATION FAILS
 			if (Object.keys(errors).length > 0) throwError('USER', 'Failed to get events due to validation errors', { errors });
 
+			// LOOK FOR A USER BY THE EMAIL GIVEN
 			const existingUser = await User.findOne({ email: user.email });
 
+			// THROW ERROR IF EMAIL IS TAKEN
 			if (existingUser !== null) throwError('USER', 'This email is already being used');
 
+			// CREATE NEW USER MODEL
 			const newUser = new User(user);
 
+			// HASH THE PASSWORD
 			const salt = await bcrypt.genSalt(10);
 			const hash = await bcrypt.hash(newUser.password, salt);
-
 			newUser.password = hash;
+
+			// CREATE TOKEN FOR VERIFICATION PURPOSES - TOKEN IS BOTH SENT IN VERIFICATION EMAIL AND STORED WITH USER
+			const buf = await crypto.randomBytes(20);
+			const token = buf.toString('hex');
+			newUser.verificationToken = token;
+
+			// SAVE THE USER
 			newUser.save();
 
+			// WHILE BUILDING THE API WE'LL KEEP THIS HERE SO WE CAN USE IT TO VERIFY USER
+			console.log(token);
+
+			// CREATE EMAIL OBJECT TO SEND
+			const messageBody = emailContent(CONFIRM_ACCOUNT_1, { name: `${newUser.firstName} ${newUser.lastName}`, token });
+
+			// SEND EMAIL
+			await emailer('jackjwmcgregor@gmail.com', messageBody); // REPLACE WITH NEWUSER.EMAIL
+
 			return newUser;
+		},
+		verifyUser: async (parent, { id, token }) => {
+			// FIND USER WITH THE TOKEN
+			const user = await User.findOne({ verificationToken: token });
+
+			// THROW ERROR IF NO USER FOUND
+			if (user === null) throwError('USER', 'No user found');
+
+			// THROW ERROR IF USER TOKEN DOESNT MATCH EMAIL LINK TOKEN
+			if (user.verificationToken !== token) throwError('USER', 'Token invalid');
+
+			// UPDATE USER
+			user.verificationToken = '';
+			user.verified = true;
+			user.save();
+
+			// CREATE EMAIL OBJECT TO SEND
+			const messageBody = emailContent(CONFIRM_ACCOUNT_2, { name: `${user.firstName} ${user.lastName}` });
+
+			// SEND EMAIL
+			await emailer('jackjwmcgregor@gmail.com', messageBody); // REPLACE WITH NEWUSER.EMAIL
+
+			return user;
 		},
 		loginUser: async (parent, user) => {
 			const { errors } = await validateLogin(user);
@@ -125,22 +164,105 @@ const resolvers = {
 
 			return updatedUser;
 		},
-		deleteUser: async (parent, { id }, { user }) => {
-			if (id !== user.id) throwError('AUTH', 'You must be the author to view this page');
+		deleteUserRequest: async (parent, args, context) => {
+			if (!context.user) throwError('USER', 'Not allowed');
+
+			const user = await User.findOne({ email: context.user.email });
+
+			if (user === null) throwError('USER', 'Failed to get events due to validation errors', { errors: { email: "An account with this email doesn't exist" } });
+
+			// CREATE TOKEN FOR VERIFICATION PURPOSES - TOKEN IS BOTH SENT IN VERIFICATION EMAIL AND STORED WITH USER
+			const buf = await crypto.randomBytes(20);
+			const token = buf.toString('hex');
+			user.verificationToken = token;
+			console.log(token);
+			user.save();
+
+			// CREATE EMAIL OBJECT TO SEND
+			const messageBody = emailContent(DELETE_ACCOUNT_1, { name: `${user.firstName} ${user.lastName}`, token });
+
+			// SEND EMAIL
+			await emailer('jackjwmcgregor@gmail.com', messageBody); // USER.EMAIL
+
+			return 'An email has been sent';
+		},
+		deleteUser: async (parent, { id, verificationToken }, context) => {
+			if (!context.user) throwError('AUTH', 'Must be logged in');
+			if (!verificationToken) throwError('AUTH', 'No verification token present');
+			if (id !== context.user.id) throwError('AUTH', 'You must be the author to perform this action');
+
+			const userByEmail = await User.findOne({ email: context.user.email });
+			const userByToken = await User.findOne({ verificationToken });
+
+			if (userByEmail === null) throwError('USER', 'Failed to get events due to validation errors', { errors: { email: `An account with email: ${context.user.email} doesn't exist` } });
+			if (userByEmail.id !== userByToken.email) throwError('AUTH', 'Users dont match');
 
 			await User.findOneAndDelete({ _id: id });
 			const ifUserDeleted = await User.findOne({ _id: id });
-			const message = ifUserDeleted
-				? 'Something went wrong'
-				: 'User successfully deleted';
 
-			return message;
+			if (!ifUserDeleted) {
+				// CREATE EMAIL OBJECT TO SEND
+				const messageBody = emailContent(DELETE_ACCOUNT_2, { name: `${userByEmail.firstName} ${userByEmail.lastName}` });
+
+				// SEND EMAIL
+				await emailer('jackjwmcgregor@gmail.com', messageBody); // USER.EMAIL
+
+				return 'User successfully deleted';
+			}
+
+
+			return 'Something went wrong';
 		},
-		updatePassword: async (parent, { id }) => {
-			const user = await User.findById(id);
-			console.log(user);
+		updatePasswordRequest: async (parent, { email }) => {
+			const user = await User.findOne({ email });
 
-			// to do
+			if (!user) throwError('USER', 'Failed to get events due to validation errors', { errors: { email: "An account with this email doesn't exist" } });
+
+			// CREATE TOKEN FOR VERIFICATION PURPOSES - TOKEN IS BOTH SENT IN VERIFICATION EMAIL AND STORED WITH USER
+			const buf = await crypto.randomBytes(20);
+			const token = buf.toString('hex');
+			user.verificationToken = token;
+			console.log(token);
+			user.save();
+
+			// CREATE EMAIL OBJECT TO SEND
+			const messageBody = emailContent(PASSWORD_RESET_1, { name: `${user.firstName} ${user.lastName}`, token });
+
+			// SEND EMAIL
+			await emailer('jackjwmcgregor@gmail.com', messageBody); // USER.EMAIL
+
+			return 'An email has been sent';
+		},
+		updatePassword: async (parent, { verificationToken, password, password2 }) => {
+			// FIND USER WITH THE TOKEN
+			const user = await User.findOne({ verificationToken });
+
+			// THROW ERROR IF NO USER FOUND
+			if (user === null) throwError('USER', 'No user found');
+
+			// THROW ERROR IF USER TOKEN DOESNT MATCH EMAIL LINK TOKEN
+			if (user.verificationToken !== verificationToken) throwError('USER', 'Token invalid');
+
+			//  CHECK PASSWORDS MATCH
+			const { errors } = validatePasswords({ password, password2 });
+			if (Object.keys(errors).length > 0) throwError('USER', 'Failed to get events due to validation errors', { errors });
+
+			// UPDATE USER
+			const salt = await bcrypt.genSalt(10);
+			const hash = await bcrypt.hash(password, salt);
+			user.password = hash;
+
+			user.verificationToken = '';
+
+			user.save();
+
+			// CREATE EMAIL OBJECT TO SEND
+			const messageBody = emailContent(PASSWORD_RESET_2, { name: `${user.firstName} ${user.lastName}` });
+
+			// SEND EMAIL
+			await emailer('jackjwmcgregor@gmail.com', messageBody); // USER.EMAIL
+
+			return user;
 		}
 	}
 };

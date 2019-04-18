@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2019-04-17T21:14:22.187Z",
+	"__export_date": "2019-04-18T16:07:56.116Z",
 	"__export_source": "insomnia.desktop.app:v6.3.2",
 	"resources": [
 		{
@@ -620,7 +620,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/graphql",
-				"text": "{\"query\":\"mutation AddUser(\\n  $firstName: String,\\n  $lastName: String,\\n  $email: String,\\n  $password: String,\\n  $password2: String,\\n  $bio1: String,\\n  $bio2: String,\\n  $bio3: String,\\n  $tagline: String,\\n  $avatar: String,\\n  $linkedInURL: String,\\n  $twitterURL: String,\\n  $facebookURL: String\\n) {\\n  addUser(\\n    firstName: $firstName,\\n  \\tlastName: $lastName,\\n  \\temail: $email,\\n  \\tpassword: $password,\\n    password2: $password2,\\n  \\tbio1: $bio1\\n    bio2: $bio2\\n    bio3: $bio3\\n    tagline: $tagline\\n    avatar: $avatar\\n    linkedInURL: $linkedInURL\\n    twitterURL: $twitterURL\\n    facebookURL: $facebookURL\\n  ){\\n    firstName\\n    lastName\\n    email\\n    password\\n    bio1\\n    bio2\\n    bio3    \\n    tagline\\n    avatar\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n  }\\n}\",\"variables\":{\"firstName\":\"Test1\",\"lastName\":\"McTesterson\",\"email\":\"test12@test.com\",\"password\":\"password\",\"password2\":\"password\",\"bio1\":\"Lorem ipsum\",\"bio2\":\"Lorem ipsum\",\"bio3\":\"Lorem ipsum\",\"tagline\":\"Some tagline goes here\",\"avatar\":\"http://fillmurray.com/200/200\",\"linkedInURL\":\"https://www.linkedin.com/me\",\"twitterURL\":\"https://www.linkedin.com/me\",\"facebookURL\":\"https://www.linkedin.com/me\"},\"operationName\":\"AddUser\"}"
+				"text": "{\"query\":\"mutation RegisterUser(\\n  $firstName: String,\\n  $lastName: String,\\n  $email: String,\\n  $password: String,\\n  $password2: String,\\n  $bio1: String,\\n  $bio2: String,\\n  $bio3: String,\\n  $tagline: String,\\n  $avatar: String,\\n  $linkedInURL: String,\\n  $twitterURL: String,\\n  $facebookURL: String\\n) {\\n  registerUser(\\n    firstName: $firstName,\\n  \\tlastName: $lastName,\\n  \\temail: $email,\\n  \\tpassword: $password,\\n    password2: $password2,\\n  \\tbio1: $bio1\\n    bio2: $bio2\\n    bio3: $bio3\\n    tagline: $tagline\\n    avatar: $avatar\\n    linkedInURL: $linkedInURL\\n    twitterURL: $twitterURL\\n    facebookURL: $facebookURL\\n  ){\\n    firstName\\n    lastName\\n    email\\n    password\\n    bio1\\n    bio2\\n    bio3    \\n    tagline\\n    avatar\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n    verificationToken\\n  }\\n}\\n\\nmutation VerifyUser($token: String!) {\\n  verifyUser(token: $token) {\\n    id\\n    verificationToken\\n    verified\\n  }\\n}\",\"variables\":{\"firstName\":\"Test1\",\"lastName\":\"McTesterson\",\"email\":\"test21@test.com\",\"password\":\"password\",\"password2\":\"password\",\"bio1\":\"Lorem ipsum\",\"bio2\":\"Lorem ipsum\",\"bio3\":\"Lorem ipsum\",\"tagline\":\"Some tagline goes here\",\"avatar\":\"http://fillmurray.com/200/200\",\"linkedInURL\":\"https://www.linkedin.com/me\",\"twitterURL\":\"https://www.linkedin.com/me\",\"facebookURL\":\"https://www.linkedin.com/me\",\"token\":\"2361674fb02b165072f956acb68fbbaf88a64dcd\"},\"operationName\":\"VerifyUser\"}"
 			},
 			"created": 1550876491814,
 			"description": "",
@@ -634,7 +634,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1550876491814,
 			"method": "POST",
-			"modified": 1555242218780,
+			"modified": 1555599844541,
 			"name": "Register",
 			"parameters": [
 				{
@@ -678,7 +678,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/graphql",
-				"text": "{\"query\":\"mutation Login($email: String!, $password: String!) {\\n  loginUser(email: $email, password: $password)\\n}\\n\",\"variables\":{\"email\":\"test4@test.com\",\"password\":\"password\"},\"operationName\":\"Login\"}"
+				"text": "{\"query\":\"mutation Login($email: String!, $password: String!) {\\n  loginUser(email: $email, password: $password)\\n}\\n\",\"variables\":{\"email\":\"test1@test.com\",\"password\":\"helloWorld\"},\"operationName\":\"Login\"}"
 			},
 			"created": 1550878469866,
 			"description": "",
@@ -692,7 +692,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1550878469866,
 			"method": "POST",
-			"modified": 1555361424060,
+			"modified": 1555599861423,
 			"name": "login",
 			"parameters": [],
 			"parentId": "fld_4e89077aed5d4ce1b3a86d0927fc4c5f",
@@ -710,7 +710,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/graphql",
-				"text": "{\"query\":\"query GetUser {\\n  user(id:\\\"5cb3783456f61af20287a9c4\\\"){\\n    id\\n  }\\n}\\n\\nquery allUsers {\\n  allUsers {\\n    id\\n    firstName\\n    lastName\\n    email\\n    password\\n    bio1\\n    bio2\\n    bio3\\n    tagline\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n    blogs {\\n      id\\n    }\\n  }\\n}\\n\\nmutation UpdateUser(\\n  $id: ID!,\\n  $firstName: String,\\n  $lastName: String,\\n  $email: String,\\n  $password: String,\\n  $password2: String,\\n  $bio1: String,\\n  $bio2: String,\\n  $bio3: String,\\n  $tagline: String,\\n  $avatar: String,\\n  $linkedInURL: String,\\n  $twitterURL: String,\\n  $facebookURL: String\\n) {\\n  updateUser(\\n    id: $id,\\n    firstName: $firstName,\\n  \\tlastName: $lastName,\\n  \\temail: $email,\\n  \\tpassword: $password,\\n    password2: $password2,\\n  \\tbio1: $bio1\\n    bio2: $bio2\\n    bio3: $bio3\\n    tagline: $tagline\\n    avatar: $avatar\\n    linkedInURL: $linkedInURL\\n    twitterURL: $twitterURL\\n    facebookURL: $facebookURL\\n  ){\\n    id\\n    firstName\\n    lastName\\n    email\\n    password\\n    bio1\\n    bio2\\n    bio3    \\n    tagline\\n    avatar\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n  }\\n}\\n\\nmutation DeleteUser($id: ID!) {\\n  deleteUser(id: $id)\\n}\",\"variables\":{\"id\":\"5cb3783456f61af20287a9c4\",\"firstName\":\"Test1\",\"lastName\":\"McTesterson\",\"email\":\"test1@test.com\",\"password\":\"password\",\"password2\":\"password\",\"bio1\":\"Lorem ipsum\",\"bio2\":\"Lorem ipsum\",\"bio3\":\"Lorem ipsum\",\"tagline\":\"Some tagline goes here\",\"avatar\":\"http://fillmurray.com/200/200\",\"linkedInURL\":\"https://www.linkedin.com/me\",\"twitterURL\":\"https://www.linkedin.com/me\",\"facebookURL\":\"https://www.linkedin.com/me\"},\"operationName\":\"allUsers\"}"
+				"text": "{\"query\":\"query GetUser {\\n  user(id:\\\"5cb3788d288715f233531447\\\"){\\n    id\\n  }\\n}\\n\\nquery allUsers {\\n  allUsers {\\n    id\\n    firstName\\n    lastName\\n    email\\n    password\\n    bio1\\n    bio2\\n    bio3\\n    tagline\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n  }\\n}\\n\\nmutation UpdateUser(\\n  $id: ID!,\\n  $firstName: String,\\n  $lastName: String,\\n  $email: String,\\n  $password: String,\\n  $password2: String,\\n  $bio1: String,\\n  $bio2: String,\\n  $bio3: String,\\n  $tagline: String,\\n  $avatar: String,\\n  $linkedInURL: String,\\n  $twitterURL: String,\\n  $facebookURL: String\\n) {\\n  updateUser(\\n    id: $id,\\n    firstName: $firstName,\\n  \\tlastName: $lastName,\\n  \\temail: $email,\\n  \\tpassword: $password,\\n    password2: $password2,\\n  \\tbio1: $bio1\\n    bio2: $bio2\\n    bio3: $bio3\\n    tagline: $tagline\\n    avatar: $avatar\\n    linkedInURL: $linkedInURL\\n    twitterURL: $twitterURL\\n    facebookURL: $facebookURL\\n  ){\\n    id\\n    firstName\\n    lastName\\n    email\\n    password\\n    bio1\\n    bio2\\n    bio3    \\n    tagline\\n    avatar\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n  }\\n}\\n\\nmutation DeleteUserRequest {\\n  deleteUserRequest\\n}\\n\\nmutation DeleteUser($id: ID!, $verificationToken: String!) {\\n  deleteUser(id: $id, verificationToken: $verificationToken)\\n}\\n\",\"variables\":{\"id\":\"5cb3783456f61af20287a9c4\",\"firstName\":\"Test1\",\"lastName\":\"McTesterson\",\"email\":\"test1@test.com\",\"password\":\"password\",\"password2\":\"password\",\"bio1\":\"Lorem ipsum\",\"bio2\":\"Lorem ipsum\",\"bio3\":\"Lorem ipsum\",\"tagline\":\"Some tagline goes here\",\"avatar\":\"http://fillmurray.com/200/200\",\"linkedInURL\":\"https://www.linkedin.com/me\",\"twitterURL\":\"https://www.linkedin.com/me\",\"facebookURL\":\"https://www.linkedin.com/me\",\"verificationToken\":\"\"},\"operationName\":\"DeleteUser\"}"
 			},
 			"created": 1553681293309,
 			"description": "",
@@ -723,13 +723,13 @@
 				{
 					"id": "pair_a04d8944612747bf8045536428752d7b",
 					"name": "Authorization",
-					"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjYjM3ODM0NTZmNjFhZjIwMjg3YTljOSIsImVtYWlsIjoidGVzdDZAdGVzdC5jb20iLCJpYXQiOjE1NTUzNjA2ODcsImV4cCI6MTU1NTM5NjY4N30.ZxqmiFvefewE6xxirBIg5nYSdLUaHwOtc349Pbhf1us"
+					"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjYjM3ODhkMjg4NzE1ZjIzMzUzMTQ0NyIsImVtYWlsIjoidGVzdDFAdGVzdC5jb20iLCJpYXQiOjE1NTU1OTk4NjIsImV4cCI6MTU1NTYzNTg2Mn0.6UfeFX4EPyx9BdlFo-FjerWoMkH0e9wKonyFrTOk5zc"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1553681293310,
 			"method": "POST",
-			"modified": 1555361410848,
+			"modified": 1555602464339,
 			"name": "user",
 			"parameters": [],
 			"parentId": "fld_4e89077aed5d4ce1b3a86d0927fc4c5f",
@@ -811,6 +811,38 @@
 			"method": "POST",
 			"modified": 1555360232241,
 			"name": "project",
+			"parameters": [],
+			"parentId": "fld_4e89077aed5d4ce1b3a86d0927fc4c5f",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b80135b2693c496fab6902db73c26a2c",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation updatePasswordRequest($email: String!) {\\n  updatePasswordRequest(email: $email)\\n}\\n\\nmutation UpdatePassword($verificationToken: String!, $password: String!, $password2: String!) {\\n  updatePassword(verificationToken: $verificationToken, password: $password, password2: $password2) {\\n    id\\n    password\\n    verificationToken\\n  }\\n}\",\"variables\":{\"email\":\"test1@test.com\",\"password\":\"helloWorld\",\"password2\":\"helloWorld\",\"verificationToken\":\"1699252bd9be09a78a5a7fb7d99d7a6e4edce03e\"},\"operationName\":\"UpdatePassword\"}"
+			},
+			"created": 1555598952119,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_cf09ed7f42524458843ab67e7260ae52",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1555598952119,
+			"method": "POST",
+			"modified": 1555599793593,
+			"name": "Password Reset",
 			"parameters": [],
 			"parentId": "fld_4e89077aed5d4ce1b3a86d0927fc4c5f",
 			"settingDisableRenderRequestBody": false,
