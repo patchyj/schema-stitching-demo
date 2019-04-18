@@ -165,11 +165,13 @@ const resolvers = {
 			return updatedUser;
 		},
 		deleteUserRequest: async (parent, args, context) => {
+			// 
 			if (!context.user) throwError('USER', 'Not allowed');
 
 			const user = await User.findOne({ email: context.user.email });
 
-			if (user === null) throwError('USER', 'Failed to get events due to validation errors', { errors: { email: "An account with this email doesn't exist" } });
+			const errors = { email: "An account with this email doesn't exist" };
+			if (user === null) throwError('USER', 'Failed to get events due to validation errors', { errors });
 
 			// CREATE TOKEN FOR VERIFICATION PURPOSES - TOKEN IS BOTH SENT IN VERIFICATION EMAIL AND STORED WITH USER
 			const buf = await crypto.randomBytes(20);
@@ -187,6 +189,7 @@ const resolvers = {
 			return 'An email has been sent';
 		},
 		deleteUser: async (parent, { id, verificationToken }, context) => {
+			// DELETING ACCOUNT
 			if (!context.user) throwError('AUTH', 'Must be logged in');
 			if (!verificationToken) throwError('AUTH', 'No verification token present');
 			if (id !== context.user.id) throwError('AUTH', 'You must be the author to perform this action');
@@ -194,8 +197,9 @@ const resolvers = {
 			const userByEmail = await User.findOne({ email: context.user.email });
 			const userByToken = await User.findOne({ verificationToken });
 
-			if (userByEmail === null) throwError('USER', 'Failed to get events due to validation errors', { errors: { email: `An account with email: ${context.user.email} doesn't exist` } });
-			if (userByEmail.id !== userByToken.email) throwError('AUTH', 'Users dont match');
+			const errors = { email: `An account with email: ${context.user.email} doesn't exist` };
+			if (userByEmail === null) throwError('USER', 'Failed to get events due to validation errors', { errors });
+			if (userByEmail.id !== userByToken.id) throwError('AUTH', 'Users dont match');
 
 			await User.findOneAndDelete({ _id: id });
 			const ifUserDeleted = await User.findOne({ _id: id });
@@ -216,7 +220,8 @@ const resolvers = {
 		updatePasswordRequest: async (parent, { email }) => {
 			const user = await User.findOne({ email });
 
-			if (!user) throwError('USER', 'Failed to get events due to validation errors', { errors: { email: "An account with this email doesn't exist" } });
+			const errors = { email: "An account with this email doesn't exist" };
+			if (!user) throwError('USER', 'Failed to get events due to validation errors', { errors });
 
 			// CREATE TOKEN FOR VERIFICATION PURPOSES - TOKEN IS BOTH SENT IN VERIFICATION EMAIL AND STORED WITH USER
 			const buf = await crypto.randomBytes(20);
