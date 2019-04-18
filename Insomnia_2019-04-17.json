@@ -1,0 +1,1387 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2019-04-17T21:14:22.187Z",
+	"__export_source": "insomnia.desktop.app:v6.3.2",
+	"resources": [
+		{
+			"_id": "wrk_3fd2ba1d34064d7d88f33ab128633d0a",
+			"created": 1493718266514,
+			"description": "",
+			"modified": 1511206432531,
+			"name": "Insomnia",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_dba1f4f9a72b4ab28151d509caada845",
+			"color": null,
+			"created": 1493718417653,
+			"data": {},
+			"isPrivate": false,
+			"metaSortKey": 1555535662246,
+			"modified": 1493718417653,
+			"name": "Base Environment",
+			"parentId": "wrk_3fd2ba1d34064d7d88f33ab128633d0a",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_e86d8b23b36d4d4c96f74d43719e7fbf",
+			"cookies": [
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": "wger.de",
+					"expires": "2017-06-12T09:42:42.000Z",
+					"hostOnly": false,
+					"httpOnly": true,
+					"id": "2135780500459732",
+					"key": "sessionid",
+					"path": "/",
+					"value": "bw4ohlj1r8n8da3wasxpgj5e52yew8cc"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": ".webknox.com",
+					"expires": "2018-05-15T10:07:12.000Z",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "9960878000947482",
+					"key": "__cfduid",
+					"path": "/",
+					"value": "d5f222abdd394afa93da7815786bd80ae1494842832"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": "api.edamam.com",
+					"expires": "1970-01-01T00:00:00.000Z",
+					"hostOnly": false,
+					"id": "7324351734932582",
+					"key": "JSESSIONID",
+					"path": "/",
+					"value": "CEA2312EB086C313984478462ECF2440"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": ".lockergnome.com",
+					"expires": "2018-05-15T11:44:49.000Z",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "026198655211822963",
+					"key": "__cfduid",
+					"path": "/",
+					"value": "da2252a73e17820f5d803b9cef2f5037b1494848689"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": ".patreon.com",
+					"expires": "2018-05-15T11:44:49.000Z",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "9420540651383555",
+					"key": "__cfduid",
+					"path": "/",
+					"value": "da093d68cda88d109c429715d01f8df7b1494848689"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": ".patreon.com",
+					"expires": "2017-06-14T11:44:50.000Z",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "5843993927725524",
+					"key": "session_id",
+					"path": "/",
+					"secure": true,
+					"value": "pyb98f08023d775e9bdf3c10a35350caff6bf0a517d65b014632ef65992aed9f83"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": ".patreon.com",
+					"expires": "2037-05-10T11:44:50.000Z",
+					"hostOnly": true,
+					"id": "5946153485420915",
+					"key": "amplitude_idpatreon.com",
+					"path": "/",
+					"value": "ewogICAgImRldmljZUlkIjogImUyNzU0NzFhLTkzZDAtNDhiNy1iYjAzLWI4NWI0NTA3MGRjZCIsCiAgICAib3B0T3V0IjogZmFsc2UsCiAgICAidXNlcklkIjogMAp9"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": ".patreon.com",
+					"expires": "2037-05-10T11:44:50.000Z",
+					"hostOnly": true,
+					"id": "23806336376154835",
+					"key": "patreon_device_id",
+					"path": "/",
+					"value": "e275471a-93d0-48b7-bb03-b85b45070dcd"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": ".patreon.com",
+					"expires": "2037-05-10T11:44:50.000Z",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "7792679401480431",
+					"key": "group_id",
+					"path": "/",
+					"secure": true,
+					"value": "fe20b27aa5f34d4cdb8cf8d2c18402f478f78e8ae96f5dd65dfb871691477299"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": "ebob42.org",
+					"expires": "1970-01-01T00:00:00.000Z",
+					"hostOnly": false,
+					"id": "7806838982397535",
+					"key": "ASPSESSIONIDASCABARA",
+					"path": "/",
+					"value": "HEOPNHMAKMFGGEHKCPHPJDHM"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": ".itsthisforthat.com",
+					"expires": "2018-05-15T12:43:48.000Z",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "362108122431261",
+					"key": "__cfduid",
+					"path": "/",
+					"value": "d42a4ae413f6893ddba932234d95047a61494852228"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.631Z",
+					"domain": "fengshui-api.com",
+					"expires": "1970-01-01T00:00:00.000Z",
+					"hostOnly": false,
+					"httpOnly": true,
+					"id": "2638045048943789",
+					"key": "PHPSESSID",
+					"path": "/",
+					"value": "m335160ouf4hq3lot3b9i9fii7"
+				},
+				{
+					"creation": "2017-10-01T20:37:57.632Z",
+					"domain": "localhost",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "3814241331403305",
+					"key": "sails.sid",
+					"lastAccessed": "2017-10-02T07:04:34.557Z",
+					"path": "/",
+					"value": "s%3Ag3Qttqw6A-hdjbGXUtAHjWVcfDoFv5Nj.NVB2RFzHXEOfAp5N2P5uLv3h8VQ%2F1W6lqcrUZe4xtQg"
+				}
+			],
+			"created": 1493718417629,
+			"modified": 1506927874559,
+			"name": "Default Jar",
+			"parentId": "wrk_3fd2ba1d34064d7d88f33ab128633d0a",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"created": 1548966191293,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1548966191293,
+			"modified": 1548966191293,
+			"name": "Oddjob GraphQL",
+			"parentId": "wrk_3fd2ba1d34064d7d88f33ab128633d0a",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_4e89077aed5d4ce1b3a86d0927fc4c5f",
+			"created": 1550876479831,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1550876479832,
+			"modified": 1550876479831,
+			"name": "Portfolio",
+			"parentId": "wrk_3fd2ba1d34064d7d88f33ab128633d0a",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_72bb0d3a15204b07924035b8a004f7d5",
+			"created": 1548971088532,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1548971088532,
+			"modified": 1548971088532,
+			"name": "Create",
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_4bf30385a8904e1ebbb56ab3616812d6",
+			"created": 1549183141090,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1548971088582,
+			"modified": 1549183148280,
+			"name": "Update",
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_3da54b41970b4e2b896a288ec8720a2c",
+			"created": 1549190425427,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1549190425427,
+			"modified": 1549190425427,
+			"name": "Delete",
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_1d526d35161a418cacc8c5183e504bdc",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getUsers {\\n    id\\n    firstName\\n    lastName\\n    parent\\n    email\\n    password\\n    account {\\n      id\\n    }\\n    children {\\n      id\\n    }\\n  }\\n}\\n\"}"
+			},
+			"created": 1548966206048,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_2374f6764f7f4b07aee50dffd9fecb79",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967653848,
+			"method": "POST",
+			"modified": 1550241276994,
+			"name": "Get Users",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_11bf19825ca0425c951c7403f69cccbf",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getChildren {\\n    id\\n    firstName\\n    lastName\\n    username\\n    email\\n    password\\n    avatar\\n    parent {\\n      id\\n    }\\n    account {\\n      id\\n      balance\\n      target\\n      description\\n      portfolios {\\n        id\\n        name\\n      }\\n    }\\n    tasks {\\n      id\\n      reward\\n      title\\n    }\\n  }\\n}\\n\"}"
+			},
+			"created": 1548966548127,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_f9bb0d51668848f193d7693bec9ff082",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967653829.25,
+			"method": "POST",
+			"modified": 1550346190799,
+			"name": "Get Children",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a7f8ab5a32ab4bba9eadc250123c9deb",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getChild(id: \\\"5c682e303f798b686cd02e03\\\") {\\n    id\\n    firstName\\n    lastName\\n    username\\n    email\\n    password\\n    account {\\n      id\\n      balance\\n      portfolios {\\n        id\\n        name\\n      }\\n    }\\n    tasks {\\n      id\\n      title\\n    }\\n  }\\n}\\n\"}"
+			},
+			"created": 1548966585206,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_49a018b110cc452cb9cb77bf7c6b099e",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967653835.5,
+			"method": "POST",
+			"modified": 1550403535505,
+			"name": "Get Child",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a86e7da2f433420a81bd6be86b0b88a5",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getUser(id: \\\"5c634a2f4119d112020cfac9\\\") {\\n    id\\n    firstName\\n    lastName\\n    email\\n    password\\n    account {\\n      id\\n    }\\n    children {\\n      id\\n      tasks {\\n        id\\n      }\\n      account {\\n        id\\n        \\n        portfolios {\\n          id\\n        }\\n      }\\n    }\\n  }\\n}\"}"
+			},
+			"created": 1548966686543,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_d6e179841882454d8d283768973d72e2",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967653873,
+			"method": "POST",
+			"modified": 1550185496708,
+			"name": "Get User",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_fca9a17882b04c86b6ef73d7e5321680",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getTasks {\\n    id\\n    title\\n    description\\n    reward\\n    completed\\n    pending\\n    due\\n    onTime\\n    child {\\n      id\\n    }\\n    parent {\\n      id\\n      firstName\\n    }\\n  }\\n}\\n\"}"
+			},
+			"created": 1548967011873,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_181a446a9a6241b4865c53acbfa88427",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967011873,
+			"method": "POST",
+			"modified": 1550410872486,
+			"name": "Get Tasks",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c318d5d9dae84ec8aea54a6b32b22547",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getAccounts {\\n    id\\n    balance\\n    description\\n    target\\n    created\\n    parent {\\n      id\\n    }\\n    child {\\n      id\\n    }\\n    portfolios {\\n      id\\n      value\\n    }\\n  }\\n}\\n\"}"
+			},
+			"created": 1548967378852,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_e3eb93d774bd495c866181238fe4f7dc",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967011835.5,
+			"method": "POST",
+			"modified": 1550523486896,
+			"name": "Get Accounts",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_5c63a15b67a447909ee16694f05a9661",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getChildAccount(id: \\\"5c4c80be3fba7762b62689e8\\\") {\\n    id\\n    balance\\n    target\\n    description\\n    child {\\n      id\\n    }\\n    created\\n    portfolios {\\n      id\\n    }\\n  }\\n}\\n\"}"
+			},
+			"created": 1548967653823,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_46fa1a9a28a3422d8a955631fed1766f",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967011848,
+			"method": "POST",
+			"modified": 1550324764210,
+			"name": "Get Account",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_8c845a493061426aa7b4f22e987118ec",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getTask(id: \\\"5c4c80be3fba7762b6268a04\\\") {\\n    id\\n    title\\n    description\\n    reward\\n    child {\\n      id\\n    }\\n  }\\n}\\n\"}"
+			},
+			"created": 1548968180999,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_c074b19b507846de9da79c4e302a0a48",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967195362.5,
+			"method": "POST",
+			"modified": 1550265071795,
+			"name": "Get Task",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_974d36761fc54e35b6d09f34fd5c76bd",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getPortfolio(id: \\\"5c56a0f3b706051852923786\\\") {\\n    id\\n    name\\n    value\\n    risk\\n    account {\\n      id\\n    }\\n  }\\n}\\n\"}"
+			},
+			"created": 1548968993266,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_98bae80f6c964a9888902654f944dfa4",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967011823,
+			"method": "POST",
+			"modified": 1549204981503,
+			"name": "Get Portfolio",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_46f66b54f0624f409ab5d8e6143c67d0",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getPortfolios {\\n    id\\n    name\\n    value\\n    risk\\n    account {\\n      id\\n    }\\n  }\\n}\\n\"}"
+			},
+			"created": 1548969363679,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_1ba858e9b79c402e890a317a92aa4d59",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967011773,
+			"method": "POST",
+			"modified": 1549204612697,
+			"name": "Get Portfolios",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_616b09dde6be44d482079d0128052130",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"# ID is the ACCOUNT ID\\n{\\n  getAccountPortfolios(id: \\\"5c4e0e901d2a8571b8766c01\\\") {\\n    id\\n    name\\n    value\\n    risk\\n    account {\\n      id\\n    }\\n  }\\n}\"}"
+			},
+			"created": 1548969417908,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_48ce530639ab482a9cd68976e7087eab",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967011829.25,
+			"method": "POST",
+			"modified": 1548970623766,
+			"name": "Gett Account Portfolios",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_f245e48fea974d37808209b96ba6e147",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"{\\n  getUserTasks(id: \\\"5c65f3962de7ca31c5029a8c\\\") {\\n    title\\n  }\\n}\"}"
+			},
+			"created": 1550185190139,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_0ab22ac095ad4656bcd18d25b54746e7",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548967653841.75,
+			"method": "POST",
+			"modified": 1550252035063,
+			"name": "Get User Tasks",
+			"parameters": [],
+			"parentId": "fld_d515c2bc058e4b3f9ef031e47b46a7ad",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_46828c128fc5475090867e8524557929",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation AddUser(\\n  $firstName: String,\\n  $lastName: String,\\n  $email: String,\\n  $password: String,\\n  $password2: String,\\n  $bio1: String,\\n  $bio2: String,\\n  $bio3: String,\\n  $tagline: String,\\n  $avatar: String,\\n  $linkedInURL: String,\\n  $twitterURL: String,\\n  $facebookURL: String\\n) {\\n  addUser(\\n    firstName: $firstName,\\n  \\tlastName: $lastName,\\n  \\temail: $email,\\n  \\tpassword: $password,\\n    password2: $password2,\\n  \\tbio1: $bio1\\n    bio2: $bio2\\n    bio3: $bio3\\n    tagline: $tagline\\n    avatar: $avatar\\n    linkedInURL: $linkedInURL\\n    twitterURL: $twitterURL\\n    facebookURL: $facebookURL\\n  ){\\n    firstName\\n    lastName\\n    email\\n    password\\n    bio1\\n    bio2\\n    bio3    \\n    tagline\\n    avatar\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n  }\\n}\",\"variables\":{\"firstName\":\"Test1\",\"lastName\":\"McTesterson\",\"email\":\"test12@test.com\",\"password\":\"password\",\"password2\":\"password\",\"bio1\":\"Lorem ipsum\",\"bio2\":\"Lorem ipsum\",\"bio3\":\"Lorem ipsum\",\"tagline\":\"Some tagline goes here\",\"avatar\":\"http://fillmurray.com/200/200\",\"linkedInURL\":\"https://www.linkedin.com/me\",\"twitterURL\":\"https://www.linkedin.com/me\",\"facebookURL\":\"https://www.linkedin.com/me\"},\"operationName\":\"AddUser\"}"
+			},
+			"created": 1550876491814,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_a19d979cff96451aa4ce048296f2f6fc",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1550876491814,
+			"method": "POST",
+			"modified": 1555242218780,
+			"name": "Register",
+			"parameters": [
+				{
+					"id": "pair_86e5666871da4841b001f6953f02e41a",
+					"name": "firstName",
+					"value": "Jack"
+				},
+				{
+					"id": "pair_8e372ab843994bb9b035eb61d2b72da0",
+					"name": "lastName",
+					"value": "McG"
+				},
+				{
+					"id": "pair_55a6071f6ae045b1b658759d3fafb566",
+					"name": "username",
+					"value": "patchyj"
+				},
+				{
+					"id": "pair_c9e010651cce4d599468c788d451965e",
+					"name": "email",
+					"value": "jack@test.com"
+				},
+				{
+					"id": "pair_271bfb0b8c5f4b6b8257ca5e3a738223",
+					"name": "password",
+					"value": "password"
+				}
+			],
+			"parentId": "fld_4e89077aed5d4ce1b3a86d0927fc4c5f",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_9cf6f846f70d4ec8b3c48135643a345c",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation Login($email: String!, $password: String!) {\\n  loginUser(email: $email, password: $password)\\n}\\n\",\"variables\":{\"email\":\"test4@test.com\",\"password\":\"password\"},\"operationName\":\"Login\"}"
+			},
+			"created": 1550878469866,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_56d2968b38e74ea0b14440c95f63368f",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1550878469866,
+			"method": "POST",
+			"modified": 1555361424060,
+			"name": "login",
+			"parameters": [],
+			"parentId": "fld_4e89077aed5d4ce1b3a86d0927fc4c5f",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_03b4ab3f321b42e7bf51a4e9466079b7",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"query GetUser {\\n  user(id:\\\"5cb3783456f61af20287a9c4\\\"){\\n    id\\n  }\\n}\\n\\nquery allUsers {\\n  allUsers {\\n    id\\n    firstName\\n    lastName\\n    email\\n    password\\n    bio1\\n    bio2\\n    bio3\\n    tagline\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n    blogs {\\n      id\\n    }\\n  }\\n}\\n\\nmutation UpdateUser(\\n  $id: ID!,\\n  $firstName: String,\\n  $lastName: String,\\n  $email: String,\\n  $password: String,\\n  $password2: String,\\n  $bio1: String,\\n  $bio2: String,\\n  $bio3: String,\\n  $tagline: String,\\n  $avatar: String,\\n  $linkedInURL: String,\\n  $twitterURL: String,\\n  $facebookURL: String\\n) {\\n  updateUser(\\n    id: $id,\\n    firstName: $firstName,\\n  \\tlastName: $lastName,\\n  \\temail: $email,\\n  \\tpassword: $password,\\n    password2: $password2,\\n  \\tbio1: $bio1\\n    bio2: $bio2\\n    bio3: $bio3\\n    tagline: $tagline\\n    avatar: $avatar\\n    linkedInURL: $linkedInURL\\n    twitterURL: $twitterURL\\n    facebookURL: $facebookURL\\n  ){\\n    id\\n    firstName\\n    lastName\\n    email\\n    password\\n    bio1\\n    bio2\\n    bio3    \\n    tagline\\n    avatar\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n  }\\n}\\n\\nmutation DeleteUser($id: ID!) {\\n  deleteUser(id: $id)\\n}\",\"variables\":{\"id\":\"5cb3783456f61af20287a9c4\",\"firstName\":\"Test1\",\"lastName\":\"McTesterson\",\"email\":\"test1@test.com\",\"password\":\"password\",\"password2\":\"password\",\"bio1\":\"Lorem ipsum\",\"bio2\":\"Lorem ipsum\",\"bio3\":\"Lorem ipsum\",\"tagline\":\"Some tagline goes here\",\"avatar\":\"http://fillmurray.com/200/200\",\"linkedInURL\":\"https://www.linkedin.com/me\",\"twitterURL\":\"https://www.linkedin.com/me\",\"facebookURL\":\"https://www.linkedin.com/me\"},\"operationName\":\"allUsers\"}"
+			},
+			"created": 1553681293309,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9fe3f32f05d24c2aa195ad30d9204aab",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_a04d8944612747bf8045536428752d7b",
+					"name": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjYjM3ODM0NTZmNjFhZjIwMjg3YTljOSIsImVtYWlsIjoidGVzdDZAdGVzdC5jb20iLCJpYXQiOjE1NTUzNjA2ODcsImV4cCI6MTU1NTM5NjY4N30.ZxqmiFvefewE6xxirBIg5nYSdLUaHwOtc349Pbhf1us"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1553681293310,
+			"method": "POST",
+			"modified": 1555361410848,
+			"name": "user",
+			"parameters": [],
+			"parentId": "fld_4e89077aed5d4ce1b3a86d0927fc4c5f",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b82ca417f60d417e95ee35dcabc75ee0",
+			"authentication": {
+				"disabled": true,
+				"prefix": " ",
+				"token": ".eyJpZCI6IjVjYjM3ODM0NTZmNjFhZjIwMjg3YTljOSIsImVtYWlsIjoidGVzdDZAdGVzdC5jb20iLCJpYXQiOjE1NTUzNjA2ODcsImV4cCI6MTU1NTM5NjY4N30.ZxqmiFvefewE6xxirBIg5nYSdLUaHwOtc349Pbhf1us",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"query GetBlog($id: ID!) {\\n  blog(id:$id){\\n    id\\n  }\\n}\\n\\nquery allBlogs {\\n  allBlogs {\\n    id\\n    title\\n    tagline\\n    body\\n    user\\n    author {\\n      id\\n    }\\n  }\\n}\\n\\nmutation AddBlog(\\n  $title: String,\\n  $tagline: String,\\n  $body: String,\\n  $user: ID\\n) {\\n  addBlog(\\n    title: $title,\\n  \\ttagline: $tagline,\\n  \\tbody: $body,\\n  \\tuser: $user\\n  ){\\n    id\\n    title\\n    tagline\\n    body\\n    user\\n  }\\n}\\n\\nmutation UpdateBlog(\\n  $id: ID!,\\n  $title: String,\\n  $tagline: String,\\n  $body: String,\\n  $user: ID\\n) {\\n  updateBlog(\\n    id: $id,\\n    title: $title,\\n  \\ttagline: $tagline,\\n  \\tbody: $body,\\n  \\tuser: $user\\n  ){\\n    id\\n    title\\n    tagline\\n    body\\n    user\\n  }\\n}\\n\\nmutation DeleteBlog($id: ID!, $user: ID!) {\\n  deleteBlog(id: $id, user: $user)\\n}\",\"variables\":{\"id\":\"5cb378948b0487f235898cfb\",\"title\":\"Updated Test Blog hahahahahah\",\"tagline\":\"Some tagline for the blog\",\"body\":\"Lorem ipsum\",\"user\":\"5cb3783456f61af20287a9c7\"},\"operationName\":\"UpdateBlog\"}"
+			},
+			"created": 1555240496063,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9fe3f32f05d24c2aa195ad30d9204aab",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"disabled": false,
+					"id": "pair_a04d8944612747bf8045536428752d7b",
+					"name": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjYjM3ODM0NTZmNjFhZjIwMjg3YTljNyIsImVtYWlsIjoidGVzdDRAdGVzdC5jb20iLCJpYXQiOjE1NTUzNjE0MjUsImV4cCI6MTU1NTM5NzQyNX0.HMbrwNM35cCOLdKSdmFcCmweEhKkYv_9CSaYTAowH8Y"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1552279881588,
+			"method": "POST",
+			"modified": 1555535603927,
+			"name": "blog",
+			"parameters": [],
+			"parentId": "fld_4e89077aed5d4ce1b3a86d0927fc4c5f",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_e140079c25cb4ff889a154a9498e7416",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"query GetProject($id: ID!) {\\n  project(id:$id){\\n    id\\n  }\\n}\\n\\nquery allProject {\\n  allProjects {\\n    id\\n    title\\n    tagline\\n    user\\n    author {\\n      id\\n    }\\n    images\\n  }\\n}\\n\\nmutation AddProject(\\n  $user: ID!\\n  $title: String!,\\n  $tagline: String!,\\n  $about: String,\\n  $linkedInURL: String,\\n  $twitterURL: String,\\n  $facebookURL: String,\\n  $images: [String]\\n) {\\n  addProject(\\n    title: $title,\\n  \\ttagline: $tagline,\\n    about: $about,\\n  \\tuser: $user\\n    linkedInURL: $linkedInURL\\n    twitterURL: $twitterURL\\n    facebookURL: $facebookURL\\n    images: $images\\n  ){\\n    id\\n    user\\n    title\\n    tagline\\n    about\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n    images\\n  }\\n}\\n\\nmutation UpdateProject(\\n  $id: ID!\\n  $user: ID!\\n  $title: String!\\n  $tagline: String!\\n  $about: String\\n  $linkedInURL: String\\n  $twitterURL: String\\n  $facebookURL: String\\n  $images: [String]\\n) {\\n  updateProject(\\n    id: $id\\n    user: $user\\n    title: $title\\n  \\ttagline: $tagline\\n    about: $about\\n    linkedInURL: $linkedInURL\\n    twitterURL: $twitterURL\\n    facebookURL: $facebookURL\\n    images: $images\\n  ){\\n    id\\n    user\\n    title\\n    tagline\\n    about\\n    linkedInURL\\n    twitterURL\\n    facebookURL\\n    images\\n  }\\n}\\n\\nmutation DeleteProject($id: ID!) {\\n  deleteProject(id: $id)\\n}\",\"variables\":{\"id\":\"5cb3186f9f4b24c07495a61f\",\"title\":\"Updated Test Blog title\",\"tagline\":\"Some tagline for the blog\",\"about\":\"Lorem ipsum\",\"user\":\"5cb31627670bc9d5065248a5\",\"linkedInURL\":\"https://www.linkedin.com/me\",\"twitterURL\":\"https://www.linkedin.com/me\",\"facebookURL\":\"https://www.linkedin.com/me\",\"images\":[\"http://www.fillmurray.com/200/200\",\"http://www.fillmurray.com/200/200\",\"http://www.fillmurray.com/200/200\",\"http://www.fillmurray.com/200/200\"]},\"operationName\":\"allProject\"}"
+			},
+			"created": 1555241501818,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9fe3f32f05d24c2aa195ad30d9204aab",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_a04d8944612747bf8045536428752d7b",
+					"name": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjYjM3ODM0NTZmNjFhZjIwMjg3YTljNCIsImVtYWlsIjoidGVzdDFAdGVzdC5jb20iLCJpYXQiOjE1NTUzNjAyMDMsImV4cCI6MTU1NTM5NjIwM30.VDIpJS2W-ehOj-ta7uTMvAbCb-G752hM5qonARCskME"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1551579175727,
+			"method": "POST",
+			"modified": 1555360232241,
+			"name": "project",
+			"parameters": [],
+			"parentId": "fld_4e89077aed5d4ce1b3a86d0927fc4c5f",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_2f2710fdb88e4c0ca1bed4e7baa27913",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  addUser(firstName: \\\"Tim\\\", lastName: \\\"Timminy\\\", email: \\\"tim6@tom.com\\\", parent: \\\"dad\\\", password: \\\"password1\\\", password2: \\\"password1\\\") {\\n    id\\n    firstName\\n    lastName\\n    parent\\n    email\\n    password\\n  }\\n}\\n\"}"
+			},
+			"created": 1548971173186,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_fb32462b62d944eca1e541a235ab74c3",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548971173186,
+			"method": "POST",
+			"modified": 1549582143806,
+			"name": "Register User",
+			"parameters": [
+				{
+					"id": "pair_f288e692232c4ad0a524006ef5eacdff",
+					"name": "",
+					"value": ""
+				}
+			],
+			"parentId": "fld_72bb0d3a15204b07924035b8a004f7d5",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_99eb09f6ff824c89a7d4772ef9eb0155",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  loginUser(email: \\\"Kenny.Gusikowski@yahoo.com\\\", password: \\\"46KvV2M2TWpKsa5\\\")\\n}\\n\"}"
+			},
+			"created": 1548973020880,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_4f38c130b3aa4b2a9ca94dfd6b4fc826",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548973020880,
+			"method": "POST",
+			"modified": 1549406645360,
+			"name": "Login User",
+			"parameters": [],
+			"parentId": "fld_72bb0d3a15204b07924035b8a004f7d5",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_e6752ef5cb7d4eb79f12691ed02fea8e",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  addChild(firstName: \\\"Tim\\\", lastName: \\\"Timminy\\\", email: \\\"tim5@tom.com\\\", username: \\\"timtomtun5\\\", password: \\\"password1\\\", password2: \\\"password1\\\",parent:\\\"5c56a0f2b7060518529236d2\\\", age:\\\"10\\\"){\\n    id\\n  }\\n}\"}"
+			},
+			"created": 1549181740086,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9a581069cc684cc79e76c095b950ae0c",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549181740086,
+			"method": "POST",
+			"modified": 1549839213994,
+			"name": "Create Child",
+			"parameters": [],
+			"parentId": "fld_72bb0d3a15204b07924035b8a004f7d5",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d2be29d9ce6945409509e84bd2833408",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  addTask(title: \\\"New Task\\\"\\n    description: \\\"Lorem ipsum\\\"\\n    child: \\\"5c56a3b1c2eb07193fa81706\\\"\\n    reward: 5){\\n    id\\n    title\\n  }\\n}\"}"
+			},
+			"created": 1549181899780,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_ef08161661544e8dbda8c851dde8e091",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549181899780,
+			"method": "POST",
+			"modified": 1550184142542,
+			"name": "Create Task",
+			"parameters": [],
+			"parentId": "fld_72bb0d3a15204b07924035b8a004f7d5",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_e4b657079af043858996c2f7667c9679",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  addAccount(balance: 4\\n    target: 10\\n    description: \\\"Some description\\\", child:\\\"5c56a3b1c2eb07193fa81706\\\"){\\n    id\\n    balance\\n  }\\n}\"}"
+			},
+			"created": 1549182459856,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_ca9b33d5596b480d8e484a2b7cf88ce3",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549182459856,
+			"method": "POST",
+			"modified": 1549183074422,
+			"name": "Create Account",
+			"parameters": [],
+			"parentId": "fld_72bb0d3a15204b07924035b8a004f7d5",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7447bcf03a544018a70b4b4437c6e9ee",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  addPortfolio(name: \\\"New Portfolio\\\"\\n    value: 3\\n    risk: 4\\n    account: \\\"5c56a664c2eb07193fa81708\\\"){\\n    id\\n    value\\n  }\\n}\"}"
+			},
+			"created": 1549182952099,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_f7c66be40a2d479c8372b27ac4cd8955",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549182952099,
+			"method": "POST",
+			"modified": 1549183342882,
+			"name": "Create Portfolio",
+			"parameters": [],
+			"parentId": "fld_72bb0d3a15204b07924035b8a004f7d5",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "fld_d3cda8079e404bef8af9ee5a1fa6f269",
+			"created": 1549205996323,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1549205996323,
+			"modified": 1549205996323,
+			"name": "Tasks",
+			"parentId": "fld_4bf30385a8904e1ebbb56ab3616812d6",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_5708b75e24d8403bb4d7eeba3930ea2e",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  updateUser(id:\\\"5c56a0f2b7060518529236d2\\\",firstName: \\\"Name chnage\\\") {\\n    id\\n    firstName\\n  }\\n}\"}"
+			},
+			"created": 1549183162516,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_d78c362ac0f14d80b84e7bd7429e2f51",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549183162516,
+			"method": "POST",
+			"modified": 1549190514234,
+			"name": "Update User",
+			"parameters": [],
+			"parentId": "fld_4bf30385a8904e1ebbb56ab3616812d6",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_58978feccfd445a497eb79e4fcb11c1d",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  updateChild(id:\\\"5c56a0f2b7060518529236df\\\",firstName: \\\"Child name changed\\\") {\\n    id\\n    firstName\\n  }\\n}\"}"
+			},
+			"created": 1549183172466,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_d78c362ac0f14d80b84e7bd7429e2f51",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549183057307.5,
+			"method": "POST",
+			"modified": 1549183409591,
+			"name": "Update Child",
+			"parameters": [],
+			"parentId": "fld_4bf30385a8904e1ebbb56ab3616812d6",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_478b69bcddc34fce93d78e4af53624ef",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  updateAccount(id: \\\"5c56a0f2b7060518529236d8\\\", target: 7) {\\n    target\\n  }\\n}\"}"
+			},
+			"created": 1549183213106,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_d78c362ac0f14d80b84e7bd7429e2f51",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549182978401.125,
+			"method": "POST",
+			"modified": 1549184699343,
+			"name": "Update Account",
+			"parameters": [],
+			"parentId": "fld_4bf30385a8904e1ebbb56ab3616812d6",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_deb56612c83042aebb43188a2c1dba3a",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  updatePortfolio(id: \\\"5c56a0f2b7060518529236d8\\\", value: 4) {\\n    value\\n  }\\n}\"}"
+			},
+			"created": 1549183223944,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_d78c362ac0f14d80b84e7bd7429e2f51",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549182965250.0625,
+			"method": "POST",
+			"modified": 1549184726063,
+			"name": "Update Portfolio",
+			"parameters": [],
+			"parentId": "fld_4bf30385a8904e1ebbb56ab3616812d6",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_440f083c3ff349a1879ec1e8490840e2",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  deleteUser(id: \\\"5c56a0f2b7060518529236ce\\\"){\\n    id\\n  }\\n}\"}"
+			},
+			"created": 1549190443995,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_3a6d34a0ac4743b99e86b9a1012e353b",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549190443995,
+			"method": "POST",
+			"modified": 1549204055092,
+			"name": "Delete User",
+			"parameters": [],
+			"parentId": "fld_3da54b41970b4e2b896a288ec8720a2c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_6842b1729aaa4caeb07eb411c45da795",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  deleteChild(id: \\\"5c56a0f2b7060518529236e0\\\"){\\n    id\\n  }\\n}\"}"
+			},
+			"created": 1549190646245,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_3a6d34a0ac4743b99e86b9a1012e353b",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549186803255.5,
+			"method": "POST",
+			"modified": 1549205270397,
+			"name": "Delete Child",
+			"parameters": [],
+			"parentId": "fld_3da54b41970b4e2b896a288ec8720a2c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_8ad14ac3ed344b0b8f167c3a9a0c184f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  deleteTask(id: \\\"5c56a0f2b706051852923703\\\"){\\n    id\\n  }\\n}\"}"
+			},
+			"created": 1549197789201,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_3a6d34a0ac4743b99e86b9a1012e353b",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549184982885.75,
+			"method": "POST",
+			"modified": 1549205124940,
+			"name": "Delete Task",
+			"parameters": [],
+			"parentId": "fld_3da54b41970b4e2b896a288ec8720a2c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7317e168dc04426bb4804a428dcedc7b",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  deleteAccount(id: \\\"5c56a0f2b706051852923763\\\"){\\n    id\\n  }\\n}\"}"
+			},
+			"created": 1549197801911,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_3a6d34a0ac4743b99e86b9a1012e353b",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549184072700.875,
+			"method": "POST",
+			"modified": 1549205081392,
+			"name": "Delete Account",
+			"parameters": [],
+			"parentId": "fld_3da54b41970b4e2b896a288ec8720a2c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_9a48628602284e1088b40c224d56d65d",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  deletePortfolio(id: \\\"5c56a0f3b706051852923789\\\"){\\n    id\\n  }\\n}\"}"
+			},
+			"created": 1549197817556,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_3a6d34a0ac4743b99e86b9a1012e353b",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549183617608.4375,
+			"method": "POST",
+			"modified": 1549205207236,
+			"name": "Delete Portfolio",
+			"parameters": [],
+			"parentId": "fld_3da54b41970b4e2b896a288ec8720a2c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_5fe9fedf336c438c9fe8b4a22b3bb55e",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  updateTask(id: \\\"5c694865c8eb727ee2018fa2\\\",pending:true) {\\n    reward\\n    onTime\\n    pending\\n  }\\n}\"}"
+			},
+			"created": 1549183198242,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_d78c362ac0f14d80b84e7bd7429e2f51",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549183004703.25,
+			"method": "POST",
+			"modified": 1550410870322,
+			"name": "Update Task",
+			"parameters": [],
+			"parentId": "fld_d3cda8079e404bef8af9ee5a1fa6f269",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		},
+		{
+			"_id": "req_af535c9fede6406b82cfcc36654e7523",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/graphql",
+				"text": "{\"query\":\"mutation {\\n  completeTask(id: \\\"5c57046e7c4cfa307c4ee34a\\\") {\\n    reward\\n    onTime\\n    completed\\n  }\\n}\"}"
+			},
+			"created": 1549207421169,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_d78c362ac0f14d80b84e7bd7429e2f51",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1549182991552.1875,
+			"method": "POST",
+			"modified": 1550404601232,
+			"name": "Complete Task",
+			"parameters": [],
+			"parentId": "fld_d3cda8079e404bef8af9ee5a1fa6f269",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:4000/graphql",
+			"_type": "request"
+		}
+	]
+}
