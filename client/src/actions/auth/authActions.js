@@ -1,9 +1,8 @@
-import axios from "axios";
-import setAuthToken from "../../utils/setAuthToken";
-import jwt_decode from "jwt-decode";
-import { baseURL } from "../../utils/baseURL";
-import { registerUserQuery, loginUserQuery } from "./authQueries";
-
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from '../../utils/setAuthToken';
+import { baseURL } from '../../utils/baseURL';
+import { registerUserQuery, loginUserQuery, verifyUserQuery } from './authQueries';
 import {
   SET_CURRENT_USER,
   REGISTER_USER_STARTED,
@@ -12,10 +11,13 @@ import {
   LOGIN_USER_STARTED,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILURE,
+  VERIFY_USER_STARTED,
+  VERIFY_USER_SUCCESS,
+  VERIFY_USER_FAILURE,
   RESET_AUTH
-} from "../../actions/types";
+} from '../types';
 
-export const registerUser = (userData, history) => dispatch => {
+export const registerUser = (userData, history) => (dispatch) => {
   dispatch({ type: REGISTER_USER_STARTED });
 
   axios
@@ -29,10 +31,11 @@ export const registerUser = (userData, history) => dispatch => {
         password2: userData.password2
       }
     })
-    .then(user => {
+    .then((user) => {
+      // if invalid details throw error
       if (user.data.errors && user.data.errors.length > 0) {
         const err = {
-          validations: user.data.errors[0].extensions.exception.validationErrors
+          validations: user.data.errors[0].extensions.exception
         };
         throw err;
       }
@@ -40,9 +43,9 @@ export const registerUser = (userData, history) => dispatch => {
       dispatch({
         type: REGISTER_USER_SUCCESS
       });
-      history.push("/login");
+      history.push('/login');
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch({
         type: REGISTER_USER_FAILURE,
         payload: err
@@ -51,7 +54,7 @@ export const registerUser = (userData, history) => dispatch => {
 };
 
 // Login - get user token
-export const loginUser = userData => dispatch => {
+export const loginUser = (userData, history) => (dispatch) => {
   dispatch({ type: LOGIN_USER_STARTED });
   axios
     .post(`${baseURL}/graphql`, {
@@ -61,18 +64,18 @@ export const loginUser = userData => dispatch => {
         password: userData.password
       }
     })
-    .then(user => {
+    .then((user) => {
       // if invalid details throw error
       if (user.data.errors && user.data.errors.length > 0) {
         const err = {
-          validations: user.data.errors[0].extensions.exception.validationErrors
+          validations: user.data.errors[0].extensions.exception
         };
         throw err;
       }
       // Save to local storage
       const token = user.data.data.loginUser;
       // set token to local storage, which only stores string
-      localStorage.setItem("jwtToken", token);
+      localStorage.setItem('jwtToken', token);
 
       // set token to auth header
       setAuthToken(token);
@@ -84,8 +87,9 @@ export const loginUser = userData => dispatch => {
         type: LOGIN_USER_SUCCESS,
         payload: decoded
       });
+      history.push('/profile');
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch({
         type: LOGIN_USER_FAILURE,
         payload: err
@@ -93,25 +97,51 @@ export const loginUser = userData => dispatch => {
     });
 };
 
-// Set loggedin user
-export const setCurrentUser = decoded => {
-  return {
-    type: SET_CURRENT_USER,
-    payload: decoded
-  };
+// Verify User
+export const verifyUser = (token, history) => (dispatch) => {
+  dispatch({ type: VERIFY_USER_STARTED });
+
+  axios.post(`${baseURL}/graphql`, {
+    query: verifyUserQuery(),
+    variables: { token }
+  })
+    .then((user) => {
+      dispatch({
+        type: VERIFY_USER_SUCCESS,
+        payload: user.data.data.verifyUser
+      });
+      history.push('/profile');
+    })
+    .catch((err) => {
+      dispatch({
+        type: VERIFY_USER_FAILURE,
+        payload: err
+      });
+    });
 };
 
+// Set loggedin user
+export const setCurrentUser = decoded => ({
+  type: SET_CURRENT_USER,
+  payload: decoded
+});
+
+export const setCurrentUserFromToken = token => (dispatch) => {
+  const decoded = jwt_decode(token);
+  dispatch(setCurrentUser(decoded));
+}
+
 // Log out user
-export const logoutUser = () => dispatch => {
+export const logoutUser = () => (dispatch) => {
   // Remove token from local storage
-  localStorage.removeItem("jwtToken");
+  localStorage.removeItem('jwtToken');
   // Remove auth header for future ressponses
   setAuthToken(false);
   // Set current user to empty object which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
-  window.location.href = "/login";
+  window.location.href = '/auth';
 };
 
-export const resetAuth = () => dispatch => {
+export const resetAuth = () => (dispatch) => {
   dispatch({ type: RESET_AUTH });
 };

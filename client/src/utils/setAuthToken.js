@@ -1,10 +1,8 @@
 import axios from "axios";
-// Change the port depending on what the Node ENV is
-if (process.env.NODE_ENV === "development") {
-  axios.defaults.baseURL = "http://localhost:4000"; // make sure dev server is running
-} else if (process.env.NODE_ENV === "production") {
-  axios.defaults.baseURL = "https://patchyj-portfolio-api.herokuapp.com";
-}
+import { baseURL } from './baseURL';
+
+axios.defaults.baseURL = baseURL;
+// console.log('==========================\n', axios.defaults.baseURL, '\n==========================');
 
 const setAuthToken = token => {
   if (token) {

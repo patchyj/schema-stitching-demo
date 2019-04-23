@@ -62,8 +62,10 @@ const resolvers = {
 			const existingUser = await User.findOne({ email: user.email });
 
 			// THROW ERROR IF EMAIL IS TAKEN
-			if (existingUser !== null) throwError('USER', 'This email is already being used');
-
+			if (existingUser !== null) {
+				errors.email = 'This email is already being used';
+				throwError('USER', 'Failed to get events due to validation errors', { errors });
+			}
 			// CREATE NEW USER MODEL
 			const newUser = new User(user);
 
@@ -91,7 +93,7 @@ const resolvers = {
 
 			return newUser;
 		},
-		verifyUser: async (parent, { id, token }) => {
+		verifyUser: async (parent, { token }) => {
 			// FIND USER WITH THE TOKEN
 			const user = await User.findOne({ verificationToken: token });
 

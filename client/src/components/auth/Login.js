@@ -1,23 +1,27 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom"; // Helps redirecting
-import { connect } from "react-redux";
-import { loginUser } from "../../actions/auth/authActions";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom'; // Helps redirecting
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/auth/authActions';
 // ====== FORM INPUT ======
-import TextFieldInput from "../common/TextFieldInput";
+import TextFieldInput from '../common/TextFieldInput';
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.auth.errors });
   }
 
   onChange(e) {
@@ -32,7 +36,7 @@ class Login extends Component {
       password: this.state.password
     };
 
-    this.props.loginUser(userData);
+    this.props.loginUser(userData, this.props.history);
   }
 
   render() {
@@ -52,15 +56,15 @@ class Login extends Component {
                   name="email"
                   value={this.state.email}
                   onchange={this.onChange}
-                  errors={errors.email ? errors.email : ""}
+                  errors={errors && errors.email ? errors.email : ''}
                 />
                 <TextFieldInput
-                  placeholder="First Name"
+                  placeholder="Password"
                   type="password"
                   name="password"
                   value={this.state.password}
                   onchange={this.onChange}
-                  errors={errors.password ? errors.password : ""}
+                  errors={errors && errors.password ? errors.password : ''}
                 />
                 <button className="btn authSubmit" type="submit">
                   Sign in
@@ -76,9 +80,9 @@ class Login extends Component {
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
+  auth: PropTypes.shape({}).isRequired,
+  errors: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape({}).isRequired
 };
 
 const mapStateToProps = state => ({

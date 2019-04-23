@@ -14,12 +14,14 @@ export function getUsersQuery() {
 
 export function getUserQuery() {
   return `
-    query getUser($id: ID) {
-      getUser(id: $id) {
+    query getUser($id: ID!) {
+      user(id: $id) {
         id
         firstName
         lastName
         email
+        blogs { id }
+        projects { id }
       }
     }
   `;

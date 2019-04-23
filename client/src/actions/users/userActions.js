@@ -1,5 +1,5 @@
-import axios from "axios";
-import { baseURL } from "../../utils/baseURL";
+import axios from 'axios';
+import { baseURL } from '../../utils/baseURL';
 import {
   GET_USERS_STARTED,
   GET_USERS_SUCCESS,
@@ -7,28 +7,23 @@ import {
   GET_USER_STARTED,
   GET_USER_SUCCESS,
   GET_USER_FAILURE
-} from "../types";
-import { getUserQuery, getUsersQuery } from "./userQueries";
+} from '../types';
+import { getUserQuery, getUsersQuery } from './userQueries';
 
-export const getUser = userData => dispatch => {
+export const getUser = id => (dispatch) => {
   dispatch({ type: GET_USER_STARTED });
-  axios({
-    url: `${baseURL}/graphql`,
-    method: "post",
-    data: {
-      query: getUserQuery()
-    },
-    variables: {
-      id: userData.id
-    }
-  })
-    .then(res => {
+  axios
+    .post(`${baseURL}/graphql`, {
+      query: getUserQuery(),
+      variables: { id }
+    })
+    .then((res) => {
       dispatch({
         type: GET_USER_SUCCESS,
         payload: res.data
       });
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch({
         type: GET_USER_FAILURE,
         payload: err
@@ -36,22 +31,22 @@ export const getUser = userData => dispatch => {
     });
 };
 
-export const getUsers = dispatch => {
+export const getUsers = (dispatch) => {
   dispatch({ type: GET_USERS_STARTED });
   axios({
     url: `${baseURL}/graphql`,
-    method: "post",
+    method: 'post',
     data: {
       query: getUsersQuery()
     }
   })
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: GET_USERS_SUCCESS,
         payload: res.data
       });
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch({
         type: GET_USERS_FAILURE,
         payload: err

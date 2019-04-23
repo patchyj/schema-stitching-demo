@@ -1,4 +1,4 @@
-export const confirmAccount = ({ name, token }) => (
+export const confirmAccount1 = ({ name, token }) => (
 	{
 		subject: 'Account confirmation',
 		text: 'Please confirm your account by clicking on the following link',
@@ -6,13 +6,13 @@ export const confirmAccount = ({ name, token }) => (
             <body>
                 <h1>Hi ${name}</h1>
                 <p>Please confirm your account by clicking on the following link.</p>
-                <p><a href="http://localhost:4000/token/${token}" target="_blank">Verify</a></p>
+                <p><a href="http://localhost:3000/auth/token/${token}" target="_blank">Verify</a></p>
             </body>
         `
 	}
 );
 
-export const welcomeEmail = ({ name }) => (
+export const confirmAccount2 = ({ name }) => (
 	{
 		subject: 'Welcome',
 		text: 'Welcome to your new portfolio!',

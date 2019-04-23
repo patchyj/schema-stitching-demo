@@ -4,6 +4,9 @@ import path from 'path';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'; 
 
 export default {
+  node: {
+    fs: 'empty'
+  },
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']
   },

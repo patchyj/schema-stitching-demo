@@ -1,34 +1,38 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withRouter, Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { registerUser } from "../../actions/auth/authActions";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/auth/authActions';
 // ====== FORM INPUT ======
-import TextFieldInput from "../common/TextFieldInput";
+import TextFieldInput from '../common/TextFieldInput';
 
 class Register extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      password2: "",
-      errors: {}
-    };
     // this.state = {
-    //   firstName: "test1",
-    //   lastName: "tester",
-    //   email: "test1@test.com",
-    //   password: "password",
-    //   password2: "password",
+    //   firstName: "",
+    //   lastName: "",
+    //   email: "",
+    //   password: "",
+    //   password2: "",
     //   errors: {}
     // };
+    this.state = {
+      firstName: 'test1',
+      lastName: 'tester',
+      email: 'test1@test.com',
+      password: 'password',
+      password2: 'password',
+      errors: {}
+    };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.auth.errors });
   }
 
   onChange(e) {
@@ -62,47 +66,47 @@ class Register extends Component {
                 className="form-signin col-md-10 offset-md-1 col-sm-8 offset-sm-2 py-5"
                 onSubmit={this.onSubmit}
               >
-                {/*FIRST NAME*/}
+                {/* FIRST NAME */}
                 <TextFieldInput
                   placeholder="First Name"
                   name="firstName"
                   value={this.state.firstName}
                   onchange={this.onChange}
-                  errors={errors.firstName ? errors.firstName : ""}
+                  errors={errors.firstName ? errors.firstName : ''}
                 />
-                {/*LAST NAME*/}
+                {/* LAST NAME */}
                 <TextFieldInput
                   placeholder="Last Name"
                   name="lastName"
                   value={this.state.lastName}
                   onchange={this.onChange}
-                  errors={errors.lastName ? errors.lastName : ""}
+                  errors={errors.lastName ? errors.lastName : ''}
                 />
-                {/*EMAIL*/}
+                {/* EMAIL */}
                 <TextFieldInput
                   placeholder="Email"
                   name="email"
                   value={this.state.email}
                   onchange={this.onChange}
-                  errors={errors.email ? errors.email : ""}
+                  errors={errors.email ? errors.email : ''}
                 />
-                {/*PASSWORD*/}
+                {/* PASSWORD */}
                 <TextFieldInput
                   placeholder="Password"
                   type="password"
                   name="password"
                   value={this.state.password}
                   onchange={this.onChange}
-                  errors={errors.password ? errors.password : ""}
+                  errors={errors.password ? errors.password : ''}
                 />
-                {/*PASSWORD CONFIRMATION*/}
+                {/* PASSWORD CONFIRMATION */}
                 <TextFieldInput
                   placeholder="Password Confirmation"
                   type="password"
                   name="password2"
                   value={this.state.password2}
                   onchange={this.onChange}
-                  errors={errors.password2 ? errors.password2 : ""}
+                  errors={errors.password2 ? errors.password2 : ''}
                 />
                 <button className="btn authSubmit" type="submit">
                   Register

@@ -7,8 +7,11 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILURE,
   LOGOUT_USER_SUCCESS,
+  VERIFY_USER_STARTED,
+  VERIFY_USER_SUCCESS,
+  VERIFY_USER_FAILURE,
   RESET_AUTH
-} from "../actions/types";
+} from '../actions/types';
 
 const initialState = {
   user: {},
@@ -16,7 +19,7 @@ const initialState = {
   isAuthenticated: false
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     // ====== REGISTRATION ======
     case REGISTER_USER_STARTED:
@@ -33,7 +36,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        errors: action.payload
+        errors: action.payload.validations.errors
       };
     // ====== LOGIN ======
     case LOGIN_USER_STARTED:
@@ -52,7 +55,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        errors: action.payload
+        errors: action.payload.validations.errors
       };
     case LOGOUT_USER_SUCCESS:
       return {
@@ -61,6 +64,24 @@ export default function(state = initialState, action) {
         isAuthenticated: false
       };
     // ====== MISC ======
+    case VERIFY_USER_STARTED:
+      return {
+        ...state,
+        loading: true
+      };
+    case VERIFY_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        loading: false,
+        isAuthenticated: true
+      };
+    case VERIFY_USER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        errors: action.payload
+      };
     case RESET_AUTH:
       return {
         ...state,

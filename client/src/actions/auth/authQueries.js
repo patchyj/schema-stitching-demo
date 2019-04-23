@@ -22,13 +22,24 @@ export function registerUserQuery() {
 export function loginUserQuery() {
   return `
     mutation loginUser(
-      $email:String, 
+      $email:String!, 
       $password:String!
       ) {
       loginUser(
         email:$email, 
         password:$password
       )
+    }
+  `;
+}
+
+export function verifyUserQuery() {
+  return `
+    mutation verifyUser($token:String!) {
+      verifyUser(token:$token) {
+        verified
+        id
+      }
     }
   `;
 }

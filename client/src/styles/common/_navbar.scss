@@ -2,8 +2,14 @@
   border-bottom: 1px solid $mainBlue;
   padding: 2rem 0;
 
-  i {
-    background: $mainBlue;
+  .profile-icon {
+    padding: 1rem;
+    i {
+      transition: .2s;
+      &:hover {
+        color: $mainBlue;
+      }
+    }
   }
 
   button:focus {
@@ -15,7 +21,7 @@
     right: 0;
   }
 
-  a {
+  a:not(.profile-icon) {
     color: $mainBlue;
     font-family: "Kreon", serif;
     text-transform: uppercase;

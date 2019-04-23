@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const TextFieldInput = ({
   placeholder,
@@ -8,21 +8,19 @@ const TextFieldInput = ({
   value,
   onchange,
   errors
-}) => {
-  return (
-    <div className="form-group">
-      <input
-        type={type}
-        className={`form-control form-control-lg ${errors ? "is-invalid" : ""}`}
-        placeholder={placeholder}
-        name={name}
-        value={value}
-        onChange={onchange}
-      />
-      {errors && <div className="invalid-feedback">{errors}</div>}
-    </div>
-  );
-};
+}) => (
+  <div className="form-group">
+    <input
+      type={type}
+      className={`form-control form-control-lg ${errors ? 'is-invalid' : ''}`}
+      placeholder={placeholder}
+      name={name}
+      value={value}
+      onChange={onchange}
+    />
+    {errors && <div className="invalid-feedback">{errors}</div>}
+  </div>
+);
 
 TextFieldInput.propTypes = {
   name: PropTypes.string.isRequired,
@@ -34,7 +32,7 @@ TextFieldInput.propTypes = {
 };
 
 TextFieldInput.defaultProps = {
-  type: "text"
+  type: 'text'
 };
 
 export default TextFieldInput;

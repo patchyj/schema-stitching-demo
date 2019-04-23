@@ -1,10 +1,11 @@
-import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import Register from "./Register";
-import Login from "./Login";
+import Register from './Register';
+import Login from './Login';
 
 class Auth extends Component {
   constructor(props) {
@@ -13,21 +14,21 @@ class Auth extends Component {
       login: true
     };
   }
+
   render() {
-    console.log(this.props);
     const { login } = this.state;
     return (
       <div className="container text-center mt-3 auth">
         <h1 className="display-4">
           <span
-            className={`${!login && "text-muted"}`}
+            className={`${!login && 'text-muted'}`}
             onClick={() => this.setState({ login: !login })}
           >
             Login
           </span>
           <span className="slash text-white mx-4">/</span>
           <span
-            className={`${login && "text-muted"}`}
+            className={`${login && 'text-muted'}`}
             onClick={() => this.setState({ login: !login })}
           >
             Register
@@ -61,9 +62,5 @@ class Auth extends Component {
     );
   }
 }
-
-Auth.propTypes = {
-  // login
-};
 
 export default connect(null)(Auth);

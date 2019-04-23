@@ -5,7 +5,7 @@ import {
   GET_USER_STARTED,
   GET_USER_SUCCESS,
   GET_USER_FAILURE
-} from "../actions/types";
+} from '../actions/types';
 
 const initialState = {
   user: {},
@@ -13,7 +13,7 @@ const initialState = {
   errors: {}
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case GET_USERS_STARTED:
       return {
@@ -43,7 +43,7 @@ export default function(state = initialState, action) {
         ...state,
         loading: false,
         errors: {},
-        user: action.payload.data.data.getUser
+        user: action.payload.data.user
       };
     case GET_USER_FAILURE:
       return {

@@ -1,8 +1,18 @@
-let baseURL;
-if (process.env.NODE_ENV === "development") {
-  baseURL = "http://localhost:4000"; // make sure dev server is running
-} else if (process.env.NODE_ENV === "production") {
-  baseURL = "https://patchyj-portfolio-api.herokuapp.com";
+import config from '../../config';
+
+const { NODE_ENV } = process.env;
+let baseURL = '';
+
+switch (NODE_ENV) {
+  case 'development':
+    baseURL = `${config.BASE_URL_DEV}${config.API_GATEWAY_PORT}`;
+  case 'test':
+    baseURL = 'http://localhost:4000';
+  case 'production':
+    baseURL = 'http://localhost:4000';
+  default:
+    baseURL = 'http://localhost:4000';
+    break;
 }
 
 export { baseURL };

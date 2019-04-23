@@ -1,12 +1,18 @@
-import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 // ------- Auth -------
-import { logoutUser, setCurrentUser } from "../../../actions/auth/authActions";
+import { logoutUser, setCurrentUser } from '../../../actions/auth/authActions';
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onLogoutClick = this.onLogoutClick.bind(this);
+  }
+
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
@@ -20,18 +26,14 @@ class Navbar extends Component {
     const authLinks = (
       <Fragment>
         <li className="nav-item">
-          <Link className="nav-link text-white" to="/profile">
-            <i className="fas fa-user-circle" />
+          <Link className="nav-link text-white profile-icon" to="/profile">
+            <i className="fas fa-user-circle fa-2x" />
           </Link>
         </li>
         <li className="nav-item">
-          <a
-            href=""
-            onClick={this.onLogoutClick.bind(this)}
-            className="nav-link"
-          >
+          <Link className="nav-link" to="/auth" onClick={this.onLogoutClick}>
             <span>Logout</span>
-          </a>
+          </Link>
         </li>
       </Fragment>
     );
@@ -65,18 +67,18 @@ class Navbar extends Component {
           id="navDropDown"
         >
           <ul className="navbar-nav">
-            <li className={`nav-item`}>
-              <Link className="nav-link" to={`/main/about`}>
+            <li className="nav-item">
+              <Link className="nav-link" to="/main/about">
                 <span>About</span>
               </Link>
             </li>
-            <li className={`nav-item`}>
-              <Link className="nav-link" to={`/main/blog`}>
+            <li className="nav-item">
+              <Link className="nav-link" to="/main/blog">
                 <span>Blog</span>
               </Link>
             </li>
-            <li className={`nav-item`}>
-              <Link className="nav-link" to={`/main/projects`}>
+            <li className="nav-item">
+              <Link className="nav-link" to="/main/projects">
                 <span>Projects</span>
               </Link>
             </li>
