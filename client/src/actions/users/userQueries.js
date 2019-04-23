@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 export function getUsersQuery() {
   return `
     query getUsers {
@@ -21,7 +22,12 @@ export function getUserQuery() {
         lastName
         email
         blogs { id }
-        projects { id }
+								projects { id }
+								profile {
+											experience { id }
+											education { id }
+											skills { id }
+								}
       }
     }
   `;

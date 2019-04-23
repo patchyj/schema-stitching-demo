@@ -8,30 +8,48 @@ import Card from '../../../common/Card';
 class Dashboard extends Component {
   componentDidMount() {
     const { userID } = this.props;
-    console.log('=======\n', userID, '\n=======');
     this.props.getUser(userID);
   }
 
   render() {
+				const { user: { user }, page } = this.props;
+				const blogButtons = [{ href: '/posts', text: 'See posts' }, { href: '/posts', text: 'New post' }]
+				const projectButtons = [{ href: '/projects', text: 'See projects' }, { href: '/projects', text: 'New project' }]
+
     return (
       <div>
-        <h1 className="text-center text-white py-3">Dashboard</h1>
+        <h1 className="text-center text-white py-3">{page}</h1>
         <div className="container">
           <div className="row">
             <div className="col-md-6">
               <Card
                 title="Posts"
-                subtitle="All of your posts"
-                text="Lorem ipsum dolr cantem"
-                link="posts"
+                subtitle=""
+                text="Total posts"
+                links={blogButtons}
+                type="posts"
+                data={user && user.blogs}
               />
             </div>
             <div className="col-md-6">
               <Card
                 title="Projects"
-                subtitle="All of your projects"
-                text="Lorem ipsum dolr cantem"
-                link="projects"
+                subtitle=""
+                text="Total projects"
+                links={projectButtons}
+                type="projects"
+                data={user && user.projects}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-12 mt-4">
+              <Card
+                title="Profile Summary"
+                subtitle=""
+                text=""
+                type="profile"
+                data={user && user.profile && Object.entries(user.profile)}
               />
             </div>
           </div>
@@ -43,6 +61,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   getUser: PropTypes.func.isRequired,
+  page: PropTypes.string,
   user: PropTypes.shape({}).isRequired,
   errors: PropTypes.shape({}).isRequired,
   auth: PropTypes.shape({}).isRequired,
@@ -50,6 +69,7 @@ Dashboard.propTypes = {
 };
 
 Dashboard.defaultProps = {
+  page: '',
   userID: ''
 };
 

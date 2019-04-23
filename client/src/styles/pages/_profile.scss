@@ -1,3 +1,34 @@
 .profile {
-  font-family: 'PT Sans', sans-serif;
+		font-family: 'PT Sans', sans-serif;
+
+		.card {
+			border: 1px solid $mainBlue;
+				box-shadow: -0 3px 4px #191919;
+
+				.btn {
+					margin-top: 2rem;
+					color: $mainBlue;
+					background: $mainGrey;
+					border: 1px solid $mainBlue;
+					padding: 0.5rem 1rem;
+					text-transform: uppercase;
+					transition: 0.2s;
+					width: 10rem;
+
+					&:hover {
+							background: $mainBlue;
+							color: $mainGrey;
+							border-color: $mainBlue;
+					}
+					&:active {
+							background: darken($mainBlue, 20%);
+							border-color: darken($mainBlue, 20%);
+							color: $mainGrey;
+					}
+					&:focus {
+							box-shadow: none;
+							border-color: $mainBlue;
+					}
+			}
+		}
 }

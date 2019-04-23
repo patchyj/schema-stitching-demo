@@ -21,8 +21,8 @@
     "sessionStorage": true
   },
   "rules": {
-    "indent": [1, 2, { "SwitchCase": 1 }],
-    // use strict is unnecassary inside of ES6 modules as babel inserts `"use strict";` for us but allowing.
+				"indent": ["error", 2],
+			// use strict is unnecassary inside of ES6 modules as babel inserts `"use strict";` for us but allowing.
     "strict": "off",
     // IE does not have a console until you open dev tools
     // so will throw and exception.
