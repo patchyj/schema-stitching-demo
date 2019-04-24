@@ -12,9 +12,9 @@ class Dashboard extends Component {
   }
 
   render() {
-				const { user: { user }, page } = this.props;
-				const blogButtons = [{ href: '/posts', text: 'See posts' }, { href: '/posts', text: 'New post' }]
-				const projectButtons = [{ href: '/projects', text: 'See projects' }, { href: '/projects', text: 'New project' }]
+    const { user: { user }, page } = this.props;
+    const blogButtons = [{ href: '/posts', text: 'See posts' }, { href: '/posts', text: 'New post' }];
+    const projectButtons = [{ href: '/projects', text: 'See projects' }, { href: '/projects', text: 'New project' }];
 
     return (
       <div>
@@ -42,14 +42,23 @@ class Dashboard extends Component {
               />
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-12 mt-4">
+          <div className="row mt-4">
+            <div className="col-md-6">
               <Card
                 title="Profile Summary"
                 subtitle=""
                 text=""
                 type="profile"
                 data={user && user.profile && Object.entries(user.profile)}
+              />
+            </div>
+            <div className="col-md-6">
+              <Card
+                title="Personal Details"
+                subtitle=""
+                text=""
+                type="personal"
+                data={user && user && Object.entries(user)}
               />
             </div>
           </div>

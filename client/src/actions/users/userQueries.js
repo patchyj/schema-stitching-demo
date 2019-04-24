@@ -22,12 +22,12 @@ export function getUserQuery() {
         lastName
         email
         blogs { id }
-								projects { id }
-								profile {
-											experience { id }
-											education { id }
-											skills { id }
-								}
+            projects { id }
+            profile {
+                experience { id }
+                education { id }
+                skills { id }
+            }
       }
     }
   `;

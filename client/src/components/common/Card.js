@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 const Card = ({
   title, subtitle, text, links, type, data
 }) => {
+  console.log(data)
   let displayData;
-  if (type === 'profile') {
-    displayData = data && data.map(d => <p className="card-text">{`${d[0]} : ${d[1].length}`}</p>);
+  if (type === 'profile' || type === 'personal') {
+    displayData = data && data.map(d => <p className="card-text">{`${d[0].replace(d[0][0], d[0][0].toUpperCase())} : ${d[1].length}`}</p>);
   } else {
     displayData = data && <p className="card-text">{ text && `${text} : ${data.length}`}</p>;
   }
 
-		const linkData = links.map(link => <a href={`/${link.href}`} className="btn mr-2">{link.text}</a>);
+  const linkData = links.map(link => <a href={`/${link.href}`} className="btn mr-2">{link.text}</a>);
 
   return (
     <div className="card bg-dark text-white">
