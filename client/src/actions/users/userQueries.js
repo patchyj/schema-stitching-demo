@@ -1,6 +1,6 @@
 /* eslint-disable no-tabs */
 export function getUsersQuery() {
-  return `
+	return `
     query getUsers {
       getUsers {
         id
@@ -14,20 +14,22 @@ export function getUsersQuery() {
 }
 
 export function getUserQuery() {
-  return `
+	return `
     query getUser($id: ID!) {
       user(id: $id) {
         id
         firstName
         lastName
         email
+        tagline
+        avatar
         blogs { id }
-            projects { id }
-            profile {
-                experience { id }
-                education { id }
-                skills { id }
-            }
+        projects { id }
+        profile {
+          experience { id }
+          education { id }
+          skills { id }
+        }
       }
     }
   `;

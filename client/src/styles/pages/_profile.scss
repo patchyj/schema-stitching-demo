@@ -1,34 +1,76 @@
 .profile {
-		font-family: 'PT Sans', sans-serif;
+	font-family: "PT Sans", sans-serif;
 
-		.card {
+	.card {
+		border: 1px solid $mainBlue;
+		box-shadow: -0 3px 4px #191919;
+
+		.btn {
+			margin-top: 2rem;
+			color: $mainBlue;
+			background: $mainGrey;
 			border: 1px solid $mainBlue;
-				box-shadow: -0 3px 4px #191919;
+			padding: 0.5rem 1rem;
+			text-transform: uppercase;
+			transition: 0.2s;
+			width: 10rem;
 
-				.btn {
-					margin-top: 2rem;
-					color: $mainBlue;
-					background: $mainGrey;
-					border: 1px solid $mainBlue;
-					padding: 0.5rem 1rem;
-					text-transform: uppercase;
-					transition: 0.2s;
-					width: 10rem;
-
-					&:hover {
-							background: $mainBlue;
-							color: $mainGrey;
-							border-color: $mainBlue;
-					}
-					&:active {
-							background: darken($mainBlue, 20%);
-							border-color: darken($mainBlue, 20%);
-							color: $mainGrey;
-					}
-					&:focus {
-							box-shadow: none;
-							border-color: $mainBlue;
-					}
+			&:hover {
+				background: $mainBlue;
+				color: $mainGrey;
+				border-color: $mainBlue;
+			}
+			&:active {
+				background: darken($mainBlue, 20%);
+				border-color: darken($mainBlue, 20%);
+				color: $mainGrey;
+			}
+			&:focus {
+				box-shadow: none;
+				border-color: $mainBlue;
 			}
 		}
+	}
+
+	.banner {
+		display: flex;
+		width: 100vw;
+		height: 500px;
+		background: transparent;
+		background-clip: border-box;
+		position: relative;
+		box-sizing: border-box;
+		overflow: hidden;
+
+		.left,
+		.right {
+			width: 50%;
+		}
+
+		.avatar-container {
+			height: 8rem;
+			width: 8rem;
+			left: 50%;
+			top: 50%;
+			background-clip: border-box;
+			margin: auto;
+			transform: translate(50%, 50%);
+			border-radius: 50%;
+
+			img {
+				background-position: center;
+				background-repeat: no-repeat !important;
+				height: 100%;
+				width: 100%;
+			}
+		}
+
+		.line {
+			background: $mainBlue;
+			height: 100%;
+			width: 1px;
+			transform: scale(2) rotate(45deg);
+			transform-origin: 50% 50%;
+		}
+	}
 }

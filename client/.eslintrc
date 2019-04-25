@@ -1,59 +1,60 @@
-{
-  "extends": "airbnb",
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 6
-  },
-  "plugins": ["babel", "react"],
-  "env": {
-    "browser": false,
-    "node": true,
-    "jest": true
-  },
-  "globals": {
-    "window": true,
-    "document": true,
-    "browser": false,
-    "sessionStorage": true
-  },
-  "rules": {
-				"indent": ["error", 2],
-			// use strict is unnecassary inside of ES6 modules as babel inserts `"use strict";` for us but allowing.
-    "strict": "off",
-    // IE does not have a console until you open dev tools
-    // so will throw and exception.
-    "no-console": "error",
-    // ES6 allows for comma on last property but makes code confusing
-    // whether is end of object or not. So turning off so optional.
-    "comma-dangle": "off",
-    // Allow for underscore in variable names, for private etc.
-    "no-underscore-dangle": "off",
-    // require can be called inside an if statement important for universal apps
-    "global-require": "off",
-    // destructuring assignment for props is quite confusing, we can look into enabling it back if required
-    "react/destructuring-assignment": "off",
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error",
-    // it forces splitting code like <p>text</p> into multiple lines
-    "react/jsx-one-expression-per-line": "off",
-    "linebreak-style": [0, "windows"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "max-len": ["error", { "code": 180 }],
-    "import/no-cycle": "off", //TODO: should be enabled. to do as a second step
-    // is deprecated in recent version, and cause problems in our code. So removed that
-    "jsx-a11y/label-has-for": "off",
-    "jsx-a11y/label-has-associated-control": "off",
-    // some files are not published to the website, so the dependencies are listed as dev only
-    "import/no-extraneous-dependencies": [
-      "off",
-      {
-        "devDependencies": ["**/*.spec.js"],
-        "packageDir": ["./tools"]
-      }
-    ]
-  }
-}
+// {
+// 	"parser": "babel-eslint",
+// 	"parserOptions": {
+// 		"sourceType": "module",
+// 		"ecmaFeatures": {
+// 			"jsx": true
+// 		},
+// 		"ecmaVersion": 6
+// 	},
+// 	"plugins": ["prettier"],
+// 	"env": {
+// 		"browser": false,
+// 		"node": true,
+// 		"jest": true
+// 	},
+// 	"globals": {
+// 		"window": true,
+// 		"document": true,
+// 		"browser": false,
+// 		"sessionStorage": true
+// 	},
+// 	"rules": {
+// 		"indent": [1, 2],
+// 		// use strict is unnecassary inside of ES6 modules as babel inserts `"use strict";` for us but allowing.
+// 		"strict": "off",
+// 		// IE does not have a console until you open dev tools
+// 		// so will throw and exception.
+// 		"no-console": "error",
+// 		// ES6 allows for comma on last property but makes code confusing
+// 		// whether is end of object or not. So turning off so optional.
+// 		"comma-dangle": "off",
+// 		// Allow for underscore in variable names, for private etc.
+// 		"no-underscore-dangle": "off",
+// 		// require can be called inside an if statement important for universal apps
+// 		"global-require": "off",
+// 		// destructuring assignment for props is quite confusing, we can look into enabling it back if required
+// 		"react/destructuring-assignment": "off",
+// 		"react/jsx-uses-react": "error",
+// 		"react/jsx-uses-vars": "error",
+// 		// it forces splitting code like <p>text</p> into multiple lines
+// 		"react/jsx-one-expression-per-line": "off",
+// 		"linebreak-style": [0, "windows"],
+// 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+// 		"max-len": ["error", { "code": 180 }],
+// 		"import/no-cycle": "off", //TODO: should be enabled. to do as a second step
+// 		// is deprecated in recent version, and cause problems in our code. So removed that
+// 		"jsx-a11y/label-has-for": "off",
+// 		"jsx-a11y/label-has-associated-control": "off",
+// 		// some files are not published to the website, so the dependencies are listed as dev only
+// 		"import/no-extraneous-dependencies": [
+// 			"off",
+// 			{
+// 				"devDependencies": ["**/*.spec.js"],
+// 				"packageDir": ["./tools"]
+// 			}
+// 		],
+// 		"prettier/prettier": "error"
+// 	},
+// 	"extends": ["airbnb", "plugin:prettier/recommended"]
+// }
