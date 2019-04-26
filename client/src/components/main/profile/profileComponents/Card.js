@@ -1,27 +1,27 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Card extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			minimised: false
+			minimised: false,
 		};
 
 		this.changeMinimise = this.changeMinimise.bind(this);
 	}
 
 	changeMinimise() {
-		this.setState({ minimised: !this.state.minimised })
+		this.setState({ minimised: !this.state.minimised });
 	}
 
 	render() {
 		const { minimised } = this.state;
 		const { title, top } = this.props;
 		const styles = {
-			width: minimised ? "300px" : "200px",
-			top: `${top}px`
-		}
+			width: minimised ? '300px' : '200px',
+			top: `${top}px`,
+		};
 
 		return (
 			<div
@@ -45,16 +45,16 @@ Card.propTypes = {
 	text: PropTypes.string,
 	links: PropTypes.arrayOf(PropTypes.shape({})),
 	type: PropTypes.string,
-	data: PropTypes.arrayOf(PropTypes.shape({}))
+	data: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 Card.defaultProps = {
-	title: "",
-	subtitle: "",
-	text: "",
+	title: '',
+	subtitle: '',
+	text: '',
 	links: [],
-	type: "",
-	data: []
+	type: '',
+	data: [],
 };
 
 export default Card;
