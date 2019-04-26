@@ -2,13 +2,32 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getUser } from "../../../../actions/users/userActions";
-import Card from "../../../common/Card";
-import Banner from "../../../common/Banner";
+import Banner from "../profileComponents/Banner";
 
 class Dashboard extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			current: ""
+		};
+
+		this.changeFocus = this.changeFocus.bind(this);
+	}
+
 	componentDidMount() {
 		const { userID } = this.props;
 		this.props.getUser(userID);
+	}
+
+	changeFocus(arg) {
+		this.setState({ current: arg });
+		console.log(this.state);
+	}
+
+	changeMinimise() {
+		this.setState({ current: arg });
+		console.log(this.state);
 	}
 
 	render() {
@@ -27,42 +46,11 @@ class Dashboard extends Component {
 
 		return (
 			<Fragment>
-				<Banner user={user} />
-				<div className="container">
-					<div className="row">
-						<div className="col-md-6">
-							<Card
-								title="Profile Summary"
-								subtitle=""
-								text=""
-								type="profile"
-								data={user && user.profile && Object.entries(user.profile)}
-							/>
-						</div>
-					</div>
-					<div className="row mt-4">
-						<div className="col-md-6">
-							<Card
-								title="Posts"
-								subtitle=""
-								text="Total posts"
-								links={blogButtons}
-								type="posts"
-								data={user && user.blogs}
-							/>
-						</div>
-						<div className="col-md-6">
-							<Card
-								title="Projects"
-								subtitle=""
-								text="Total projects"
-								links={projectButtons}
-								type="projects"
-								data={user && user.projects}
-							/>
-						</div>
-					</div>
-				</div>
+				<Banner
+					user={user}
+					changeFocus={this.changeFocus}
+					changeMinimise={this.changeMinimise}
+				/>
 			</Fragment>
 		);
 	}
@@ -79,7 +67,8 @@ Dashboard.propTypes = {
 
 Dashboard.defaultProps = {
 	page: "",
-	userID: ""
+	userID: "",
+	errors: {}
 };
 
 const mapStateToProps = state => ({
