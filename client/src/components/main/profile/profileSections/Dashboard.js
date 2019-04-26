@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getUser } from "../../../../actions/users/userActions";
 import Banner from "../profileComponents/Banner";
+import Section from "../profileComponents/Section";
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -21,11 +22,6 @@ class Dashboard extends Component {
 	}
 
 	changeFocus(arg) {
-		this.setState({ current: arg });
-		console.log(this.state);
-	}
-
-	changeMinimise() {
 		this.setState({ current: arg });
 		console.log(this.state);
 	}
@@ -49,8 +45,8 @@ class Dashboard extends Component {
 				<Banner
 					user={user}
 					changeFocus={this.changeFocus}
-					changeMinimise={this.changeMinimise}
 				/>
+				<Section />
 			</Fragment>
 		);
 	}

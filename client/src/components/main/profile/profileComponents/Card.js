@@ -12,21 +12,24 @@ class Card extends Component {
 	}
 
 	changeMinimise() {
-		this.setState({ minimised: !this.state.minimised });
+		this.setState({ minimised: !this.state.minimised })
 	}
 
 	render() {
 		const { minimised } = this.state;
-		const { title, changeMinimise } = this.props;
-		console.log(minimised);
+		const { title, top } = this.props;
+		const styles = {
+			width: minimised ? "300px" : "200px",
+			top: `${top}px`
+		}
 
 		return (
 			<div
 				className="card text-white"
-				style={{ width: minimised ? "500px" : "300px" }}
+				style={styles}
 				onClick={() => this.props.changeFocus(title)}
-				onMouseEnter={() => changeMinimise()}
-				onMouseLeave={() => changeMinimise()}
+				onMouseEnter={() => this.changeMinimise()}
+				onMouseLeave={() => this.changeMinimise()}
 			>
 				<div className="card-body">
 					<h5 className="card-title">{title}</h5>

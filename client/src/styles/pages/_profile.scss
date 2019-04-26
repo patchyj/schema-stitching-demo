@@ -1,15 +1,11 @@
 .profile {
-	font-family: "PT Sans", sans-serif;
+	font-family: 'Gugi', cursive;
+
 	overflow: hidden;
 
-	.card-container {
+	.card {
 		position: absolute;
 		right: 0;
-		top: 50%;
-		transform: translate(0, -50%);
-	}
-
-	.card {
 		margin: 1rem 0;
 		border: 1px solid $mainBlue;
 		border-right: none;
@@ -17,9 +13,26 @@
 		box-shadow: -0 3px 4px #191919;
 		transition: 0.2s;
 		background: $mainGrey;
+		cursor: pointer;
+		overflow: hidden;
 
 		&:hover {
 			background: darken($mainGrey, 5%);
+		}
+
+		&:active {
+			background: darken($mainGrey, 10%);
+
+			&::before {
+				content: ' ';
+				position: absolute;
+				height:100px;
+				width:100px;
+				left:20%;
+				border-radius: 50%;
+				animation: effect1 .25s;
+				animation-iteration-count: 1;
+			}
 		}
 
 		.btn {
@@ -68,7 +81,7 @@
 		}
 
 		.line {
-			background: $mainBlue;
+			background: linear-gradient(175deg, $mainBlue, #ce1d59);;
 			position: absolute;
 			z-index: -100;
 			height: 100%;
@@ -77,5 +90,45 @@
 			box-shadow: 10px 0 16px 0 #00000080;
 			transform-origin: 50% 50%;
 		}
+	}
+
+	.section {
+		display: flex;
+		align-items: center;
+		width: 100vw;
+		height: 800px;
+		background: transparent;
+		background-clip: border-box;
+		position: relative;
+		box-sizing: border-box;
+
+		.left {
+			width: 30%;
+		}
+		.right {
+			width: 70%;
+		}
+		.center {
+			background: linear-gradient(175deg, $mainBlue, #ce1d59);;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			transform: scale(-2) skew(-45deg) translateX(-55%);
+			box-shadow: 10px 0 16px 0 #00000080;
+			transform-origin: 50% 50%;
+		}
+	}
+}
+
+@keyframes effect1 {
+	from {
+		opacity: .7;
+		background: $mainBlue;
+		transform: rotate(20deg);
+	}
+
+	to {
+		opacity: 0;
+		transform: scale(10) rotate(60deg);
 	}
 }
