@@ -73,9 +73,9 @@ const createProjects = async (isOnline) => {
 
 
 async function init(){
-  const isOnline = true; // TRUE ? ONLINE : OFFLINE
+  const isOnline = false; // TRUE ? ONLINE : OFFLINE
   console.log(`Connected to ${isOnline ? 'ElephantSQL' : 'localhost'}`);
-  createProjects(isOnline);
+  await createProjects(isOnline);
 }
 
 init();

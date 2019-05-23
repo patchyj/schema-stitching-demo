@@ -1,55 +1,55 @@
-import axios from 'axios';
-import { baseURL } from '../../utils/baseURL';
+import axios from "axios";
+import { baseURL } from "../../utils/baseURL";
 import {
-  GET_USERS_STARTED,
-  GET_USERS_SUCCESS,
-  GET_USERS_FAILURE,
-  GET_USER_STARTED,
-  GET_USER_SUCCESS,
-  GET_USER_FAILURE
-} from '../types';
-import { getUserQuery, getUsersQuery } from './userQueries';
+	GET_USERS_STARTED,
+	GET_USERS_SUCCESS,
+	GET_USERS_FAILURE,
+	GET_USER_STARTED,
+	GET_USER_SUCCESS,
+	GET_USER_FAILURE
+} from "../types";
+import { getUserQuery, getUsersQuery } from "./userQueries";
 
-export const getUser = id => (dispatch) => {
-  dispatch({ type: GET_USER_STARTED });
-  axios
-    .post(`${baseURL}/graphql`, {
-      query: getUserQuery(),
-      variables: { id }
-    })
-    .then((res) => {
-      dispatch({
-        type: GET_USER_SUCCESS,
-        payload: res.data
-      });
-    })
-    .catch((err) => {
-      dispatch({
-        type: GET_USER_FAILURE,
-        payload: err
-      });
-    });
+export const getUser = (id, args) => dispatch => {
+	dispatch({ type: GET_USER_STARTED });
+	axios
+		.post(`${baseURL}/graphql`, {
+			query: getUserQuery(args),
+			variables: { id }
+		})
+		.then(res => {
+			dispatch({
+				type: GET_USER_SUCCESS,
+				payload: res.data
+			});
+		})
+		.catch(err => {
+			dispatch({
+				type: GET_USER_FAILURE,
+				payload: err
+			});
+		});
 };
 
-export const getUsers = (dispatch) => {
-  dispatch({ type: GET_USERS_STARTED });
-  axios({
-    url: `${baseURL}/graphql`,
-    method: 'post',
-    data: {
-      query: getUsersQuery()
-    }
-  })
-    .then((res) => {
-      dispatch({
-        type: GET_USERS_SUCCESS,
-        payload: res.data
-      });
-    })
-    .catch((err) => {
-      dispatch({
-        type: GET_USERS_FAILURE,
-        payload: err
-      });
-    });
+export const getUsers = dispatch => {
+	dispatch({ type: GET_USERS_STARTED });
+	axios({
+		url: `${baseURL}/graphql`,
+		method: "post",
+		data: {
+			query: getUsersQuery()
+		}
+	})
+		.then(res => {
+			dispatch({
+				type: GET_USERS_SUCCESS,
+				payload: res.data
+			});
+		})
+		.catch(err => {
+			dispatch({
+				type: GET_USERS_FAILURE,
+				payload: err
+			});
+		});
 };

@@ -1,16 +1,16 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getUser } from '../../../../actions/users/userActions';
-import Banner from '../profileComponents/Banner';
-import Section from '../profileComponents/Section';
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getUser } from "../../../../actions/users/userActions";
+import Banner from "../profileComponents/Banner";
+import Section from "../profileComponents/Section";
 
 class Dashboard extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			current: '',
+			current: ""
 		};
 
 		this.changeFocus = this.changeFocus.bind(this);
@@ -18,26 +18,25 @@ class Dashboard extends Component {
 
 	componentDidMount() {
 		const { userID } = this.props;
-		this.props.getUser(userID);
+		this.props.getUser(userID, { profile: true });
 	}
 
 	changeFocus(arg) {
 		this.setState({ current: arg });
-		console.log(this.state);
 	}
 
 	render() {
 		const {
 			user: { user },
-			page,
+			page
 		} = this.props;
 		const blogButtons = [
-			{ href: '/posts', text: 'See posts' },
-			{ href: '/posts', text: 'New post' },
+			{ href: "/posts", text: "See posts" },
+			{ href: "/posts", text: "New post" }
 		];
 		const projectButtons = [
-			{ href: '/projects', text: 'See projects' },
-			{ href: '/projects', text: 'New project' },
+			{ href: "/projects", text: "See projects" },
+			{ href: "/projects", text: "New project" }
 		];
 
 		return (
@@ -55,21 +54,21 @@ Dashboard.propTypes = {
 	user: PropTypes.shape({}).isRequired,
 	errors: PropTypes.shape({}).isRequired,
 	auth: PropTypes.shape({}).isRequired,
-	userID: PropTypes.string,
+	userID: PropTypes.string
 };
 
 Dashboard.defaultProps = {
-	page: '',
-	userID: '',
-	errors: {},
+	page: "",
+	userID: "",
+	errors: {}
 };
 
 const mapStateToProps = state => ({
 	auth: state.auth,
-	user: state.user,
+	user: state.user
 });
 
 export default connect(
 	mapStateToProps,
-	{ getUser },
+	{ getUser }
 )(Dashboard);

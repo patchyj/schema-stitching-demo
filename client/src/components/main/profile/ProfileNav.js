@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from "react";
+import PropTypes from "prop-types";
 
-const ProfileNav = ({ options, page, changePage }) => {
+const ProfileNav = ({ options, page, onChangePage }) => {
 	const renderLinks = options.map(profileLink => (
 		<li className="nav-item" key={profileLink}>
 			<span
 				className={`nav-link ${page === profileLink ? "active" : ""}`}
-				onClick={() => changePage(profileLink)}
+				onClick={() => onChangePage(profileLink)}
 			>
 				{profileLink}
 			</span>
@@ -36,6 +37,10 @@ const ProfileNav = ({ options, page, changePage }) => {
 			</div>
 		</nav>
 	);
+};
+
+ProfileNav.propTypes = {
+	onChangePage: PropTypes.func
 };
 
 export default ProfileNav;

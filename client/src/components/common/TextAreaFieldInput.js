@@ -4,22 +4,22 @@ import PropTypes from "prop-types";
 const TextFieldInput = ({
 	placeholder,
 	name,
-	type,
 	value,
 	onchange,
 	disabled,
 	errors,
-	cols
+	cols,
+	rows
 }) => (
 	<div className={`form-group col-md-${cols}`}>
-		<input
-			type={type}
-			className={`form-control form-control-lg ${errors ? "is-invalid" : ""}`}
-			placeholder={placeholder}
+		<textarea
 			name={name}
-			value={value}
+			placeholder={placeholder}
+			className={`form-control form-control-lg ${errors ? "is-invalid" : ""}`}
+			rows={rows}
 			onChange={onchange}
 			disabled={disabled}
+			defaultValue={value}
 		/>
 		{errors && <div className="invalid-feedback">{errors}</div>}
 	</div>
@@ -32,19 +32,20 @@ TextFieldInput.propTypes = {
 	errors: PropTypes.string,
 	type: PropTypes.string,
 	disabled: PropTypes.bool,
-	onchange: PropTypes.func,
-	cols: PropTypes.number
+	onchange: PropTypes.func.isRequired,
+	cols: PropTypes.number,
+	rows: PropTypes.number
 };
 
 TextFieldInput.defaultProps = {
 	type: "text",
 	disabled: false,
-	onchange: () => {},
 	name: "",
 	placeholder: "",
 	value: "",
 	errors: "",
-	cols: 12
+	cols: 12,
+	rows: 7
 };
 
 export default TextFieldInput;

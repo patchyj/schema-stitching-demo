@@ -1,7 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { ApolloServer } from 'apollo-server-express';
-import config from '../config/config';
+import config from '../config';
 import typeDefs from './schema/profileSchema';
 import resolvers from './resolver/profileResolver';
 

@@ -1,4 +1,34 @@
 /* eslint-disable no-tabs */
+const profileQuery = `
+  profile {
+    experience {
+      id
+      title
+      company
+      location
+      from
+      to
+      current
+      description
+    }
+    education {
+      id
+      school
+      degree
+      fieldofstudy
+      from
+      to
+      current
+      description
+    }
+    skills {
+      id
+      name
+      level
+    }
+  }
+`;
+
 export function getUsersQuery() {
 	return `
     query getUsers {
@@ -13,7 +43,7 @@ export function getUsersQuery() {
   `;
 }
 
-export function getUserQuery() {
+export function getUserQuery({ profile }) {
 	return `
     query getUser($id: ID!) {
       user(id: $id) {
@@ -25,11 +55,7 @@ export function getUserQuery() {
         avatar
         blogs { id }
         projects { id }
-        profile {
-          experience { id }
-          education { id }
-          skills { id }
-        }
+        ${profile && profileQuery}
       }
     }
   `;

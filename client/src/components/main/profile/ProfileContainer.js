@@ -15,10 +15,12 @@ class ProfileContainer extends Component {
 
 		this.state = {
 			profileLinks: ["Dashboard", "Education", "Experience", "Skills"],
-			page: "Dashboard"
+			page: "Dashboard",
+			readOnly: true
 		};
 
-		this.changePage = this.changePage.bind(this);
+		this.onChangePage = this.onChangePage.bind(this);
+		this.onToggleRead = this.onToggleRead.bind(this);
 	}
 
 	componentDidMount() {
@@ -26,25 +28,37 @@ class ProfileContainer extends Component {
 		this.props.setCurrentUserFromToken(token);
 	}
 
-	changePage(page) {
+	onChangePage(page) {
 		this.setState({ page });
 	}
 
+	onToggleRead() {
+		this.setState({ readOnly: !this.state.readOnly });
+	}
+
 	render() {
-		const { profileLinks, page } = this.state;
+		const { profileLinks, page, readOnly } = this.state;
 		const {
 			auth: {
 				user: { id }
-			}
+			},
+			user
 		} = this.props;
+
 		return (
 			<div className="profile">
 				<ProfileNav
 					options={profileLinks}
 					page={page}
-					changePage={this.changePage}
+					onChangePage={this.onChangePage}
 				/>
-				<ProfileContent page={page} userID={id} />
+				<ProfileContent
+					page={page}
+					userID={id}
+					user={user}
+					readOnly={readOnly}
+					onToggleRead={this.onToggleRead}
+				/>
 			</div>
 		);
 	}
@@ -53,6 +67,7 @@ class ProfileContainer extends Component {
 ProfileContainer.propTypes = {
 	setCurrentUserFromToken: PropTypes.func.isRequired,
 	auth: PropTypes.shape({}).isRequired,
+	user: PropTypes.shape({}).isRequired,
 	errors: PropTypes.shape({}),
 	history: PropTypes.shape({}).isRequired
 };
@@ -63,6 +78,7 @@ ProfileContainer.defaultProps = {
 
 const mapStateToProps = state => ({
 	auth: state.auth,
+	user: state.user,
 	errors: state.errors
 });
 
